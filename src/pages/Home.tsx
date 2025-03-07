@@ -2,8 +2,8 @@ import { NavButton } from "../components/navigation/NavButton";
 
 export function Home() {
   return (
-    <main className="min-h-screen flex justify-center items-center bg-blue-50">
-      <section className="bg-white p-10 w-[50dvw] font-serif">
+    <main className="min-h-screen flex flex-col justify-center items-center bg-blue-50 py-5">
+      <section className="bg-white min-h-screen p-10 w-[50dvw] font-serif py-3">
         <div className="flex justify-between items-center border-b py-2">
           <h1 className="font-bold text-3xl">Resume Builder</h1>
           <NavButton to={"/select"} activeClassName="font-sans">
@@ -76,6 +76,40 @@ export function Home() {
             securing their next big opportunity."
           </p>
         </div>
+        <div className="flex flex-col py-1 my-1">
+          <h1 className="font-semibold text-xl border-b">FAQS</h1>
+          <strong className="py-1">
+            How does the AI-powered resume builder work?
+          </strong>
+          <p>
+            Our AI-powered resume builder helps you craft a professional resume
+            by analyzing your input and providing industry-specific suggestions.
+            It ensures proper formatting, highlights key skills, and optimizes
+            your resume for Applicant Tracking Systems (ATS) to increase your
+            chances of getting noticed by recruiters.
+          </p>
+          <strong className="py-1">Can I customize my resume template?</strong>
+          <p>
+            Our AI-powered resume builder helps you craft a professional resume
+            by analyzing your input and providing industry-specific suggestions.
+            It ensures proper formatting, highlights key skills, and optimizes
+            your resume for Applicant Tracking Systems (ATS) to increase your
+            chances of getting noticed by recruiters.
+          </p>
+          <strong className="py-1">Is my data safe and secure?</strong>
+          <p>
+            Absolutely. We prioritize your privacy and security, ensuring that
+            your personal information is encrypted and never shared with third
+            parties. You have full control over your data, and you can delete or
+            download your resume at any time.
+          </p>
+        </div>
+        <footer className="">
+          <p>All rights reserved.</p>
+          <p>
+            Developed by <a href="">Zemo</a>
+          </p>
+        </footer>
       </section>
     </main>
   );
