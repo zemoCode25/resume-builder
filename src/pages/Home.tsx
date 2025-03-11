@@ -6,7 +6,7 @@ export function Home() {
       <section className="bg-white min-h-screen p-10 w-[50dvw] font-serif py-3">
         <div className="flex justify-between items-center border-b py-2">
           <h1 className="font-bold text-3xl">Resume Builder</h1>
-          <NavButton to={"/select"} activeClassName="font-sans">
+          <NavButton to={"/main"} activeClassName="font-sans">
             Be job ready for free
           </NavButton>
         </div>
