@@ -2,7 +2,7 @@
 @import "tailwindcss";
 
 :root {
-  font-family: "Inter", sans-serif;
+  font-family: "Manrope", sans-serif;
 }
 
 @layer components {
