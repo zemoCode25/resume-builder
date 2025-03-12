@@ -9,4 +9,12 @@
   .font-inter {
     font-family: "Inter", sans-serif;
   }
+
+  .shadow-all-md {
+    @apply shadow-[0px_0px_5px_rgba(0,0,0,0.2)];
+  }
+
+  .shadow-all-lg:hover {
+    @apply shadow-[0px_0px_12px_rgba(0,0,0,0.4)];
+  }
 }
