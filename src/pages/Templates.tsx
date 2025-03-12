@@ -1,4 +1,5 @@
-// import image from "../../public/assets/PR10.png";
+import { Overlay } from "../components/overlay/Overlay";
+
 export function Templates() {
   return (
     <main className="min-h-screen flex flex-col justify-center items-center bg-stone-100 py-5">
@@ -38,6 +39,7 @@ export function Templates() {
           />
         </div>
       </div>
+      <Overlay />
     </main>
   );
 }

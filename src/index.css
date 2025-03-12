@@ -10,6 +10,10 @@
     font-family: "Inter", sans-serif;
   }
 
+  .font-manrope {
+    font-family: "Manrope", sans-serif;
+  }
+
   .shadow-all-md {
     @apply shadow-[0px_0px_5px_rgba(0,0,0,0.2)];
   }
