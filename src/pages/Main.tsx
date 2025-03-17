@@ -1,7 +1,5 @@
 export function Main() {
   return (
-    <main>
-      <h1>MAIN APP</h1>
-    </main>
+    <main className="min-h-screen flex flex-col justify-center items-center bg-stone-100 py-10"></main>
   );
 }
