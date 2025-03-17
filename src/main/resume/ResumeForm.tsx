@@ -1,3 +1,7 @@
 export function ResumeForm() {
-  return <h1>Resume Form</h1>;
+  return (
+    <div className="w-1/2">
+      <p>Tailor your best resume.</p>
+    </div>
+  );
 }
