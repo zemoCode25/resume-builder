@@ -1,7 +1,5 @@
 import { Input } from "@/components/ui/input";
-import { DatePicker } from "@/components/DatePicker";
-
-export function Education() {
+export function Experience() {
   return (
     <form
       action=""
@@ -9,27 +7,37 @@ export function Education() {
     >
       <div className="w-full flex flex-col gap-1">
         <label htmlFor="" className="font-semibold text-gray-700">
-          School/University
+          Company
         </label>
-        <Input placeholder="e.g. University of the Philippines - Diliman" />
+        <Input placeholder="e.g. Resume Builder Inc." />
       </div>
       <div className="w-full flex flex-col gap-1">
         <label htmlFor="" className="font-semibold text-gray-700">
-          Degree Program
+          Position
         </label>
-        <Input placeholder="e.g. Computer Science" />
+        <Input placeholder="e.g. Software Developer" />
       </div>
       <div className="w-full flex flex-col gap-1">
         <label htmlFor="" className="font-semibold text-gray-700">
           Start Date
         </label>
-        <DatePicker />
+        <Input type="date" placeholder="ralphbryancarlos@gmail.com" />
       </div>
       <div className="w-full flex flex-col gap-1">
         <label htmlFor="" className="font-semibold text-gray-700">
           End Date
         </label>
-        <DatePicker />
+        <Input type="date" placeholder="ralphbryancarlos@gmail.com" />
+      </div>
+      <div className="w-full flex flex-col gap-1 col-span-2">
+        <label htmlFor="" className="font-semibold text-gray-700">
+          Job Description
+        </label>
+        <textarea
+          name=""
+          id=""
+          className="w-full p-3 text-sm border outline-none min-h-32"
+        ></textarea>
       </div>
     </form>
   );

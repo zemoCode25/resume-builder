@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { DatePicker } from "@/components/DatePicker";
 
 export function ResumeForm() {
   return (
@@ -26,7 +27,7 @@ export function ExperienceList() {
       {Array.from({ length: experienceCount }).map((_, i) => (
         <Experience key={i} />
       ))}
-      <div className="flex justify-end w-3/4">
+      <div className="flex w-3/4">
         <Button
           className="cursor-pointer font-semibold"
           onClick={() => setExperienceCount(experienceCount + 1)}
@@ -60,13 +61,13 @@ export function Experience() {
         <label htmlFor="" className="font-semibold text-gray-700">
           Start Date
         </label>
-        <Input type="date" placeholder="ralphbryancarlos@gmail.com" />
+        <DatePicker />
       </div>
       <div className="w-full flex flex-col gap-1">
         <label htmlFor="" className="font-semibold text-gray-700">
           End Date
         </label>
-        <Input type="date" placeholder="ralphbryancarlos@gmail.com" />
+        <DatePicker />
       </div>
       <div className="w-full flex flex-col gap-1 col-span-2">
         <label htmlFor="" className="font-semibold text-gray-700">
@@ -75,7 +76,7 @@ export function Experience() {
         <textarea
           name=""
           id=""
-          className="w-full p-3 text-sm border outline-none min-h-32"
+          className="w-full p-3 text-sm border outline-none min-h-32 rounded-sm"
         ></textarea>
       </div>
     </form>
