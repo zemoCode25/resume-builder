@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Education } from "./Education";
 import { useState } from "react";
 
-export function EducationContainer() {
+export function EducationList() {
   const [educationCount, setEducationCount] = useState(1);
   return (
     <div className="flex flex-col justify-center items-center gap-3 w-full">

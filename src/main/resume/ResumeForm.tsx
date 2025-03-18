@@ -9,36 +9,36 @@ export function ResumeForm() {
         <button className="cursor-pointer text-2xl px-3 hover:font-bold">
           {"<"}
         </button>
-        <p className=" font-semibold">Summary</p>
+        <p className=" font-semibold">Experience</p>
         <button className="cursor-pointer text-2xl px-3 hover:font-bold">
           {">"}
         </button>
       </div>
-      <EducationContainer />
+      <ExperienceList />
     </div>
   );
 }
 
-export function EducationContainer() {
-  const [educationCount, setEducationCount] = useState(1);
+export function ExperienceList() {
+  const [experienceCount, setExperienceCount] = useState(1);
   return (
     <div className="flex flex-col justify-center items-center gap-3 w-full">
-      {Array.from({ length: educationCount }).map((_, i) => (
-        <Education key={i} />
+      {Array.from({ length: experienceCount }).map((_, i) => (
+        <Experience key={i} />
       ))}
       <div className="flex justify-end w-3/4">
         <Button
           className="cursor-pointer font-semibold"
-          onClick={() => setEducationCount(educationCount + 1)}
+          onClick={() => setExperienceCount(experienceCount + 1)}
         >
-          + Add Education
+          + Add Experience
         </Button>
       </div>
     </div>
   );
 }
 
-export function Education() {
+export function Experience() {
   return (
     <form
       action=""
@@ -46,15 +46,15 @@ export function Education() {
     >
       <div className="w-full flex flex-col gap-1">
         <label htmlFor="" className="font-semibold text-gray-700">
-          School/University
+          Company
         </label>
-        <Input placeholder="e.g. University of the Philippines - Diliman" />
+        <Input placeholder="e.g. Resume Builder Inc." />
       </div>
       <div className="w-full flex flex-col gap-1">
         <label htmlFor="" className="font-semibold text-gray-700">
-          Degree Program
+          Position
         </label>
-        <Input placeholder="e.g. Computer Science" />
+        <Input placeholder="e.g. Software Developer" />
       </div>
       <div className="w-full flex flex-col gap-1">
         <label htmlFor="" className="font-semibold text-gray-700">
@@ -67,6 +67,16 @@ export function Education() {
           End Date
         </label>
         <Input type="date" placeholder="ralphbryancarlos@gmail.com" />
+      </div>
+      <div className="w-full flex flex-col gap-1 col-span-2">
+        <label htmlFor="" className="font-semibold text-gray-700">
+          Job Description
+        </label>
+        <textarea
+          name=""
+          id=""
+          className="w-full p-3 text-sm border outline-none min-h-32"
+        ></textarea>
       </div>
     </form>
   );
