@@ -1,4 +1,6 @@
 import { Input } from "@/components/ui/input";
+import { DatePicker } from "@/components/DatePicker";
+
 export function Experience() {
   return (
     <form
@@ -21,13 +23,13 @@ export function Experience() {
         <label htmlFor="" className="font-semibold text-gray-700">
           Start Date
         </label>
-        <Input type="date" placeholder="ralphbryancarlos@gmail.com" />
+        <DatePicker />
       </div>
       <div className="w-full flex flex-col gap-1">
         <label htmlFor="" className="font-semibold text-gray-700">
           End Date
         </label>
-        <Input type="date" placeholder="ralphbryancarlos@gmail.com" />
+        <DatePicker />
       </div>
       <div className="w-full flex flex-col gap-1 col-span-2">
         <label htmlFor="" className="font-semibold text-gray-700">
@@ -36,7 +38,7 @@ export function Experience() {
         <textarea
           name=""
           id=""
-          className="w-full p-3 text-sm border outline-none min-h-32"
+          className="w-full p-3 text-sm border outline-none min-h-32 rounded-sm"
         ></textarea>
       </div>
     </form>

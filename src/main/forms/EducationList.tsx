@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Education } from "./Education";
 import { useState } from "react";
+import { CirclePlus } from "lucide-react";
 
 export function EducationList() {
   const [educationCount, setEducationCount] = useState(1);
@@ -14,7 +15,8 @@ export function EducationList() {
           className="cursor-pointer font-semibold"
           onClick={() => setEducationCount(educationCount + 1)}
         >
-          + Add Education
+          <CirclePlus />
+          Add Education
         </Button>
       </div>
     </div>

@@ -1,7 +1,7 @@
-import { Experience } from "../resume/ResumeForm";
-
+import { Experience } from "./Experience";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+
 export function ExperienceList() {
   const [experienceCount, setExperienceCount] = useState(1);
   return (
@@ -9,7 +9,7 @@ export function ExperienceList() {
       {Array.from({ length: experienceCount }).map((_, i) => (
         <Experience key={i} />
       ))}
-      <div className="flex justify-end w-3/4">
+      <div className="flex w-3/4">
         <Button
           className="cursor-pointer font-semibold"
           onClick={() => setExperienceCount(experienceCount + 1)}

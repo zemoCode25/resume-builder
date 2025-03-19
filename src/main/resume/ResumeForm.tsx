@@ -1,7 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
-import { DatePicker } from "@/components/DatePicker";
+// import { DatePicker } from "@/components/DatePicker";
+import { CirclePlus } from "lucide-react";
 
 export function ResumeForm() {
   return (
@@ -10,74 +11,48 @@ export function ResumeForm() {
         <button className="cursor-pointer text-2xl px-3 hover:font-bold">
           {"<"}
         </button>
-        <p className=" font-semibold">Experience</p>
+        <p className=" font-semibold">Skills</p>
         <button className="cursor-pointer text-2xl px-3 hover:font-bold">
           {">"}
         </button>
       </div>
-      <ExperienceList />
+      <SkillList />
     </div>
   );
 }
 
-export function ExperienceList() {
-  const [experienceCount, setExperienceCount] = useState(1);
+export function SkillList() {
+  const [skillCount, setSkillCount] = useState(1);
   return (
-    <div className="flex flex-col justify-center items-center gap-3 w-full">
-      {Array.from({ length: experienceCount }).map((_, i) => (
-        <Experience key={i} />
-      ))}
+    <>
+      <div className="w-3/4">
+        <div className="grid grid-cols-1 items-center gap-3 w-full">
+          {Array.from({ length: skillCount }).map((_, i) => (
+            <Skill key={i} />
+          ))}
+        </div>
+      </div>
       <div className="flex w-3/4">
         <Button
           className="cursor-pointer font-semibold"
-          onClick={() => setExperienceCount(experienceCount + 1)}
+          onClick={() => setSkillCount(skillCount + 1)}
         >
-          + Add Experience
+          <CirclePlus />
+          Add Skill
         </Button>
       </div>
-    </div>
+    </>
   );
 }
 
-export function Experience() {
+export function Skill() {
   return (
-    <form
-      action=""
-      className="w-3/4 grid grid-cols-2 gap-3 bg-white p-5 rounded-md"
-    >
+    <form action="" className="w-full flex gap-3 bg-white p-5 rounded-md">
       <div className="w-full flex flex-col gap-1">
         <label htmlFor="" className="font-semibold text-gray-700">
-          Company
+          Skill
         </label>
-        <Input placeholder="e.g. Resume Builder Inc." />
-      </div>
-      <div className="w-full flex flex-col gap-1">
-        <label htmlFor="" className="font-semibold text-gray-700">
-          Position
-        </label>
-        <Input placeholder="e.g. Software Developer" />
-      </div>
-      <div className="w-full flex flex-col gap-1">
-        <label htmlFor="" className="font-semibold text-gray-700">
-          Start Date
-        </label>
-        <DatePicker />
-      </div>
-      <div className="w-full flex flex-col gap-1">
-        <label htmlFor="" className="font-semibold text-gray-700">
-          End Date
-        </label>
-        <DatePicker />
-      </div>
-      <div className="w-full flex flex-col gap-1 col-span-2">
-        <label htmlFor="" className="font-semibold text-gray-700">
-          Job Description
-        </label>
-        <textarea
-          name=""
-          id=""
-          className="w-full p-3 text-sm border outline-none min-h-32 rounded-sm"
-        ></textarea>
+        <Input placeholder="e.g. Time Management" />
       </div>
     </form>
   );
