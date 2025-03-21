@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { CirclePlus } from "lucide-react";
-import { Project } from "../resume/ResumeForm";
+import { Project } from "./Project";
 import { Button } from "react-day-picker";
 
 export function ProjectList() {

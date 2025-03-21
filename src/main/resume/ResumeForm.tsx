@@ -1,7 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
-// import { DatePicker } from "@/components/DatePicker";
+import { DatePicker } from "@/components/DatePicker";
 import { CirclePlus } from "lucide-react";
 
 export function ResumeForm() {
@@ -11,24 +11,24 @@ export function ResumeForm() {
         <button className="cursor-pointer text-2xl px-3 hover:font-bold">
           {"<"}
         </button>
-        <p className=" font-semibold">Projects</p>
+        <p className=" font-semibold">Certificate</p>
         <button className="cursor-pointer text-2xl px-3 hover:font-bold">
           {">"}
         </button>
       </div>
-      <ProjectList />
+      <CertificateList />
     </div>
   );
 }
 
-export function ProjectList() {
+export function CertificateList() {
   const [skillCount, setSkillCount] = useState(1);
   return (
     <>
       <div className="w-3/4">
-        <div className="grid grid-cols-1 items-center gap-3 w-full">
+        <div className="grid grid-cols-2 items-center gap-3 w-full">
           {Array.from({ length: skillCount }).map((_, i) => (
-            <Project key={i} />
+            <Certificate key={i} />
           ))}
         </div>
       </div>
@@ -38,14 +38,14 @@ export function ProjectList() {
           onClick={() => setSkillCount(skillCount + 1)}
         >
           <CirclePlus />
-          Add Project
+          Add Certificate
         </Button>
       </div>
     </>
   );
 }
 
-export function Project() {
+export function Certificate() {
   return (
     <form
       action=""
@@ -53,7 +53,7 @@ export function Project() {
     >
       <div className="w-full flex flex-col gap-1">
         <label htmlFor="" className="font-semibold text-gray-700">
-          Project Name
+          Cerficate Name
         </label>
         <Input placeholder="e.g. Time Management" />
       </div>
@@ -64,8 +64,14 @@ export function Project() {
         <textarea
           name=""
           id=""
-          className="w-full p-3 text-sm border outline-none min-h-32 rounded-sm"
+          className="w-full p-3 text-sm border outline-none min-h-24 rounded-sm"
         ></textarea>
+      </div>
+      <div className="w-full flex flex-col gap-1">
+        <label htmlFor="" className="font-semibold text-gray-700">
+          Date of accreditation
+        </label>
+        <DatePicker />
       </div>
     </form>
   );
