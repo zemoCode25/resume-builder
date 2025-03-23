@@ -10,7 +10,7 @@ export function EducationList() {
       {Array.from({ length: educationCount }).map((_, i) => (
         <Education key={i} />
       ))}
-      <div className="flex justify-end w-3/4">
+      <div className="flex w-3/4">
         <Button
           className="cursor-pointer font-semibold"
           onClick={() => setEducationCount(educationCount + 1)}

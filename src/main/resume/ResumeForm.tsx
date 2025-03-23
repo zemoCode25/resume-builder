@@ -3,7 +3,9 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { DatePicker } from "@/components/DatePicker";
 import { CirclePlus } from "lucide-react";
-import { Personal } from "../forms/Personal";
+// import { EducationList } from "../forms/EducationList";
+import { CourseList } from "../forms/CourseList";
+// import { SkillList } from "../forms/SkillList";
 
 export function ResumeForm() {
   return (
@@ -17,7 +19,7 @@ export function ResumeForm() {
           {">"}
         </button>
       </div>
-      <Personal />
+      <CourseList />
     </div>
   );
 }

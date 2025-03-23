@@ -1,24 +1,24 @@
 import { useState } from "react";
-import { CirclePlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Skill } from "./Skill";
+import { CirclePlus } from "lucide-react";
+import { Course } from "./Course";
 
-export function SkillList() {
-  const [skillCount, setSkillCount] = useState(1);
+export function CourseList() {
+  const [courseCount, setCourseCount] = useState(1);
   return (
     <div className="w-3/4">
       <div className="grid grid-cols-2 items-center gap-3 w-full">
-        {Array.from({ length: skillCount }).map((_, i) => (
-          <Skill key={i} />
+        {Array.from({ length: courseCount }).map((_, i) => (
+          <Course key={i} />
         ))}
       </div>
-      <div className="flex w-full">
+      <div className="flex w-3/4">
         <Button
           className="cursor-pointer font-semibold"
-          onClick={() => setSkillCount(skillCount + 1)}
+          onClick={() => setCourseCount(courseCount + 1)}
         >
           <CirclePlus />
-          Add Skill
+          Add Course
         </Button>
       </div>
     </div>
