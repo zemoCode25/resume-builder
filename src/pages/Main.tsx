@@ -1,13 +1,14 @@
 import { CV } from "../main/CV";
 import { Resume } from "../main/Resume";
-import { useState } from "react";
+import { AppTypeProvider } from "@/contexts/AppContextProvider";
 
 export function Main() {
-  const [appType, setAppType] = useState("resume");
-
   return (
     <main className="min-h-screen flex flex-col justify-center items-center bg-stone-50 py-10">
-      {appType === "resume" ? <Resume /> : <CV />}
+      <AppTypeProvider>
+        <Resume />
+        <CV />
+      </AppTypeProvider>
     </main>
   );
 }

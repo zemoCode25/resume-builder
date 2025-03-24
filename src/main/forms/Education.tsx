@@ -32,6 +32,12 @@ export function Education() {
           </label>
           <DatePicker />
         </div>
+        <div className="w-full flex flex-col gap-1">
+          <label htmlFor="" className="font-semibold text-gray-700">
+            GPA
+          </label>
+          <Input placeholder="e.g. 1.25" />
+        </div>
       </form>
     </>
   );
