@@ -1,9 +1,9 @@
 export interface DefaultForm {
   personal: Personal;
-  experience: Experience;
-  education: Education;
-  project: Project;
-  skill: Skill;
+  experience: Experience[];
+  education: Education[];
+  project: Project[];
+  skill: Skill[];
   summary: Summary;
 }
 
