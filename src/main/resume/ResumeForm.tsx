@@ -28,6 +28,24 @@ export function ResumeForm() {
     },
   ];
 
+  function handleLeftCarouselCLick() {
+    if (carouselCount - 1 < 0) {
+      setCarouselCount(forms.length - 1);
+      return;
+    }
+    setCarouselCount(carouselCount - 1);
+  }
+
+  function handleRightCarouselCLick() {
+    const updatedCount = carouselCount + 1;
+
+    if (updatedCount > forms.length - 1) {
+      setCarouselCount(0);
+      return;
+    }
+    setCarouselCount(updatedCount);
+  }
+
   const activeForm = forms[carouselCount];
 
   if (appType !== "resume") return;
