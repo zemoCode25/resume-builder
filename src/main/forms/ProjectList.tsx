@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { CirclePlus } from "lucide-react";
 import { Project } from "./Project";
-import { Button } from "react-day-picker";
+import { Button } from "@/components/ui/button";
 
 export function ProjectList() {
   const [skillCount, setSkillCount] = useState(1);

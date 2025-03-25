@@ -5,6 +5,9 @@ import { useState, useContext } from "react";
 
 import { Personal } from "../forms/Personal";
 import { ExperienceList } from "../forms/ExperienceList";
+import { ProjectList } from "../forms/ProjectList";
+import { Summary } from "../forms/Summary";
+import { SkillList } from "../forms/SkillList";
 
 // import { CourseList } from "../forms/CourseList";
 // import { SkillList } from "../forms/SkillList";
@@ -19,12 +22,24 @@ export function ResumeForm() {
       formElement: <Personal />,
     },
     {
-      formName: "Experience",
-      formElement: <ExperienceList />,
+      formName: "Summary",
+      formElement: <Summary />,
+    },
+    {
+      formName: "Skills",
+      formElement: <SkillList />,
     },
     {
       formName: "Education",
       formElement: <EducationList />,
+    },
+    {
+      formName: "Experience",
+      formElement: <ExperienceList />,
+    },
+    {
+      formName: "Project",
+      formElement: <ProjectList />,
     },
   ];
 

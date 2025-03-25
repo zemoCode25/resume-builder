@@ -8,7 +8,7 @@ export function Summary() {
           your motivation and list your skills.
         </p>
         <textarea
-          className="w-full p-3 text-sm border outline-none"
+          className="w-full p-3 text-sm border outline-none min-h-32"
           name="summary"
           id="summary"
         ></textarea>
