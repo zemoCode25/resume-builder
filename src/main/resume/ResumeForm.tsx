@@ -1,13 +1,7 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { EducationList } from "../forms/EducationList";
 import { AppTypeContext } from "@/contexts/AppContext";
 import { useState, useContext } from "react";
-
-import { Personal } from "../forms/Personal";
-import { ExperienceList } from "../forms/ExperienceList";
-import { ProjectList } from "../forms/ProjectList";
-import { Summary } from "../forms/Summary";
-import { SkillList } from "../forms/SkillList";
+import { TemplateContext } from "@/contexts/TemplateContext";
 
 // import { CourseList } from "../forms/CourseList";
 // import { SkillList } from "../forms/SkillList";
@@ -23,34 +17,12 @@ import { SkillList } from "../forms/SkillList";
 
 export function ResumeForm() {
   const { appType, setAppType } = useContext(AppTypeContext);
+  const { template } = useContext(TemplateContext);
   const [carouselCount, setCarouselCount] = useState(0);
 
-  const forms = [
-    {
-      formName: "Personal",
-      formElement: <Personal />,
-    },
-    {
-      formName: "Summary",
-      formElement: <Summary />,
-    },
-    {
-      formName: "Skills",
-      formElement: <SkillList />,
-    },
-    {
-      formName: "Education",
-      formElement: <EducationList />,
-    },
-    {
-      formName: "Experience",
-      formElement: <ExperienceList />,
-    },
-    {
-      formName: "Project",
-      formElement: <ProjectList />,
-    },
-  ];
+  const forms = template?.forms ?? [];
+  console.log("TEMPLATE MO BOSS");
+  console.log(template);
 
   function handleLeftCarouselCLick() {
     if (carouselCount - 1 < 0) {

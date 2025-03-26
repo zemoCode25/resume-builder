@@ -1,13 +1,14 @@
 import { Overlay } from "../components/overlay/Overlay";
 import { templates } from "../content/templates";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Template } from "../types/templates/template-types";
 import { NavButton } from "../components/navigation/NavButton";
+import { TemplateContext } from "@/contexts/TemplateContext";
 
 export function Templates() {
-  const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(
-    null
-  );
+  const { template, setSelectedTemplate } = useContext(TemplateContext);
+  console.log("THIS IS THE TEMPLATE: ");
+  console.log(template);
 
   const [isPreviewOpen, setPreview] = useState(false);
 
@@ -15,6 +16,8 @@ export function Templates() {
     setPreview((prevPreviewState) => !prevPreviewState);
     const clickedTemplate =
       templates.find((template) => template.id === id) || null;
+    console.log("SELECTED");
+    console.log(clickedTemplate);
     setSelectedTemplate(clickedTemplate);
   }
 
@@ -44,7 +47,7 @@ export function Templates() {
 
       {isPreviewOpen && (
         <div>
-          <Preview template={selectedTemplate} />
+          <Preview template={template} />
           <Overlay closeOverlay={() => setPreview(false)} />
         </div>
       )}
