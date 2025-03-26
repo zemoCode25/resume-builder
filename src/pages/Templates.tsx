@@ -8,6 +8,7 @@ export function Templates() {
   const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(
     null
   );
+
   const [isPreviewOpen, setPreview] = useState(false);
 
   function handleTemplateClick(id: number): void {

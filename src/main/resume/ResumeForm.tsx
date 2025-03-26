@@ -12,6 +12,15 @@ import { SkillList } from "../forms/SkillList";
 // import { CourseList } from "../forms/CourseList";
 // import { SkillList } from "../forms/SkillList";
 
+/*
+*TODO LIST for 03/26/25
+
+- create context for the selected template
+- Setup the state in the resume component
+- Implement controlled input elements for each form
+- Create a state for each form then update the main resume state.
+*/
+
 export function ResumeForm() {
   const { appType, setAppType } = useContext(AppTypeContext);
   const [carouselCount, setCarouselCount] = useState(0);

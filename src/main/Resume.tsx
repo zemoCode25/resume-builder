@@ -1,3 +1,4 @@
+// import { useState, useEffect } from "react";
 import { ResumeForm } from "./resume/ResumeForm";
 import { ResumeView } from "./resume/ResumeView";
 export function Resume() {
