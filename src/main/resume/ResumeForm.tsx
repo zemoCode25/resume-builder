@@ -9,7 +9,7 @@ import { TemplateContext } from "@/contexts/TemplateContext";
 /*
 *TODO LIST for 03/26/25
 
-- create context for the selected template
+// - create context for the selected template
 - Setup the state in the resume component
 - Implement controlled input elements for each form
 - Create a state for each form then update the main resume state.

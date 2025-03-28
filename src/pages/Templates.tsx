@@ -16,8 +16,6 @@ export function Templates() {
     setPreview((prevPreviewState) => !prevPreviewState);
     const clickedTemplate =
       templates.find((template) => template.id === id) || null;
-    console.log("SELECTED");
-    console.log(clickedTemplate);
     setSelectedTemplate(clickedTemplate);
   }
 

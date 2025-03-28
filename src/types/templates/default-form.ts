@@ -1,10 +1,10 @@
 export interface DefaultForm {
-  personal: Personal;
-  experience: Experience[];
-  education: Education[];
-  project: Project[];
-  skill: Skill[];
-  summary: Summary;
+  personal?: Personal;
+  experience?: Experience[];
+  education?: Education[];
+  project?: Project[];
+  skill?: Skill[];
+  summary?: Summary;
 }
 
 export interface Personal {
