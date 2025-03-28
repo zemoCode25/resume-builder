@@ -1,5 +1,9 @@
 import { Input } from "@/components/ui/input";
+import { useContext } from "react";
+import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 export function Personal() {
+  console.log(useContext(ResumeDataContext));
+
   return (
     <form
       action=""
