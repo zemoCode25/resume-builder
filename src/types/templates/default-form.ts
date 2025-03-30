@@ -3,7 +3,7 @@ export interface DefaultForm {
   experience?: Experience[];
   education?: Education[];
   project?: Project[];
-  skill?: Skill[];
+  skill?: SkillType[];
   summary?: Summary;
 }
 
@@ -38,9 +38,9 @@ export interface Project {
   projectDescription?: string;
 }
 
-export interface Skill {
-  projectName?: string;
-  projectDescription?: string;
+export interface SkillType {
+  id?: number;
+  skillName?: string;
 }
 
 export interface Summary {
