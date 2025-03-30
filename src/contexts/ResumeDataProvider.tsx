@@ -10,7 +10,14 @@ interface ResumeDataProviderProps {
 export function ResumeDataProvider({ children }: ResumeDataProviderProps) {
   const { template } = useContext(TemplateContext);
   const [resumeData, setResumeData] = useState<DefaultForm | null>(
-    template?.defaultFormState || null
+    template?.defaultFormState || {
+      personal: {},
+      experience: [],
+      education: [],
+      project: [],
+      skill: [],
+      summary: {},
+    }
   );
 
   return (
