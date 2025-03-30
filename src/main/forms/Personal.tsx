@@ -9,10 +9,10 @@ export function Personal() {
 
   const personal = resumeData?.personal || {}; // Can't detructure a possible null value object, direct assignment is needed
   function handleJobTitleChange(e: React.ChangeEvent<HTMLInputElement>) {
-    setResumeData((prevState) => ({
-      ...prevState,
-      personal: { ...prevState?.personal, jobTitle: e.target.value },
-    }));
+    setResumeData({
+      ...resumeData,
+      personal: { ...resumeData?.personal, jobTitle: e.target.value },
+    });
   }
 
   function handleFirstNameChange(e: React.ChangeEvent<HTMLInputElement>) {
