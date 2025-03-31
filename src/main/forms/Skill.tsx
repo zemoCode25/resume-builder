@@ -1,41 +1,57 @@
 import { Input } from "@/components/ui/input";
-
 import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 import { useContext } from "react";
 import { SkillType } from "@/types/templates/default-form";
+import { v4 as uuidv4 } from "uuid";
 
-export function Skill() {
+export function Skill({ skill = {} }: { skill: SkillType }) {
   const { resumeData, setResumeData } = useContext(ResumeDataContext);
-
-  const skills = resumeData?.skill || [];
 
   console.log(resumeData?.skill);
 
-  function handleSkillChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const currentSkillArr = resumeData?.skill?.map((skill) => skill) || [];
+  /*
+   
+  * Check if the current input has an existing ID
+  * If there is an existing ID, locate the ID and edit the element with the ID inside the array
+  * If the input is unique/newly created, assign an ID and the initial characters 
 
-    setResumeData({
-      ...resumeData,
-      skill: [...currentSkillArr, { skillName: e.target.value }],
-    });
+   */
+
+  function handleSkillChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const currentSkills = resumeData?.skill || [];
+
+    const skillID = skill?.id;
+
+    if (skillID) {
+      const updatedSkills = currentSkills.map((skill) =>
+        skillID.toLocaleString() === skill.id
+          ? { ...skill, skillName: e.target.value }
+          : skill
+      );
+      setResumeData({
+        ...resumeData,
+        skill: [...updatedSkills],
+      });
+    } else {
+      setResumeData({
+        ...resumeData,
+        skill: [...currentSkills, { id: uuidv4(), skillName: e.target.value }],
+      });
+    }
   }
   // Check whether skill has any element, if not, create a dummy array to render atleast 1 input
   return (
     <form action="" className="w-full flex gap-3 bg-white p-5 rounded-md">
-      {(skills.length > 0 ? skills : [{ skillName: "" }]).map(
-        (skill: SkillType, key: number) => (
-          <div className="w-full flex flex-col gap-1" key={key}>
-            <label htmlFor="" className="font-semibold text-gray-700">
-              Skill
-            </label>
-            <Input
-              onChange={handleSkillChange}
-              value={skill.skillName || ""}
-              placeholder="e.g. Time Management"
-            />
-          </div>
-        )
-      )}
+      <div className="w-full flex flex-col gap-1">
+        <label htmlFor="" className="font-semibold text-gray-700">
+          Skill
+        </label>
+        <Input
+          onChange={(e) => handleSkillChange(e)}
+          value={skill?.skillName || ""}
+          placeholder="e.g. Time Management"
+        />
+      </div>
     </form>
   );
 }

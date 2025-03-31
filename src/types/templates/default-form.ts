@@ -1,6 +1,6 @@
 export interface DefaultForm {
   personal?: Personal;
-  experience?: Experience[];
+  experience?: ExperienceType[];
   education?: Education[];
   project?: Project[];
   skill?: SkillType[];
@@ -17,7 +17,8 @@ export interface Personal {
   city?: string;
 }
 
-export interface Experience {
+export interface ExperienceType {
+  readonly id?: string;
   company?: string;
   position?: string;
   startDate?: Date;
@@ -39,7 +40,7 @@ export interface Project {
 }
 
 export interface SkillType {
-  id?: number;
+  readonly id?: string;
   skillName?: string;
 }
 

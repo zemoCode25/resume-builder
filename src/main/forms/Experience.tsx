@@ -1,7 +1,18 @@
 import { Input } from "@/components/ui/input";
 import { DatePicker } from "@/components/DatePicker";
+import { ExperienceType } from "@/types/templates/default-form";
+import { useContext } from "react";
+import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 
-export function Experience() {
+export function Experience({ experience }: { experience: ExperienceType }) {
+  const { resumeData, setResumeData } = useContext(ResumeDataContext);
+
+  const currentExperiences = resumeData?.experience || [];
+
+  // function handleCompanyChange() {
+  //   if(experience)
+  // }
+
   return (
     <form
       action=""
