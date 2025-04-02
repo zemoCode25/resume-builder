@@ -1,6 +1,21 @@
-import { Input } from "@/components/ui/input";
+9import { Input } from "@/components/ui/input";
+import { useContext } from "react";
+import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 
-export function Project() {
+export function Project({ project }) {
+  const { resumeData, setResumeData } = useContext(ResumeDataContext);
+  const currentProjects = resumeData?.project || [];
+
+  // function handleProjectNameChange() {
+  //   const updatedProject = currentProjects.map((currentProject) =>
+  //     currentProject?.id === experience?.id
+  //       ? { ...currentProject, company: e.target.value }
+  //       : currentProject
+  //   );
+
+  //   setResumeData({ ...resumeData, experience: [...updatedProject] });
+  // }
+
   return (
     <form
       action=""
