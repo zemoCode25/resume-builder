@@ -1,6 +1,6 @@
 import { Experience } from "./Experience";
 import { Button } from "@/components/ui/button";
-import { useContext, useEffect, useMemo, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 import { v4 as uuidv4 } from "uuid";
 
@@ -14,46 +14,34 @@ export function ExperienceList() {
     [resumeData?.experience]
   );
 
+  const setInitialStateItem = useCallback(() => {
+    setResumeData((prevResumeData) => {
+      const currentExperience = prevResumeData?.experience || [];
+      return {
+        ...prevResumeData,
+        experience: [
+          ...currentExperience,
+          {
+            id: uuidv4(),
+            company: "",
+            position: "",
+            startDate: new Date(),
+            endDate: new Date(),
+            jobDescription: "",
+          },
+        ],
+      };
+    });
+  }, [setResumeData]);
+
   useEffect(() => {
     if (currentExperience.length > 0) return;
 
-    setResumeData((prevResumeData) => {
-      const currentExperience = prevResumeData?.experience || [];
-      return {
-        ...prevResumeData,
-        experience: [
-          ...currentExperience,
-          {
-            id: uuidv4(),
-            company: "",
-            position: "",
-            startDate: new Date(),
-            endDate: new Date(),
-            jobDescription: "",
-          },
-        ],
-      };
-    });
-  }, [setResumeData, currentExperience]); // ✅ Empty dependency array ensures it runs only on mount
+    setInitialStateItem();
+  }, [setInitialStateItem, currentExperience]); // ✅ Empty dependency array ensures it runs only on mount
 
   function handleAddExperienceClick() {
-    setResumeData((prevResumeData) => {
-      const currentExperience = prevResumeData?.experience || [];
-      return {
-        ...prevResumeData,
-        experience: [
-          ...currentExperience,
-          {
-            id: uuidv4(),
-            company: "",
-            position: "",
-            startDate: new Date(),
-            endDate: new Date(),
-            jobDescription: "",
-          },
-        ],
-      };
-    });
+    setInitialStateItem();
     setExperienceCount((prevExperienceCount) => (prevExperienceCount += 1));
   }
 
