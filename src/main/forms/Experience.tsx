@@ -7,15 +7,6 @@ import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 export function Experience({ experience }: { experience: ExperienceType }) {
   const { resumeData, setResumeData } = useContext(ResumeDataContext);
 
-  // const emptyExperience: ExperienceType = {
-  //   id: "",
-  //   company: "",
-  //   position: "",
-  //   startDate: new Date(),
-  //   endDate: new Date(),
-  //   jobDescription: "",
-  // };
-
   const currentExperiences = resumeData?.experience || [];
 
   /*

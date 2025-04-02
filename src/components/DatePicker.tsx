@@ -3,7 +3,6 @@ import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { format, getMonth, getYear, setMonth, setYear } from "date-fns";
-import { ExperienceType, Education } from "@/types/templates/default-form";
 import {
   Select,
   SelectContent,
@@ -21,7 +20,6 @@ interface DatePickerProps {
   label?: string;
   startYear?: number;
   endYear?: number;
-  form?: ExperienceType | Education;
   formType?: string;
   updateResumeDate?: (date: Date | undefined) => void;
 }

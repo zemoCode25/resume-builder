@@ -1,7 +1,7 @@
 export interface DefaultForm {
   personal?: Personal;
   experience?: ExperienceType[];
-  education?: Education[];
+  education?: EducationType[];
   project?: Project[];
   skill?: SkillType[];
   summary?: Summary;
@@ -26,12 +26,13 @@ export interface ExperienceType {
   jobDescription?: string;
 }
 
-export interface Education {
+export interface EducationType {
+  readonly id?: string;
   school?: string;
   degreeProgram?: string;
   startDate?: Date;
   endDate?: Date;
-  GPA?: number;
+  GPA?: number | undefined;
 }
 
 export interface Project {
