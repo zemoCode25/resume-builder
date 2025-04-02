@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { format, getMonth, getYear, setMonth, setYear } from "date-fns";
+import { ExperienceType, Education } from "@/types/templates/default-form";
 import {
   Select,
   SelectContent,
@@ -20,14 +21,22 @@ interface DatePickerProps {
   label?: string;
   startYear?: number;
   endYear?: number;
+  form?: ExperienceType | Education;
+  formType?: string;
+  updateResumeDate?: (date: Date | undefined) => void;
 }
 
 export function DatePicker({
   label = "Select a date",
   startYear = new Date().getFullYear() - 100,
   endYear = new Date().getFullYear() + 100,
+  updateResumeDate = () => {},
 }: DatePickerProps) {
   const [date, setDate] = useState<Date>(new Date());
+
+  useEffect(() => {
+    updateResumeDate(date);
+  }, [date, updateResumeDate]);
 
   const months = [
     "January",
@@ -51,13 +60,13 @@ export function DatePicker({
 
   function handleMonthChange(month: string) {
     const monthIndex = months.indexOf(month);
-    const newMonth = setMonth(date, monthIndex); // Creates new date object with a modified month
-    setDate(newMonth);
+    const updatedDateByMonth = setMonth(date, monthIndex); // Creates new date object with a modified month
+    setDate(updatedDateByMonth);
   }
 
   function handleYearChange(year: string) {
-    const newYear = setYear(date, Number(year)); // Creates new date object with a modified year
-    setDate(newYear);
+    const updatedDateByYear = setYear(date, Number(year)); // Creates new date object with a modified year
+    setDate(updatedDateByYear);
   }
 
   function handleSelectedDate(selectedDate: Date | undefined) {
@@ -69,13 +78,18 @@ export function DatePicker({
   return (
     <Popover>
       <PopoverTrigger asChild>
-        <Button
-          variant="outline"
-          className="cursor-pointer flex justify-baseline gap-2"
-        >
-          <CalendarIcon className="h-4 w-4" />
-          {date ? format(date, "PPP") : label}
-        </Button>
+        <div className="w-full">
+          {" "}
+          {/* This wrapper ensures the Button isn't directly referenced */}
+          <Button
+            type="button"
+            variant="outline"
+            className="cursor-pointer flex justify-baseline gap-2 w-full"
+          >
+            <CalendarIcon className="h-4 w-4" />
+            {date ? format(date, "PPP") : label}
+          </Button>
+        </div>
       </PopoverTrigger>
       <PopoverContent className="w-auto p-0" align="start">
         <div className="flex justify-between w-full p-3 gap-2">
@@ -116,6 +130,7 @@ export function DatePicker({
           onSelect={handleSelectedDate}
           initialFocus
           onMonthChange={setDate}
+          month={date}
         />
       </PopoverContent>
     </Popover>

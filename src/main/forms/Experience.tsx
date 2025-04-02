@@ -1,17 +1,119 @@
 import { Input } from "@/components/ui/input";
 import { DatePicker } from "@/components/DatePicker";
 import { ExperienceType } from "@/types/templates/default-form";
-import { useContext } from "react";
+import { useCallback, useContext } from "react";
 import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 
 export function Experience({ experience }: { experience: ExperienceType }) {
   const { resumeData, setResumeData } = useContext(ResumeDataContext);
 
+  // const emptyExperience: ExperienceType = {
+  //   id: "",
+  //   company: "",
+  //   position: "",
+  //   startDate: new Date(),
+  //   endDate: new Date(),
+  //   jobDescription: "",
+  // };
+
   const currentExperiences = resumeData?.experience || [];
 
-  // function handleCompanyChange() {
-  //   if(experience)
+  /*
+  currentExperiences = [
+    {currentExperience},
+    {currentExperience}
+  ]
+  
+  */
+
+  function handleCompanyChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const updatedExperience = currentExperiences.map((currentExperience) =>
+      currentExperience?.id === experience?.id
+        ? { ...currentExperience, company: e.target.value }
+        : currentExperience
+    );
+
+    setResumeData({ ...resumeData, experience: [...updatedExperience] });
+  }
+
+  function handlePositionChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const updatedExperience = currentExperiences.map((currentExperience) =>
+      currentExperience?.id === experience?.id
+        ? { ...currentExperience, position: e.target.value }
+        : currentExperience
+    );
+
+    setResumeData({ ...resumeData, experience: [...updatedExperience] });
+  }
+
+  function handleJobDescriptionChange(
+    e: React.ChangeEvent<HTMLTextAreaElement>
+  ) {
+    const updatedExperience = currentExperiences.map((currentExperience) =>
+      currentExperience?.id === experience?.id
+        ? { ...currentExperience, jobDescription: e.target.value }
+        : currentExperience
+    );
+
+    setResumeData({ ...resumeData, experience: [...updatedExperience] });
+  }
+
+  // function updateStartDate(date: Date | undefined) {
+  //   setResumeData((prevResumeData) => {
+  //     const updatedExperience = prevResumeData?.experience?.map(
+  //       (currentExperience) =>
+  //         currentExperience.id === experience?.id
+  //           ? { ...currentExperience, startDate: date }
+  //           : currentExperience
+  //     );
+
+  //     return { ...prevResumeData, experience: updatedExperience };
+  //   });
   // }
+
+  const updateStartDate = useCallback(
+    (date: Date | undefined) => {
+      setResumeData((prevResumeData) => {
+        const updatedExperience = prevResumeData?.experience?.map(
+          (currentExperience) =>
+            currentExperience.id === experience?.id
+              ? { ...currentExperience, startDate: date }
+              : currentExperience
+        );
+
+        return { ...prevResumeData, experience: updatedExperience };
+      });
+    },
+    [setResumeData, experience?.id]
+  );
+
+  // function updateEndDate(date: Date | undefined) {
+  //   setResumeData((prevResumeData) => {
+  //     const updatedExperience = prevResumeData?.experience?.map(
+  //       (currentExperience) =>
+  //         currentExperience.id === experience?.id
+  //           ? { ...currentExperience, endDate: date }
+  //           : currentExperience
+  //     );
+  //     return { ...prevResumeData, experience: updatedExperience };
+  //   });
+  // }
+
+  const updateEndDate = useCallback(
+    (date: Date | undefined) => {
+      setResumeData((prevResumeData) => {
+        const updatedExperience = prevResumeData?.experience?.map(
+          (currentExperience) =>
+            currentExperience.id === experience?.id
+              ? { ...currentExperience, endDate: date }
+              : currentExperience
+        );
+
+        return { ...prevResumeData, experience: updatedExperience };
+      });
+    },
+    [setResumeData, experience?.id]
+  );
 
   return (
     <form
@@ -22,31 +124,38 @@ export function Experience({ experience }: { experience: ExperienceType }) {
         <label htmlFor="" className="font-semibold text-gray-700">
           Company
         </label>
-        <Input placeholder="e.g. Resume Builder Inc." />
+        <Input
+          onChange={handleCompanyChange}
+          placeholder="e.g. Resume Builder Inc."
+        />
       </div>
       <div className="w-full flex flex-col gap-1">
         <label htmlFor="" className="font-semibold text-gray-700">
           Position
         </label>
-        <Input placeholder="e.g. Software Developer" />
+        <Input
+          onChange={handlePositionChange}
+          placeholder="e.g. Software Developer"
+        />
       </div>
       <div className="w-full flex flex-col gap-1">
         <label htmlFor="" className="font-semibold text-gray-700">
           Start Date
         </label>
-        <DatePicker />
+        <DatePicker formType="experience" updateResumeDate={updateStartDate} />
       </div>
       <div className="w-full flex flex-col gap-1">
         <label htmlFor="" className="font-semibold text-gray-700">
           End Date
         </label>
-        <DatePicker />
+        <DatePicker formType="experience" updateResumeDate={updateEndDate} />
       </div>
       <div className="w-full flex flex-col gap-1 col-span-2">
         <label htmlFor="" className="font-semibold text-gray-700">
           Job Description
         </label>
         <textarea
+          onChange={handleJobDescriptionChange}
           name=""
           id=""
           className="w-full p-3 text-sm border outline-none min-h-32 rounded-sm"
