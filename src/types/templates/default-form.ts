@@ -2,7 +2,7 @@ export interface DefaultForm {
   personal?: Personal;
   experience?: ExperienceType[];
   education?: EducationType[];
-  project?: Project[];
+  project?: ProjectType[];
   skill?: SkillType[];
   summary?: Summary;
 }
@@ -35,7 +35,8 @@ export interface EducationType {
   GPA?: number | undefined;
 }
 
-export interface Project {
+export interface ProjectType {
+  readonly id?: string;
   projectName?: string;
   projectDescription?: string;
 }

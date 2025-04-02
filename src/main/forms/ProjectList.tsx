@@ -1,13 +1,17 @@
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { CirclePlus } from "lucide-react";
 import { Project } from "./Project";
 import { Button } from "@/components/ui/button";
 import { ResumeDataContext } from "@/contexts/ResumeDataContext";
+import { v4 as uuidv4 } from "uuid";
 
 export function ProjectList() {
-  const [skillCount, setSkillCount] = useState(1);
+  const [projectCount, setProjectCount] = useState(1);
   const { resumeData, setResumeData } = useContext(ResumeDataContext);
-  const currentProjects = resumeData?.project || [];
+  const currentProjects = useMemo(
+    () => resumeData?.project || [],
+    [resumeData]
+  );
 
   const setInitialStateItem = useCallback(() => {
     setResumeData((prevResumeData) => {
@@ -16,21 +20,27 @@ export function ProjectList() {
         ...prevResumeData,
         project: [
           ...currentProjects,
-          { projectName: "", projectDescription: "" },
+          { id: uuidv4(), projectName: "", projectDescription: "" },
         ],
       };
     });
   }, [setResumeData]);
 
   useEffect(() => {
+    if (currentProjects.length > 0) return;
     setInitialStateItem();
-  }, [setInitialStateItem]);
+  }, [setInitialStateItem, currentProjects]);
+
+  function handleAddProjectClick() {
+    setInitialStateItem();
+    setProjectCount((prevProjectCount) => (prevProjectCount += 1));
+  }
 
   return (
     <>
       <div className="w-3/4">
         <div className="grid grid-cols-1 items-center gap-3 w-full">
-          {Array.from({ length: skillCount }).map((_, i) => (
+          {Array.from({ length: projectCount }).map((_, i) => (
             <Project project={currentProjects[i]} key={i} />
           ))}
         </div>
@@ -38,7 +48,7 @@ export function ProjectList() {
       <div className="flex w-3/4">
         <Button
           className="cursor-pointer font-semibold"
-          onClick={() => setSkillCount(skillCount + 1)}
+          onClick={handleAddProjectClick}
         >
           <CirclePlus />
           Add Project
