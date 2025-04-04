@@ -1,13 +1,12 @@
-import { Button } from "@/components/ui/button";
-import { Resume3 } from "../resume-preview/Resume-3";
-export function ResumeView() {
+export function Resume3() {
   return (
-    <div className="w-1/2 px-5">
-      <Resume3 />
-      <div className="w-full mt-2 flex">
-        <Button className="font-semibold cursor-pointer ml-auto">
-          Generate PDF
-        </Button>
+    <div>
+      <div className="p-10 bg-white rounded-md shadow-sm font-serif flex flex-col gap-1 max-h-180 overflow-y-auto sticky top-10">
+        <PersonalPreview />
+        <EducationPreview />
+        <SkillPreview />
+        <ExperiencePreview />
+        <ProjectPreview />
       </div>
     </div>
   );
