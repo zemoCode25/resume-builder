@@ -2,11 +2,12 @@ import { Button } from "@/components/ui/button";
 export function ResumeView() {
   return (
     <div className="w-1/2 px-5">
-      <div className="p-10 bg-white rounded-md shadow-sm font-serif flex flex-col gap-1">
+      <div className="p-10 bg-white rounded-md shadow-sm font-serif flex flex-col gap-1 max-h-180 overflow-y-auto">
         <PersonalPreview />
         <EducationPreview />
         <SkillPreview />
         <ExperiencePreview />
+        <ProjectPreview />
       </div>
       <div className="w-full mt-2 flex">
         <Button className="font-semibold cursor-pointer ml-auto">
@@ -125,6 +126,28 @@ export function ExperienceItem() {
           </li>
         </ol>
       </div>
+    </div>
+  );
+}
+export function ProjectPreview() {
+  return (
+    <div>
+      <h2 className="text-lg font-semibold border-b border-b-gray-900 pb-0.5">
+        Projects
+      </h2>
+      <ProjectItem />
+    </div>
+  );
+}
+
+export function ProjectItem() {
+  return (
+    <div>
+      <p className="italic">PaLiga: Basketball Scorekeeping System</p>
+      <p>
+        Partnered with data scientists and engineers to enhance AI capabilities,
+        ensuring ethical and responsible deployment in real-world applications.
+      </p>
     </div>
   );
 }
