@@ -12,7 +12,7 @@ export function Education({ education }: { education: EducationType }) {
   function handleSchoolChange(e: React.ChangeEvent<HTMLInputElement>) {
     const updatedEducation = currentEducations.map((currentEducation) =>
       currentEducation?.id === education?.id
-        ? { ...currentEducation, degreeProgram: e.target.value }
+        ? { ...currentEducation, school: e.target.value }
         : currentEducation
     );
 
