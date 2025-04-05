@@ -1,8 +1,13 @@
+import { useContext } from "react";
+import { ResumeDataContext } from "@/contexts/ResumeDataContext";
+import { Personal } from "@/types/templates/default-form";
+
 export function Resume3() {
+  const { resumeData } = useContext(ResumeDataContext);
   return (
     <div>
       <div className="p-10 bg-white rounded-md shadow-sm font-serif flex flex-col gap-1 max-h-180 overflow-y-auto sticky top-10">
-        <PersonalPreview />
+        <PersonalPreview personalData={resumeData?.personal || {}} />
         <EducationPreview />
         <SkillPreview />
         <ExperiencePreview />
@@ -12,15 +17,26 @@ export function Resume3() {
   );
 }
 
-export function PersonalPreview() {
+export function PersonalPreview({ personalData }: { personalData: Personal }) {
+  const isValueFound = Object.values(personalData).some(
+    (personalItem) => personalItem
+  );
+
+  if (!isValueFound) {
+    return;
+  }
+
   return (
     <div className="font-serif">
-      <h1 className="text-3xl font-semibold border-b border-b-gray-900 pb-1">
-        Ralph Bryan Carlos
-      </h1>
-      <p>09763896258</p>
-      <p>ralphbryancarlos27@gmail.com</p>
-      <p>Muntinlupa City, Philippines</p>
+      <div className="border-b border-b-gray-900">
+        <h1 className="text-3xl font-semibold">
+          {`${personalData?.firstName || ""} ${personalData?.lastName || ""}`}
+        </h1>
+        <p>{personalData?.jobTitle || ""}</p>
+      </div>
+      <p>{personalData?.phoneNumber || ""}</p>
+      <p>{personalData?.email || ""}</p>
+      <p>{`${personalData?.city || ""} ${personalData?.country || ""}`}</p>
     </div>
   );
 }
