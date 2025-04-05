@@ -1,21 +1,21 @@
 import { Button } from "@/components/ui/button";
 import { Education } from "./Education";
 import { CirclePlus } from "lucide-react";
-import { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { useCallback, useContext, useEffect, useState } from "react";
 import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 import { v4 as uuidv4 } from "uuid";
 
 export function EducationList() {
   const { resumeData, setResumeData } = useContext(ResumeDataContext);
 
-  const currentEducation = useMemo(
-    () => resumeData?.education || [],
-    [resumeData?.education]
-  );
+  const currentEducation = resumeData?.education || [];
 
+  console.log(currentEducation.length);
   const setInitialStateItem = useCallback(() => {
     setResumeData((prevResumeData) => {
       const currentEducation = prevResumeData?.education || [];
+
+      if (currentEducation?.length || 0 !== 0) return prevResumeData;
       return {
         ...prevResumeData,
         education: [
@@ -34,12 +34,28 @@ export function EducationList() {
   }, [setResumeData]);
 
   useEffect(() => {
-    if (currentEducation.length > 0) return;
     setInitialStateItem();
-  }, [setInitialStateItem, currentEducation]); // ✅ Empty dependency array ensures it runs only on mount
+  }, [setInitialStateItem]);
 
   function handleAddEducationClick() {
-    setInitialStateItem();
+    setResumeData((prevResumeData) => {
+      const currentEducation = prevResumeData?.education || [];
+
+      return {
+        ...prevResumeData,
+        education: [
+          ...currentEducation,
+          {
+            id: uuidv4(),
+            school: "",
+            degreeProgram: "",
+            startDate: new Date(),
+            endDate: new Date(),
+            GPA: undefined,
+          },
+        ],
+      };
+    });
     setEducationCount((prevEducationCount) => (prevEducationCount += 1));
   }
 

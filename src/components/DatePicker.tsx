@@ -30,10 +30,10 @@ export function DatePicker({
   endYear = new Date().getFullYear() + 100,
   updateResumeDate = () => {},
 }: DatePickerProps) {
-  const [date, setDate] = useState<Date>(new Date());
+  const [date, setDate] = useState<Date | null>(null);
 
   useEffect(() => {
-    updateResumeDate(date);
+    updateResumeDate(date || undefined);
   }, [date, updateResumeDate]);
 
   const months = [
@@ -58,12 +58,12 @@ export function DatePicker({
 
   function handleMonthChange(month: string) {
     const monthIndex = months.indexOf(month);
-    const updatedDateByMonth = setMonth(date, monthIndex); // Creates new date object with a modified month
+    const updatedDateByMonth = setMonth(date || "", monthIndex); // Creates new date object with a modified month
     setDate(updatedDateByMonth);
   }
 
   function handleYearChange(year: string) {
-    const updatedDateByYear = setYear(date, Number(year)); // Creates new date object with a modified year
+    const updatedDateByYear = setYear(date || "", Number(year)); // Creates new date object with a modified year
     setDate(updatedDateByYear);
   }
 
@@ -93,7 +93,7 @@ export function DatePicker({
         <div className="flex justify-between w-full p-3 gap-2">
           <Select
             onValueChange={handleMonthChange}
-            value={months[getMonth(date)]}
+            value={months[getMonth(date || "")]}
           >
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Month" />
@@ -108,7 +108,7 @@ export function DatePicker({
           </Select>
           <Select
             onValueChange={handleYearChange}
-            value={String(getYear(date))}
+            value={String(getYear(date || ""))}
           >
             <SelectTrigger className="w-full">
               <SelectValue placeholder="Theme" />
@@ -124,11 +124,11 @@ export function DatePicker({
         </div>
         <Calendar
           mode="single"
-          selected={date}
+          selected={date || undefined}
           onSelect={handleSelectedDate}
           initialFocus
           onMonthChange={setDate}
-          month={date}
+          month={date || undefined}
         />
       </PopoverContent>
     </Popover>

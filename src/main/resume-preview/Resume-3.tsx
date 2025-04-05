@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { ResumeDataContext } from "@/contexts/ResumeDataContext";
-import { Personal } from "@/types/templates/default-form";
+import { EducationType, Personal } from "@/types/templates/default-form";
 
 export function Resume3() {
   const { resumeData } = useContext(ResumeDataContext);
@@ -8,7 +8,7 @@ export function Resume3() {
     <div>
       <div className="p-10 bg-white rounded-md shadow-sm font-serif flex flex-col gap-1 max-h-180 overflow-y-auto sticky top-10">
         <PersonalPreview personalData={resumeData?.personal || {}} />
-        <EducationPreview />
+        <EducationPreview educationData={resumeData?.education || []} />
         <SkillPreview />
         <ExperiencePreview />
         <ProjectPreview />
@@ -41,17 +41,59 @@ export function PersonalPreview({ personalData }: { personalData: Personal }) {
   );
 }
 
-export function EducationPreview() {
+export function EducationPreview({
+  educationData,
+}: {
+  educationData: EducationType[];
+}) {
   return (
     <div>
       <h2 className="text-lg font-semibold border-b border-b-gray-900 pb-0.5">
         Education
       </h2>
+      {educationData.map((item, key) => (
+        <EducationItem educationItemData={item} key={key} />
+      ))}
+    </div>
+  );
+}
+
+export function EducationItem({
+  educationItemData,
+}: {
+  educationItemData: EducationType;
+}) {
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  };
+
+  const { id, ...educationWithoutID } = educationItemData;
+
+  const isValueFound = Object.values(educationWithoutID).some(
+    (educationValue) => educationValue
+  );
+
+  if (!isValueFound) return;
+  return (
+    <div>
       <div className="flex justify-between">
-        <p className="italic">Information Technology Bitch ass: GPA: 1.20</p>
-        <p>May 2025</p>
+        <p className="italic">
+          {educationItemData?.degreeProgram || ""}: GPA:{" "}
+          {educationItemData?.GPA || ""}
+        </p>
+        <p>{`${
+          educationItemData?.startDate?.toLocaleDateString(
+            undefined,
+            options
+          ) || ""
+        }, ${
+          educationItemData?.endDate?.toLocaleDateString(undefined, options) ||
+          ""
+        }`}</p>
       </div>
-      <p>Pamantasan ng Lungsod ng Muntinlupa</p>
+      <p>{educationItemData?.school || ""}</p>
     </div>
   );
 }
