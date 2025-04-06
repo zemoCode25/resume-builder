@@ -32,7 +32,7 @@ export interface EducationType {
   degreeProgram?: string;
   startDate?: Date;
   endDate?: Date;
-  GPA?: number | undefined;
+  GPA?: string | undefined;
 }
 
 export interface ProjectType {

@@ -30,10 +30,19 @@ export function Education({ education }: { education: EducationType }) {
   }
 
   function handleGPAChange(e: React.ChangeEvent<HTMLInputElement>) {
-    const newValue = e.target.value.replace(/\D/g, "");
+    const input = e.target.value;
+
+    // This regex allows: "", "34", "34.", "34.4", "0.99", etc.
+    const isValidInput = /^(\d+)?(\.\d{0,2})?$/.test(input);
+
+    if (!isValidInput) return; // Invalid input, ignore it
+
     const updatedEducation = currentEducations.map((currentEducation) =>
       currentEducation?.id === education?.id
-        ? { ...currentEducation, GPA: parseFloat(newValue) }
+        ? {
+            ...currentEducation,
+            GPA: input === "" ? undefined : input,
+          }
         : currentEducation
     );
 
@@ -71,7 +80,6 @@ export function Education({ education }: { education: EducationType }) {
     },
     [setResumeData, education?.id]
   );
-
   return (
     <>
       <form
@@ -102,13 +110,19 @@ export function Education({ education }: { education: EducationType }) {
           <label htmlFor="" className="font-semibold text-gray-700">
             Start Date
           </label>
-          <DatePicker updateResumeDate={updateStartDate} />
+          <DatePicker
+            currentDate={education?.startDate || null}
+            updateResumeDate={updateStartDate}
+          />
         </div>
         <div className="w-full flex flex-col gap-1">
           <label htmlFor="" className="font-semibold text-gray-700">
             End Date
           </label>
-          <DatePicker updateResumeDate={updateEndDate} />
+          <DatePicker
+            currentDate={education?.endDate || null}
+            updateResumeDate={updateEndDate}
+          />
         </div>
         <div className="w-full flex flex-col gap-1">
           <label htmlFor="" className="font-semibold text-gray-700">

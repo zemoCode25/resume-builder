@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
 import { Calendar as CalendarIcon } from "lucide-react";
 import { format, getMonth, getYear, setMonth, setYear } from "date-fns";
 import {
@@ -21,6 +20,7 @@ interface DatePickerProps {
   startYear?: number;
   endYear?: number;
   formType?: string;
+  currentDate?: Date | null;
   updateResumeDate?: (date: Date | undefined) => void;
 }
 
@@ -28,9 +28,10 @@ export function DatePicker({
   label = "Select a date",
   startYear = new Date().getFullYear() - 100,
   endYear = new Date().getFullYear() + 100,
+  currentDate = null,
   updateResumeDate = () => {},
 }: DatePickerProps) {
-  const [date, setDate] = useState<Date | null>(null);
+  const [date, setDate] = useState<Date | null>(currentDate);
 
   useEffect(() => {
     updateResumeDate(date || undefined);
@@ -58,21 +59,25 @@ export function DatePicker({
 
   function handleMonthChange(month: string) {
     const monthIndex = months.indexOf(month);
+
+    if (!date) {
+      const updatedDateByMonth = setMonth(new Date(), monthIndex); // Creates new date object with a modified month
+      setDate(updatedDateByMonth);
+      return;
+    }
     const updatedDateByMonth = setMonth(date || "", monthIndex); // Creates new date object with a modified month
     setDate(updatedDateByMonth);
   }
 
   function handleYearChange(year: string) {
+    if (!date) {
+      const updatedDateByYear = setYear(new Date(), Number(year)); // Creates new date object with a modified year
+      setDate(updatedDateByYear);
+      return;
+    }
     const updatedDateByYear = setYear(date || "", Number(year)); // Creates new date object with a modified year
     setDate(updatedDateByYear);
   }
-
-  function handleSelectedDate(selectedDate: Date | undefined) {
-    if (selectedDate) {
-      setDate(selectedDate);
-    }
-  }
-
   return (
     <Popover>
       <PopoverTrigger asChild>
@@ -122,14 +127,6 @@ export function DatePicker({
             </SelectContent>
           </Select>
         </div>
-        <Calendar
-          mode="single"
-          selected={date || undefined}
-          onSelect={handleSelectedDate}
-          initialFocus
-          onMonthChange={setDate}
-          month={date || undefined}
-        />
       </PopoverContent>
     </Popover>
   );

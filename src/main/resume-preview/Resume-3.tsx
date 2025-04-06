@@ -66,7 +66,6 @@ export function EducationItem({
   const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
     month: "long",
-    day: "numeric",
   };
 
   const { id, ...educationWithoutID } = educationItemData;
@@ -80,7 +79,11 @@ export function EducationItem({
     <div>
       <div className="flex justify-between">
         <p className="italic">
-          {educationItemData?.degreeProgram || ""}: GPA:{" "}
+          {educationItemData?.degreeProgram || ""}
+          {": "}
+          {educationItemData?.degreeProgram || educationItemData?.GPA
+            ? "GPA "
+            : ""}{" "}
           {educationItemData?.GPA || ""}
         </p>
         <p>{`${
@@ -88,7 +91,7 @@ export function EducationItem({
             undefined,
             options
           ) || ""
-        }, ${
+        } - ${
           educationItemData?.endDate?.toLocaleDateString(undefined, options) ||
           ""
         }`}</p>
