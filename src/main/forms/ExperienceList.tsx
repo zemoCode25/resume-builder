@@ -1,4 +1,5 @@
 import { Experience } from "./Experience";
+import { CirclePlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useContext, useEffect, useState } from "react";
 import { ResumeDataContext } from "@/contexts/ResumeDataContext";
@@ -28,7 +29,7 @@ export function ExperienceList() {
             position: "",
             startDate: new Date(),
             endDate: new Date(),
-            jobDescription: "",
+            jobDescription: [{ id: uuidv4(), description: "" }],
           },
         ],
       };
@@ -48,7 +49,7 @@ export function ExperienceList() {
             position: "",
             startDate: new Date(),
             endDate: new Date(),
-            jobDescription: "",
+            jobDescription: [],
           },
         ],
       };
@@ -66,7 +67,7 @@ export function ExperienceList() {
           className="cursor-pointer font-semibold"
           onClick={handleAddExperienceClick}
         >
-          + Add Experience
+          <CirclePlus /> Add Experience
         </Button>
       </div>
     </div>

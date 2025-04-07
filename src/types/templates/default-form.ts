@@ -23,7 +23,7 @@ export interface ExperienceType {
   position?: string;
   startDate?: Date;
   endDate?: Date;
-  jobDescription?: string;
+  jobDescription?: DescriptionType[];
 }
 
 export interface EducationType {
@@ -48,4 +48,9 @@ export interface SkillType {
 
 export interface Summary {
   summary?: string;
+}
+
+export interface DescriptionType {
+  id: string;
+  description: string;
 }
