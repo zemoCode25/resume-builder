@@ -95,10 +95,6 @@ export const templates: Template[] = [
         formElement: <Personal />, // ✅ Fix this
       },
       {
-        formName: "Summary",
-        formElement: <Summary />,
-      },
-      {
         formName: "Skills",
         formElement: <SkillList />,
       },
