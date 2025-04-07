@@ -7,8 +7,8 @@ import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 import { v4 as uuidv4 } from "uuid";
 
 export function SkillList() {
-  const [skillCount, setSkillCount] = useState(1);
   const { resumeData, setResumeData } = useContext(ResumeDataContext);
+  const [skillCount, setSkillCount] = useState(resumeData?.skill?.length || 1);
 
   function handleAddSkillClick() {
     const currentSkills = resumeData?.skill?.map((skill) => skill) || [];

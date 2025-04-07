@@ -106,6 +106,8 @@ export function EducationItem({
 }
 
 export function SkillPreview({ skillData }: { skillData: SkillType[] }) {
+  console.log(skillData);
+
   if (skillData.length === 0) return;
 
   return (

@@ -7,7 +7,9 @@ import { v4 as uuidv4 } from "uuid";
 
 export function EducationList() {
   const { resumeData, setResumeData } = useContext(ResumeDataContext);
-
+  const [educationCount, setEducationCount] = useState(
+    resumeData?.education?.length || 1
+  );
   const currentEducation = resumeData?.education || [];
 
   console.log(currentEducation.length);
@@ -58,8 +60,6 @@ export function EducationList() {
     });
     setEducationCount((prevEducationCount) => (prevEducationCount += 1));
   }
-
-  const [educationCount, setEducationCount] = useState(1);
   return (
     <div className="flex flex-col justify-center items-center gap-3 w-full">
       {Array.from({ length: educationCount }).map((_, i) => (
