@@ -10,14 +10,12 @@ import {
 export function Resume3() {
   const { resumeData } = useContext(ResumeDataContext);
   return (
-    <div>
-      <div className="p-10 bg-white rounded-md shadow-sm font-serif flex flex-col gap-1 max-h-180 overflow-y-auto sticky top-10">
-        <PersonalPreview personalData={resumeData?.personal || {}} />
-        <EducationPreview educationData={resumeData?.education || []} />
-        <SkillPreview skillData={resumeData?.skill || []} />
-        <ExperiencePreview experienceList={resumeData?.experience || []} />
-        <ProjectPreview />
-      </div>
+    <div className="sticky top-10 p-10 bg-white rounded-md shadow-sm font-serif flex flex-col gap-1 max-h-180 overflow-y-auto">
+      <PersonalPreview personalData={resumeData?.personal || {}} />
+      <EducationPreview educationData={resumeData?.education || []} />
+      <SkillPreview skillData={resumeData?.skill || []} />
+      <ExperiencePreview experienceList={resumeData?.experience || []} />
+      <ProjectPreview />
     </div>
   );
 }
@@ -66,17 +64,12 @@ export function ExperienceItem({
           }`}</p>
         </div>
         <p className="italic">{experienceData?.company}</p>
-        <ol>
-          <li>
-            Contributed to the development and optimization of scalable software
-            solutions, improving user engagement and performance across the
-            platform.
-          </li>
-          <li>
-            Collaborated with cross-functional teams to design and implement new
-            features, ensuring alignment with the organization's mission to
-            create impactful products.
-          </li>
+        <ol className="list-disc pl-8">
+          {experienceData?.jobDescription?.map((jobDescription) => (
+            <li key={jobDescription?.id}>
+              <p>{jobDescription?.description}</p>
+            </li>
+          ))}
         </ol>
       </div>
     </div>

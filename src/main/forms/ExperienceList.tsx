@@ -49,7 +49,7 @@ export function ExperienceList() {
             position: "",
             startDate: new Date(),
             endDate: new Date(),
-            jobDescription: [],
+            jobDescription: [{ id: uuidv4(), description: "" }],
           },
         ],
       };

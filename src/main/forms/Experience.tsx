@@ -1,7 +1,7 @@
 import { Input } from "@/components/ui/input";
 import { DatePicker } from "@/components/DatePicker";
 import { ExperienceType } from "@/types/templates/default-form";
-import { useCallback, useContext, useState } from "react";
+import { useCallback, useContext } from "react";
 import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 import { Button } from "@/components/ui/button";
 import { v4 as uuidv4 } from "uuid";
@@ -9,17 +9,10 @@ import { DescriptionType } from "@/types/templates/default-form";
 
 export function Experience({ experience }: { experience: ExperienceType }) {
   const { resumeData, setResumeData } = useContext(ResumeDataContext);
-  const [descriptionCount, setDescriptionCount] = useState(
-    experience?.jobDescription?.length || 1
-  );
   const currentExperiences = resumeData?.experience || [];
   const currentDescriptions = experience?.jobDescription || [];
-  console.log("EXPERIENCE MO BOI?");
-  console.log(experience);
 
   function handleAddDescriptionClick() {
-    setDescriptionCount((prevCount) => (prevCount += 1));
-
     // Updating the current experience with the added description item
     const experienceUpdatedDescription = {
       ...experience,
@@ -73,10 +66,10 @@ export function Experience({ experience }: { experience: ExperienceType }) {
         ? {
             ...currentExperience,
             jobDescription: currentExperience?.jobDescription?.map(
-              (decription) =>
-                currentDescription?.id === decription?.id
-                  ? { ...currentDescription, decription: e.target.value }
-                  : decription
+              (description) =>
+                currentDescription?.id === description?.id
+                  ? { ...currentDescription, description: e.target.value }
+                  : description
             ),
           }
         : currentExperience
@@ -84,11 +77,6 @@ export function Experience({ experience }: { experience: ExperienceType }) {
 
     setResumeData({ ...resumeData, experience: [...updatedExperience] });
   }
-
-  // [
-  //   ...(currentExperience?.jobDescription || []),
-  //   { description: e.target.value },
-  // ]
 
   const updateStartDate = useCallback(
     (date: Date | undefined) => {
@@ -171,35 +159,24 @@ export function Experience({ experience }: { experience: ExperienceType }) {
             + Add Experience
           </Button>
         </div>
-        {Array.from({ length: descriptionCount }).map((_, i) => (
-          <DescriptionInput
-            handleJobDescriptionChange={handleJobDescriptionChange}
-            currentDescription={currentDescriptions[i]}
-            key={i}
-          />
-        ))}
+        {Array.from({ length: experience?.jobDescription?.length || 1 }).map(
+          (_, i) => (
+            // <DescriptionInput
+            //   handleJobDescriptionChange={handleJobDescriptionChange}
+            //   currentDescription={currentDescriptions[i]}
+            //   key={i}
+            // />
+            <Input
+              type="text"
+              value={currentDescriptions[i]?.description}
+              onChange={(e) =>
+                handleJobDescriptionChange(e, currentDescriptions[i])
+              }
+              className="w-full p-3 text-sm border outline-none rounded-sm"
+            />
+          )
+        )}
       </div>
     </form>
-  );
-}
-
-type DescriptionInputProps = {
-  handleJobDescriptionChange: (
-    e: React.ChangeEvent<HTMLInputElement>,
-    currentDescription: DescriptionType
-  ) => void;
-  currentDescription: DescriptionType;
-};
-
-export function DescriptionInput({
-  handleJobDescriptionChange,
-  currentDescription,
-}: DescriptionInputProps) {
-  return (
-    <Input
-      type="text"
-      onChange={(e) => handleJobDescriptionChange(e, currentDescription)}
-      className="w-full p-3 text-sm border outline-none rounded-sm"
-    />
   );
 }
