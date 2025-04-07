@@ -1,6 +1,10 @@
 import { useContext } from "react";
 import { ResumeDataContext } from "@/contexts/ResumeDataContext";
-import { EducationType, Personal } from "@/types/templates/default-form";
+import {
+  EducationType,
+  Personal,
+  SkillType,
+} from "@/types/templates/default-form";
 
 export function Resume3() {
   const { resumeData } = useContext(ResumeDataContext);
@@ -9,7 +13,7 @@ export function Resume3() {
       <div className="p-10 bg-white rounded-md shadow-sm font-serif flex flex-col gap-1 max-h-180 overflow-y-auto sticky top-10">
         <PersonalPreview personalData={resumeData?.personal || {}} />
         <EducationPreview educationData={resumeData?.education || []} />
-        <SkillPreview />
+        <SkillPreview skillData={resumeData?.skill || []} />
         <ExperiencePreview />
         <ProjectPreview />
       </div>
@@ -68,7 +72,7 @@ export function EducationItem({
     month: "long",
   };
 
-  const { id, ...educationWithoutID } = educationItemData;
+  const { id: _, ...educationWithoutID } = educationItemData;
 
   const isValueFound = Object.values(educationWithoutID).some(
     (educationValue) => educationValue
@@ -101,28 +105,18 @@ export function EducationItem({
   );
 }
 
-const skills = [
-  "PHP",
-  "JavaScript",
-  "MySQL",
-  "Python",
-  "Java",
-  "React.JS",
-  "TypeScript",
-  "Next.JS",
-  "PostgresSQL",
-];
+export function SkillPreview({ skillData }: { skillData: SkillType[] }) {
+  if (skillData.length === 0) return;
 
-export function SkillPreview() {
   return (
     <div>
       <h2 className="text-lg font-semibold border-b border-b-gray-900 pb-0.5">
         Technical Skills
       </h2>
       <ol className="grid grid-cols-2 list-disc ml-4">
-        {skills.map((skill) => (
-          <li>
-            <p>{skill}</p>
+        {skillData.map((skill) => (
+          <li key={skill.id}>
+            <p>{skill.skillName}</p>
           </li>
         ))}
       </ol>
@@ -134,7 +128,7 @@ export function ExperiencePreview() {
   return (
     <div>
       <h2 className="text-lg font-semibold border-b border-b-gray-900 pb-0.5">
-        Technical Skills
+        Experience
       </h2>
       <ExperienceItem />
     </div>
