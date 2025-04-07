@@ -9,14 +9,6 @@ export function Experience({ experience }: { experience: ExperienceType }) {
 
   const currentExperiences = resumeData?.experience || [];
 
-  /*
-  currentExperiences = [
-    {currentExperience},
-    {currentExperience}
-  ]
-  
-  */
-
   function handleCompanyChange(e: React.ChangeEvent<HTMLInputElement>) {
     const updatedExperience = currentExperiences.map((currentExperience) =>
       currentExperience?.id === experience?.id
@@ -49,19 +41,6 @@ export function Experience({ experience }: { experience: ExperienceType }) {
     setResumeData({ ...resumeData, experience: [...updatedExperience] });
   }
 
-  // function updateStartDate(date: Date | undefined) {
-  //   setResumeData((prevResumeData) => {
-  //     const updatedExperience = prevResumeData?.experience?.map(
-  //       (currentExperience) =>
-  //         currentExperience.id === experience?.id
-  //           ? { ...currentExperience, startDate: date }
-  //           : currentExperience
-  //     );
-
-  //     return { ...prevResumeData, experience: updatedExperience };
-  //   });
-  // }
-
   const updateStartDate = useCallback(
     (date: Date | undefined) => {
       setResumeData((prevResumeData) => {
@@ -77,18 +56,6 @@ export function Experience({ experience }: { experience: ExperienceType }) {
     },
     [setResumeData, experience?.id]
   );
-
-  // function updateEndDate(date: Date | undefined) {
-  //   setResumeData((prevResumeData) => {
-  //     const updatedExperience = prevResumeData?.experience?.map(
-  //       (currentExperience) =>
-  //         currentExperience.id === experience?.id
-  //           ? { ...currentExperience, endDate: date }
-  //           : currentExperience
-  //     );
-  //     return { ...prevResumeData, experience: updatedExperience };
-  //   });
-  // }
 
   const updateEndDate = useCallback(
     (date: Date | undefined) => {

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 import {
   EducationType,
+  ExperienceType,
   Personal,
   SkillType,
 } from "@/types/templates/default-form";
@@ -14,8 +15,69 @@ export function Resume3() {
         <PersonalPreview personalData={resumeData?.personal || {}} />
         <EducationPreview educationData={resumeData?.education || []} />
         <SkillPreview skillData={resumeData?.skill || []} />
-        <ExperiencePreview />
+        <ExperiencePreview experienceList={resumeData?.experience || []} />
         <ProjectPreview />
+      </div>
+    </div>
+  );
+}
+
+export function ExperiencePreview({
+  experienceList,
+}: {
+  experienceList: ExperienceType[];
+}) {
+  console.log("EDUCATION LIST: ");
+  console.log(experienceList);
+  return (
+    <div>
+      <h2 className="text-lg font-semibold border-b border-b-gray-900 pb-0.5">
+        Experience
+      </h2>
+      {experienceList.map((experienceItem) => (
+        <ExperienceItem experienceData={experienceItem} />
+      ))}
+    </div>
+  );
+}
+
+export function ExperienceItem({
+  experienceData,
+}: {
+  experienceData: ExperienceType;
+}) {
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+  };
+  const dateString = `${
+    experienceData?.startDate?.toLocaleDateString(undefined, options) || ""
+  } - ${experienceData?.endDate?.toLocaleDateString(undefined, options) || ""}`;
+
+  return (
+    <div className="flex flex-col gap-2">
+      <div>
+        <div className="w-full flex justify-between">
+          <p className="italic">{experienceData?.position}</p>
+          <p>{`${
+            experienceData?.startDate || experienceData?.endDate
+              ? dateString
+              : ""
+          }`}</p>
+        </div>
+        <p className="italic">{experienceData?.company}</p>
+        <ol>
+          <li>
+            Contributed to the development and optimization of scalable software
+            solutions, improving user engagement and performance across the
+            platform.
+          </li>
+          <li>
+            Collaborated with cross-functional teams to design and implement new
+            features, ensuring alignment with the organization's mission to
+            create impactful products.
+          </li>
+        </ol>
       </div>
     </div>
   );
@@ -126,60 +188,6 @@ export function SkillPreview({ skillData }: { skillData: SkillType[] }) {
   );
 }
 
-export function ExperiencePreview() {
-  return (
-    <div>
-      <h2 className="text-lg font-semibold border-b border-b-gray-900 pb-0.5">
-        Experience
-      </h2>
-      <ExperienceItem />
-    </div>
-  );
-}
-
-export function ExperienceItem() {
-  return (
-    <div className="flex flex-col gap-2">
-      <div>
-        <div className="w-full flex justify-between">
-          <p className="italic">Software Developer</p>
-          <p>Jan 2023 - current</p>
-        </div>
-        <p className="italic">Meta Facebook</p>
-        <ol>
-          <li>
-            Contributed to the development and optimization of scalable software
-            solutions, improving user engagement and performance across the
-            platform.
-          </li>
-          <li>
-            Collaborated with cross-functional teams to design and implement new
-            features, ensuring alignment with the organization's mission to
-            create impactful products.
-          </li>
-        </ol>
-      </div>
-      <div>
-        <div className="w-full flex justify-between">
-          <p className="italic">Software Developer</p>
-          <p>Feb 2025 - current</p>
-        </div>
-        <p className="italic">Meta Facebook</p>
-        <ol>
-          <li>
-            Worked on developing cutting-edge AI models, contributing to
-            advancements in natural language processing and machine learning.
-          </li>
-          <li>
-            Partnered with data scientists and engineers to enhance AI
-            capabilities, ensuring ethical and responsible deployment in
-            real-world applications.
-          </li>
-        </ol>
-      </div>
-    </div>
-  );
-}
 export function ProjectPreview() {
   return (
     <div>

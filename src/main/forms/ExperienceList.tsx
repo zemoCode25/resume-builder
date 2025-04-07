@@ -1,22 +1,23 @@
 import { Experience } from "./Experience";
 import { Button } from "@/components/ui/button";
-import { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 import { v4 as uuidv4 } from "uuid";
 
 export function ExperienceList() {
-  const [experienceCount, setExperienceCount] = useState(1);
   const { resumeData, setResumeData } = useContext(ResumeDataContext);
-  // const currentExperience = resumeData?.experience || [];
-
-  const currentExperience = useMemo(
-    () => resumeData?.experience || [],
-    [resumeData?.experience]
+  const [experienceCount, setExperienceCount] = useState(
+    resumeData?.experience?.length || 1
   );
+  const currentExperience = resumeData?.experience || [];
 
-  const setInitialStateItem = useCallback(() => {
+  // Initialize the first form data onmount
+  useEffect(() => {
     setResumeData((prevResumeData) => {
       const currentExperience = prevResumeData?.experience || [];
+
+      if (prevResumeData?.experience?.length || 0 !== 0) return prevResumeData; // Check if this is the first render
+
       return {
         ...prevResumeData,
         experience: [
@@ -34,14 +35,24 @@ export function ExperienceList() {
     });
   }, [setResumeData]);
 
-  useEffect(() => {
-    if (currentExperience.length > 0) return;
-
-    setInitialStateItem();
-  }, [setInitialStateItem, currentExperience]); // ✅ Empty dependency array ensures it runs only on mount
-
   function handleAddExperienceClick() {
-    setInitialStateItem();
+    setResumeData((prevResumeData) => {
+      const currentExperience = prevResumeData?.experience || [];
+      return {
+        ...prevResumeData,
+        experience: [
+          ...currentExperience,
+          {
+            id: uuidv4(),
+            company: "",
+            position: "",
+            startDate: new Date(),
+            endDate: new Date(),
+            jobDescription: "",
+          },
+        ],
+      };
+    });
     setExperienceCount((prevExperienceCount) => (prevExperienceCount += 1));
   }
 
