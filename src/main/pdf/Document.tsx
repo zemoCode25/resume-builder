@@ -8,6 +8,9 @@ export function MyDocument({ resumeData }: { resumeData: DefaultForm }) {
   const personal = resumeData?.personal || {};
   const education = resumeData?.education || [];
 
+  const { firstName, lastName, jobTitle, email, phoneNumber, country } =
+    personal;
+
   useEffect(() => {
     console.log("TANGINA MO KA RERENDER NA");
   }, [resumeData]);
@@ -23,15 +26,15 @@ export function MyDocument({ resumeData }: { resumeData: DefaultForm }) {
         <View>
           <View style={styles.section}>
             <View style={styles?.headerContainer}>
-              <Text style={styles.fullName}>{`${personal?.firstName || ""} ${
-                personal?.lastName || ""
+              <Text style={styles.fullName}>{`${firstName || ""} ${
+                lastName || ""
               }`}</Text>
-              <Text style={styles.text}>{personal?.jobTitle}</Text>
+              <Text style={styles.text}>{jobTitle}</Text>
             </View>
-            <Text style={styles.text}>{personal?.phoneNumber}</Text>
-            <Text style={styles.text}>{personal?.email}</Text>
+            <Text style={styles.text}>{phoneNumber}</Text>
+            <Text style={styles.text}>{email}</Text>
             <Text style={styles.text}>
-              {`${personal?.city || ""}, ${personal?.country || ""}`}
+              {`${personal?.city || ""}, ${country || ""}`}
             </Text>
           </View>
           {/* Education */}
