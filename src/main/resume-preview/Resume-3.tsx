@@ -4,6 +4,7 @@ import {
   EducationType,
   ExperienceType,
   Personal,
+  ProjectType,
   SkillType,
 } from "@/types/templates/default-form";
 
@@ -15,7 +16,33 @@ export function Resume3() {
       <EducationPreview educationData={resumeData?.education || []} />
       <SkillPreview skillData={resumeData?.skill || []} />
       <ExperiencePreview experienceList={resumeData?.experience || []} />
-      <ProjectPreview />
+      <ProjectPreview projectList={resumeData?.project || []} />
+    </div>
+  );
+}
+
+export function ProjectPreview({
+  projectList,
+}: {
+  projectList: ProjectType[];
+}) {
+  return (
+    <div>
+      <h2 className="text-lg font-semibold border-b border-b-gray-900 pb-0.5">
+        Projects
+      </h2>
+      {projectList.map((projectItem) => (
+        <ProjectItem projectItem={projectItem} key={projectItem?.id} />
+      ))}
+    </div>
+  );
+}
+
+export function ProjectItem({ projectItem }: { projectItem: ProjectType }) {
+  return (
+    <div>
+      <p className="italic">{projectItem?.projectName || ""}</p>
+      <p>{projectItem?.projectDescription || ""}</p>
     </div>
   );
 }
@@ -177,29 +204,6 @@ export function SkillPreview({ skillData }: { skillData: SkillType[] }) {
           </li>
         ))}
       </ol>
-    </div>
-  );
-}
-
-export function ProjectPreview() {
-  return (
-    <div>
-      <h2 className="text-lg font-semibold border-b border-b-gray-900 pb-0.5">
-        Projects
-      </h2>
-      <ProjectItem />
-    </div>
-  );
-}
-
-export function ProjectItem() {
-  return (
-    <div>
-      <p className="italic">PaLiga: Basketball Scorekeeping System</p>
-      <p>
-        Partnered with data scientists and engineers to enhance AI capabilities,
-        ensuring ethical and responsible deployment in real-world applications.
-      </p>
     </div>
   );
 }
