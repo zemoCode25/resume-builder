@@ -16,20 +16,39 @@ export function ProjectList() {
   const setInitialStateItem = useCallback(() => {
     setResumeData((prevResumeData) => {
       const currentProjects = prevResumeData?.project || [];
+
+      if (prevResumeData?.project?.length || 0 > 0) return prevResumeData;
       return {
         ...prevResumeData,
         project: [
           ...currentProjects,
-          { id: uuidv4(), projectName: "", projectDescription: "" },
+          {
+            id: uuidv4(),
+            projectName: "",
+            projectDescription: [{ id: uuidv4(), description: "" }],
+          },
         ],
       };
     });
   }, [setResumeData]);
 
   useEffect(() => {
-    if (currentProjects.length > 0) return;
-    setInitialStateItem();
-  }, [setInitialStateItem, currentProjects]);
+    setResumeData((prevResumeData) => {
+      const currentProjects = prevResumeData?.project || [];
+
+      return {
+        ...prevResumeData,
+        project: [
+          ...currentProjects,
+          {
+            id: uuidv4(),
+            projectName: "",
+            projectDescription: [{ id: uuidv4(), description: "" }],
+          },
+        ],
+      };
+    });
+  }, [setResumeData]);
 
   function handleAddProjectClick() {
     setInitialStateItem();

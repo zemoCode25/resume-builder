@@ -42,7 +42,11 @@ export function ProjectItem({ projectItem }: { projectItem: ProjectType }) {
   return (
     <div>
       <p className="italic">{projectItem?.projectName || ""}</p>
-      {/* <p>{projectItem?.projectDescription || ""}</p> */}
+      <ol className="list-disc pl-8">
+        {projectItem?.projectDescription?.map((description) => (
+          <li>{description?.description}</li>
+        ))}
+      </ol>
     </div>
   );
 }
