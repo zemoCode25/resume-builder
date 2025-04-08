@@ -1,5 +1,3 @@
-// src/pdf_file/index.tsx
-import { useEffect } from "react";
 import { Document, Page, Text, View } from "@react-pdf/renderer";
 import { DefaultForm } from "@/types/templates/default-form";
 import { styles } from "./style";
@@ -7,13 +5,10 @@ import { styles } from "./style";
 export function MyDocument({ resumeData }: { resumeData: DefaultForm }) {
   const personal = resumeData?.personal || {};
   const education = resumeData?.education || [];
+  const skill = resumeData?.skill || [];
 
   const { firstName, lastName, jobTitle, email, phoneNumber, country } =
     personal;
-
-  useEffect(() => {
-    console.log("TANGINA MO KA RERENDER NA");
-  }, [resumeData]);
 
   const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
@@ -63,6 +58,19 @@ export function MyDocument({ resumeData }: { resumeData: DefaultForm }) {
                 <Text style={styles.text}>{educationItem?.school || ""}</Text>
               </View>
             ))}
+          </View>
+          \{/* Skill */}
+          <View style={styles.section}>
+            <View style={styles?.headerContainer}>
+              <Text style={styles.header}>Technical Skill</Text>
+            </View>
+            <View style={styles.grid}>
+              {skill?.map((skillItem) => (
+                <Text style={styles.flexItem} key={skillItem?.id}>{`• ${
+                  skillItem?.skillName || ""
+                }`}</Text>
+              ))}
+            </View>
           </View>
         </View>
       </Page>

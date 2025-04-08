@@ -34,4 +34,15 @@ export const styles = StyleSheet.create({
     fontSize: "16px",
     fontWeight: "bold",
   },
+  grid: {
+    display: "flex",
+    flexDirection: "row",
+    flexWrap: "wrap",
+    marginBottom: "4px",
+  },
+  flexItem: {
+    width: "30%",
+    marginBottom: "2px",
+    fontSize: "12px",
+  },
 });
