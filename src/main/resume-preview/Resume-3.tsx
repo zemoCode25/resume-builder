@@ -42,7 +42,7 @@ export function ProjectItem({ projectItem }: { projectItem: ProjectType }) {
   return (
     <div>
       <p className="italic">{projectItem?.projectName || ""}</p>
-      <p>{projectItem?.projectDescription || ""}</p>
+      {/* <p>{projectItem?.projectDescription || ""}</p> */}
     </div>
   );
 }

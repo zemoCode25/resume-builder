@@ -38,7 +38,7 @@ export interface EducationType {
 export interface ProjectType {
   readonly id?: string;
   projectName?: string;
-  projectDescription?: string;
+  projectDescription?: DescriptionType[];
 }
 
 export interface SkillType {
@@ -51,6 +51,6 @@ export interface Summary {
 }
 
 export interface DescriptionType {
-  id: string;
+  readonly id: string;
   description: string;
 }

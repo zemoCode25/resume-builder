@@ -161,11 +161,6 @@ export function Experience({ experience }: { experience: ExperienceType }) {
         </div>
         {Array.from({ length: experience?.jobDescription?.length || 1 }).map(
           (_, i) => (
-            // <DescriptionInput
-            //   handleJobDescriptionChange={handleJobDescriptionChange}
-            //   currentDescription={currentDescriptions[i]}
-            //   key={i}
-            // />
             <Input
               type="text"
               value={currentDescriptions[i]?.description}
