@@ -11,7 +11,7 @@ import {
 export function Resume3() {
   const { resumeData } = useContext(ResumeDataContext);
   return (
-    <div className="sticky top-10 p-10 bg-white rounded-md shadow-sm font-serif flex flex-col gap-1 max-h-180 overflow-y-auto">
+    <div className="p-10 bg-white rounded-md shadow-sm font-serif flex flex-col gap-1 max-h-180 overflow-y-auto">
       <PersonalPreview personalData={resumeData?.personal || {}} />
       <EducationPreview educationData={resumeData?.education || []} />
       <SkillPreview skillData={resumeData?.skill || []} />
