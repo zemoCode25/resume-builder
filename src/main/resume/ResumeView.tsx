@@ -25,7 +25,7 @@ export function ResumeView() {
         </PDFDownloadLink>
       </div>
       <div>
-        <PDFViewer width={"300px"} height={"300px"}>
+        <PDFViewer width={"1000px"} height={"1000px"}>
           <MyDocument resumeData={resumeData || {}} />
         </PDFViewer>
       </div>
