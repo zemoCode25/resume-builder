@@ -6,10 +6,7 @@ export const styles = StyleSheet.create({
     fontFamily: "Times-Roman",
   },
   section: {
-    marginBottom: 100,
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
+    marginBottom: "3px",
   },
   heading: {
     fontSize: 18,
@@ -21,6 +18,12 @@ export const styles = StyleSheet.create({
   header: {
     fontFamily: "Times-Bold",
     fontSize: 12,
+  },
+  flexContainer: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
   },
   headerContainer: {
     paddingBottom: "2px",
