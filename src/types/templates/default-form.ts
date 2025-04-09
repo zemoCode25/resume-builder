@@ -5,6 +5,7 @@ export interface DefaultForm {
   project?: ProjectType[];
   skill?: SkillType[];
   summary?: Summary;
+  certificate?: CertificateType[];
 }
 
 export interface Personal {
@@ -53,4 +54,11 @@ export interface Summary {
 export interface DescriptionType {
   readonly id: string;
   description: string;
+}
+
+export interface CertificateType {
+  readonly id: string;
+  certificateName?: string;
+  certificateDescription?: string;
+  accreditationDate?: Date;
 }

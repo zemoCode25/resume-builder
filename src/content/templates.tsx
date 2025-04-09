@@ -123,6 +123,7 @@ export const templates: Template[] = [
       project: [],
       skill: [],
       summary: {},
+      certificate: [],
     },
   },
   {

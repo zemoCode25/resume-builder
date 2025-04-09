@@ -80,61 +80,60 @@ export function Education({ education }: { education: EducationType }) {
     },
     [setResumeData, education?.id]
   );
+
   return (
-    <>
-      <form
-        action=""
-        className="w-3/4 grid grid-cols-2 gap-3 bg-white p-5 rounded-md"
-      >
-        <div className="w-full flex flex-col gap-1">
-          <label htmlFor="" className="font-semibold text-gray-700">
-            School/University
-          </label>
-          <Input
-            value={education?.school || ""}
-            onChange={handleSchoolChange}
-            placeholder="e.g. University of the Philippines - Diliman"
-          />
-        </div>
-        <div className="w-full flex flex-col gap-1">
-          <label htmlFor="" className="font-semibold text-gray-700">
-            Degree Program
-          </label>
-          <Input
-            value={education?.degreeProgram || ""}
-            onChange={handleDegreeProgramChange}
-            placeholder="e.g. Computer Science"
-          />
-        </div>
-        <div className="w-full flex flex-col gap-1">
-          <label htmlFor="" className="font-semibold text-gray-700">
-            Start Date
-          </label>
-          <DatePicker
-            currentDate={education?.startDate || null}
-            updateResumeDate={updateStartDate}
-          />
-        </div>
-        <div className="w-full flex flex-col gap-1">
-          <label htmlFor="" className="font-semibold text-gray-700">
-            End Date
-          </label>
-          <DatePicker
-            currentDate={education?.endDate || null}
-            updateResumeDate={updateEndDate}
-          />
-        </div>
-        <div className="w-full flex flex-col gap-1">
-          <label htmlFor="" className="font-semibold text-gray-700">
-            GPA
-          </label>
-          <Input
-            value={education?.GPA || ""}
-            onChange={handleGPAChange}
-            placeholder="e.g. 1.25"
-          />
-        </div>
-      </form>
-    </>
+    <form
+      action=""
+      className="w-3/4 grid grid-cols-2 gap-3 bg-white p-5 rounded-md"
+    >
+      <div className="w-full flex flex-col gap-1">
+        <label htmlFor="" className="font-semibold text-gray-700">
+          School/University
+        </label>
+        <Input
+          value={education?.school || ""}
+          onChange={handleSchoolChange}
+          placeholder="e.g. University of the Philippines - Diliman"
+        />
+      </div>
+      <div className="w-full flex flex-col gap-1">
+        <label htmlFor="" className="font-semibold text-gray-700">
+          Degree Program
+        </label>
+        <Input
+          value={education?.degreeProgram || ""}
+          onChange={handleDegreeProgramChange}
+          placeholder="e.g. Computer Science"
+        />
+      </div>
+      <div className="w-full flex flex-col gap-1">
+        <label htmlFor="" className="font-semibold text-gray-700">
+          Start Date
+        </label>
+        <DatePicker
+          currentDate={education?.startDate || null}
+          updateResumeDate={updateStartDate}
+        />
+      </div>
+      <div className="w-full flex flex-col gap-1">
+        <label htmlFor="" className="font-semibold text-gray-700">
+          End Date
+        </label>
+        <DatePicker
+          currentDate={education?.endDate || null}
+          updateResumeDate={updateEndDate}
+        />
+      </div>
+      <div className="w-full flex flex-col gap-1">
+        <label htmlFor="" className="font-semibold text-gray-700">
+          GPA
+        </label>
+        <Input
+          value={education?.GPA || ""}
+          onChange={handleGPAChange}
+          placeholder="e.g. 1.25"
+        />
+      </div>
+    </form>
   );
 }
