@@ -44,7 +44,7 @@ export function ProjectItem({ projectItem }: { projectItem: ProjectType }) {
       <p className="italic">{projectItem?.projectName || ""}</p>
       <ol className="list-disc pl-8">
         {projectItem?.projectDescription?.map((description) => (
-          <li>{description?.description}</li>
+          <li>{description?.description || ""}</li>
         ))}
       </ol>
     </div>

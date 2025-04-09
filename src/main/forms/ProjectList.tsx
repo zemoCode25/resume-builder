@@ -17,7 +17,7 @@ export function ProjectList() {
     setResumeData((prevResumeData) => {
       const currentProjects = prevResumeData?.project || [];
 
-      if (prevResumeData?.project?.length || 0 > 0) return prevResumeData;
+      if (prevResumeData?.project?.length || 0 !== 0) return prevResumeData;
       return {
         ...prevResumeData,
         project: [
@@ -33,9 +33,12 @@ export function ProjectList() {
   }, [setResumeData]);
 
   useEffect(() => {
+    setInitialStateItem();
+  }, [setInitialStateItem]);
+
+  function handleAddProjectClick() {
     setResumeData((prevResumeData) => {
       const currentProjects = prevResumeData?.project || [];
-
       return {
         ...prevResumeData,
         project: [
@@ -48,10 +51,6 @@ export function ProjectList() {
         ],
       };
     });
-  }, [setResumeData]);
-
-  function handleAddProjectClick() {
-    setInitialStateItem();
     setProjectCount((prevProjectCount) => (prevProjectCount += 1));
   }
 

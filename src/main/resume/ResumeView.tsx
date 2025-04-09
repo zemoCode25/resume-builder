@@ -2,7 +2,7 @@ import { PDFDownloadLink } from "@react-pdf/renderer";
 import { PDFViewer } from "@react-pdf/renderer";
 import { Button } from "@/components/ui/button";
 import { Resume3 } from "../resume-preview/Resume-3";
-import { MyDocument } from "../pdf/document";
+import { MyDocument } from "../pdf/Document";
 import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 import { useContext } from "react";
 
