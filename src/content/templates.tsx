@@ -5,6 +5,7 @@ import { SkillList } from "@/main/forms/SkillList";
 import { EducationList } from "@/main/forms/EducationList";
 import { ExperienceList } from "@/main/forms/ExperienceList";
 import { ProjectList } from "@/main/forms/ProjectList";
+import { CertificateList } from "@/main/forms/CertificateList";
 
 export const templates: Template[] = [
   {
@@ -109,6 +110,10 @@ export const templates: Template[] = [
       {
         formName: "Project",
         formElement: <ProjectList />,
+      },
+      {
+        formName: "Certificate",
+        formElement: <CertificateList />,
       },
     ],
     defaultFormState: {

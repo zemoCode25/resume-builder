@@ -15,6 +15,10 @@ export const styles = StyleSheet.create({
   text: {
     fontSize: 12,
   },
+  italicText: {
+    fontFamily: "Times-Italic",
+    fontSize: 12,
+  },
   header: {
     fontFamily: "Times-Bold",
     fontSize: 12,
@@ -41,8 +45,11 @@ export const styles = StyleSheet.create({
     marginBottom: "4px",
   },
   flexItem: {
-    width: "30%",
+    width: "40%",
     marginBottom: "2px",
     fontSize: "12px",
+  },
+  unorderedList: {
+    paddingLeft: "4px",
   },
 });

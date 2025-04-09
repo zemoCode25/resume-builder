@@ -6,6 +6,7 @@ export function MyDocument({ resumeData }: { resumeData: DefaultForm }) {
   const personal = resumeData?.personal || {};
   const education = resumeData?.education || [];
   const skill = resumeData?.skill || [];
+  const project = resumeData?.project || [];
 
   const { firstName, lastName, jobTitle, email, phoneNumber, country } =
     personal;
@@ -69,6 +70,28 @@ export function MyDocument({ resumeData }: { resumeData: DefaultForm }) {
                 <Text style={styles.flexItem} key={skillItem?.id}>{`• ${
                   skillItem?.skillName || ""
                 }`}</Text>
+              ))}
+            </View>
+          </View>
+          {/* Project */}
+          <View>
+            <View style={styles?.headerContainer}>
+              <Text style={styles.header}>Projects</Text>
+            </View>
+            <View style={styles.section}>
+              {project?.map((projectItem) => (
+                <View style={styles.section}>
+                  <Text style={styles.italicText}>
+                    {projectItem?.projectName}
+                  </Text>
+                  <View style={styles.unorderedList}>
+                    {projectItem?.projectDescription?.map((descriptionItem) => (
+                      <Text style={styles.text} key={descriptionItem?.id}>
+                        {`• ${descriptionItem?.description || ""}`}
+                      </Text>
+                    ))}
+                  </View>
+                </View>
               ))}
             </View>
           </View>
