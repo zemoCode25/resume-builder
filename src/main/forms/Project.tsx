@@ -73,7 +73,7 @@ export function Project({ project }: { project: ProjectType }) {
       <div className="w-full flex flex-col gap-1">
         <div className="flex justify-between align-middle items-center py-1">
           <label htmlFor="" className="font-semibold text-gray-700">
-            Job Description
+            Project Description
           </label>
           <Button
             type="button"

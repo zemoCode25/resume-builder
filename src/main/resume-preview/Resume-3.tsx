@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 import {
+  CertificateType,
   EducationType,
   ExperienceType,
   Personal,
@@ -17,7 +18,50 @@ export function Resume3() {
       <SkillPreview skillData={resumeData?.skill || []} />
       <ExperiencePreview experienceList={resumeData?.experience || []} />
       <ProjectPreview projectList={resumeData?.project || []} />
+      <CertificatePreview certificateList={resumeData?.certificate || []} />
     </div>
+  );
+}
+
+export function CertificatePreview({
+  certificateList,
+}: {
+  certificateList: CertificateType[];
+}) {
+  return (
+    <div>
+      <h2 className="text-lg font-semibold border-b border-b-gray-900 pb-0.5">
+        Certificate
+      </h2>
+      <ol className="list-disc pl-8">
+        {certificateList.map((certificateItem) => (
+          <CertificateItem
+            certificateItem={certificateItem}
+            key={certificateItem?.id}
+          />
+        ))}
+      </ol>
+    </div>
+  );
+}
+
+export function CertificateItem({
+  certificateItem,
+}: {
+  certificateItem: CertificateType;
+}) {
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "long",
+  };
+  const { certificateName, certificateDescription, accreditationDate } =
+    certificateItem;
+  return (
+    <li>
+      <p>{`${certificateName || ""}: ${certificateDescription || ""} - ${
+        accreditationDate?.toLocaleDateString(undefined, options) || ""
+      }`}</p>
+    </li>
   );
 }
 
