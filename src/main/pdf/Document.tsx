@@ -7,6 +7,7 @@ export function MyDocument({ resumeData }: { resumeData: DefaultForm }) {
   const education = resumeData?.education || [];
   const skill = resumeData?.skill || [];
   const project = resumeData?.project || [];
+  const experience = resumeData?.experience || [];
 
   const { firstName, lastName, jobTitle, email, phoneNumber, country } =
     personal;
@@ -32,6 +33,47 @@ export function MyDocument({ resumeData }: { resumeData: DefaultForm }) {
             <Text style={styles.text}>
               {`${personal?.city || ""}, ${country || ""}`}
             </Text>
+          </View>
+          {/* Experience */}
+          <View style={styles.section}>
+            <View style={styles?.headerContainer}>
+              <Text style={styles.header}>Experience</Text>
+            </View>
+            <View>
+              {experience?.map((experienceItem) => (
+                <View style={styles.section}>
+                  <View style={styles.flexContainer}>
+                    <Text style={styles.text}>
+                      {experienceItem?.position || ""}
+                    </Text>
+                    <Text style={styles.text}>{`${
+                      experienceItem?.startDate?.toLocaleDateString(
+                        undefined,
+                        options
+                      ) || ""
+                    } - ${
+                      experienceItem?.endDate?.toLocaleDateString(
+                        undefined,
+                        options
+                      ) || ""
+                    }`}</Text>
+                  </View>
+                  <Text style={styles.text}>
+                    {experienceItem?.company || ""}
+                  </Text>
+                  <View style={styles.unorderedList}>
+                    {experienceItem?.jobDescription?.map((description) => {
+                      if (!description?.description) return;
+                      return (
+                        <Text key={description?.id} style={styles?.text}>{`• ${
+                          description?.description || ""
+                        }`}</Text>
+                      );
+                    })}
+                  </View>
+                </View>
+              ))}
+            </View>
           </View>
           {/* Education */}
           <View style={styles.section}>

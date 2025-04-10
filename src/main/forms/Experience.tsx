@@ -120,6 +120,7 @@ export function Experience({ experience }: { experience: ExperienceType }) {
           Company
         </label>
         <Input
+          value={experience?.company || ""}
           onChange={handleCompanyChange}
           placeholder="e.g. Resume Builder Inc."
         />
@@ -129,6 +130,7 @@ export function Experience({ experience }: { experience: ExperienceType }) {
           Position
         </label>
         <Input
+          value={experience?.position || ""}
           onChange={handlePositionChange}
           placeholder="e.g. Software Developer"
         />

@@ -50,6 +50,6 @@ export const styles = StyleSheet.create({
     fontSize: "12px",
   },
   unorderedList: {
-    paddingLeft: "4px",
+    paddingLeft: "12px",
   },
 });
