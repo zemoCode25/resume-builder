@@ -8,6 +8,7 @@ export function MyDocument({ resumeData }: { resumeData: DefaultForm }) {
   const skill = resumeData?.skill || [];
   const project = resumeData?.project || [];
   const experience = resumeData?.experience || [];
+  const certificate = resumeData?.certificate || [];
 
   const { firstName, lastName, jobTitle, email, phoneNumber, country } =
     personal;
@@ -135,6 +136,26 @@ export function MyDocument({ resumeData }: { resumeData: DefaultForm }) {
                   </View>
                 </View>
               ))}
+            </View>
+          </View>
+          {/* Certificate */}
+          <View>
+            <View style={styles?.headerContainer}>
+              <Text style={styles.header}>Certificate</Text>
+            </View>
+            <View style={styles.section}>
+              <View style={styles.unorderedList}>
+                {certificate?.map((certificateItem) => (
+                  <Text style={styles.text}>{`• ${
+                    certificateItem.certificateName || ""
+                  }: ${certificateItem.certificateDescription || ""} - ${
+                    certificateItem.accreditationDate?.toLocaleDateString(
+                      undefined,
+                      options
+                    ) || ""
+                  }`}</Text>
+                ))}
+              </View>
             </View>
           </View>
         </View>
