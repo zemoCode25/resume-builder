@@ -21,7 +21,7 @@ export const styles = StyleSheet.create({
   },
   header: {
     fontFamily: "Times-Bold",
-    fontSize: 12,
+    fontSize: 14,
   },
   flexContainer: {
     display: "flex",
@@ -35,7 +35,7 @@ export const styles = StyleSheet.create({
   },
   fullName: {
     fontFamily: "Times-Bold",
-    fontSize: "16px",
+    fontSize: "18px",
     fontWeight: "bold",
   },
   grid: {

@@ -1,34 +1,32 @@
-import { PDFDownloadLink } from "@react-pdf/renderer";
-import { PDFViewer } from "@react-pdf/renderer";
+// import { PDFDownloadLink } from "@react-pdf/renderer";
 import { Button } from "@/components/ui/button";
 import { Resume3 } from "../resume-preview/Resume-3";
-import { MyDocument } from "../pdf/Document";
-import { ResumeDataContext } from "@/contexts/ResumeDataContext";
-import { useContext } from "react";
+import { View } from "lucide-react";
+import { useState } from "react";
+import { ResumePDFViewer } from "../pdf/ResumePDFViewer";
+import { Overlay } from "@/components/overlay/Overlay";
 
 export function ResumeView() {
-  const { resumeData } = useContext(ResumeDataContext);
+  // const { resumeData } = useContext(ResumeDataContext);
+  const [isPDFViwerOpen, setPDFViewer] = useState<boolean>(false);
   return (
     <div className="w-1/2 px-5 sticky top-10 h-fit">
       <Resume3 />
       <div className="w-full mt-2 flex">
-        <PDFDownloadLink
-          document={<MyDocument resumeData={resumeData || {}} />}
-          fileName="ralph-resume.pdf"
-          className="ml-auto"
+        <Button
+          onClick={() => setPDFViewer((prevPDFState: boolean) => !prevPDFState)}
+          className="font-semibold cursor-pointer ml-auto"
         >
-          {({ loading }) => (
-            <Button className="font-semibold cursor-pointer">
-              {loading ? "Preparing PDF..." : "Download PDF"}
-            </Button>
-          )}
-        </PDFDownloadLink>
+          <View />
+          View PDF
+        </Button>
       </div>
-      <div>
-        <PDFViewer width={"1000px"} height={"1000px"}>
-          <MyDocument resumeData={resumeData || {}} />
-        </PDFViewer>
-      </div>
+      {isPDFViwerOpen && (
+        <div>
+          <ResumePDFViewer closePDFViewer={() => setPDFViewer(false)} />
+          <Overlay closeOverlay={() => setPDFViewer(false)} />
+        </div>
+      )}
     </div>
   );
 }

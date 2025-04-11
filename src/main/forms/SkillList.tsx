@@ -21,7 +21,7 @@ export function SkillList() {
 
   const skills = resumeData?.skill || [];
   return (
-    <div className="w-3/4">
+    <div className="w-3/4 mb-2 flex flex-col gap-3">
       <div className="grid grid-cols-2 items-center gap-3 w-full">
         {Array.from({ length: skillCount }).map((_, i) => (
           <Skill skill={skills[i]} key={i} />
@@ -29,7 +29,8 @@ export function SkillList() {
       </div>
       <div className="flex w-full">
         <Button
-          className="cursor-pointer font-semibold"
+          className="cursor-pointer font-semibold hover:bg-gray-200 border"
+          variant={"ghost"}
           onClick={handleAddSkillClick}
         >
           <CirclePlus />

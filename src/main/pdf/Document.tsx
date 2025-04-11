@@ -2,7 +2,11 @@ import { Document, Page, Text, View } from "@react-pdf/renderer";
 import { DefaultForm } from "@/types/templates/default-form";
 import { styles } from "./style";
 
-export function MyDocument({ resumeData }: { resumeData: DefaultForm }) {
+export function PDFDocument({
+  resumeData,
+}: {
+  resumeData: DefaultForm | null;
+}) {
   const personal = resumeData?.personal || {};
   const education = resumeData?.education || [];
   const skill = resumeData?.skill || [];

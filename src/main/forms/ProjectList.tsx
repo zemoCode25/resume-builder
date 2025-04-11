@@ -65,7 +65,8 @@ export function ProjectList() {
       </div>
       <div className="flex w-3/4">
         <Button
-          className="cursor-pointer font-semibold"
+          className="cursor-pointer font-semibold hover:bg-gray-200 border"
+          variant={"ghost"}
           onClick={handleAddProjectClick}
         >
           <CirclePlus />
