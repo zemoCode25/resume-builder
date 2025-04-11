@@ -1,6 +1,7 @@
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AppTypeContext } from "@/contexts/AppContext";
 import { useContext } from "react";
+import { Input } from "@/components/ui/input";
 
 export function CVForm() {
   const { appType, setAppType } = useContext(AppTypeContext);
@@ -16,6 +17,31 @@ export function CVForm() {
           </TabsTrigger>
         </TabsList>
       </Tabs>
+      <Personal />
+    </div>
+  );
+}
+
+export function Personal() {
+  return (
+    <div className="w-3/4 flex flex-col bg-white rounded-sm p-5 shadow-all-sm">
+      <h2 className="mb-2 text-xl font-bold text-gray-700">Personal Details</h2>
+      <form action="">
+        <div className="grid grid-cols-2 gap-10">
+          <div className="w-full flex flex-col gap-1">
+            <label className="font-semibold text-gray-700" htmlFor="">
+              First Name
+            </label>
+            <Input></Input>
+          </div>
+          <div className="w-full flex flex-col gap-1">
+            <label className="font-semibold text-gray-700" htmlFor="">
+              Last Name
+            </label>
+            <Input></Input>
+          </div>
+        </div>
+      </form>
     </div>
   );
 }
