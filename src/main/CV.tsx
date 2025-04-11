@@ -10,9 +10,9 @@ export function CV() {
     return;
   }
   return (
-    <div>
-      <CVView />
+    <div className="flex justify-between w-full p-5">
       <CVForm />
+      <CVView />
     </div>
   );
 }
