@@ -2,8 +2,15 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AppTypeContext } from "@/contexts/AppContext";
 import { useContext } from "react";
 import { Input } from "@/components/ui/input";
+import { CVDataType } from "@/types/component-types/cv/cv-form";
 
-export function CVForm() {
+export function CVForm({
+  cvData,
+  updateCVData,
+}: {
+  cvData: CVDataType | null;
+  updateCVData: React.Dispatch<React.SetStateAction<CVDataType | null>>;
+}) {
   const { appType, setAppType } = useContext(AppTypeContext);
   return (
     <div className="w-1/2 flex flex-col justify-center items-center">
