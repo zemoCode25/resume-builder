@@ -48,7 +48,7 @@ export function ResumeForm() {
   return (
     <div className="w-1/2 flex flex-col justify-center items-center gap-3">
       <Tabs defaultValue={appType} className="w-3/4" onValueChange={setAppType}>
-        <TabsList className="w-full">
+        <TabsList className="w-full bg-gray-200">
           <TabsTrigger className="cursor-pointer" value="resume">
             Resume
           </TabsTrigger>
@@ -57,14 +57,14 @@ export function ResumeForm() {
           </TabsTrigger>
         </TabsList>
       </Tabs>
-      <div className="w-3/4 flex justify-between items-center bg-gray-200 p-1 rounded-lg">
+      <div className="w-3/4 flex justify-between items-center bg-gray-200 p-1 rounded-md">
         <button
           onClick={handleLeftCarouselCLick}
           className="cursor-pointer text-2xl px-3 hover:font-bold"
         >
           {"<"}
         </button>
-        <p className=" font-semibold">{activeForm.formName}</p>
+        <p className="font-semibold">{activeForm.formName}</p>
         <button
           onClick={handleRightCarouselCLick}
           className="cursor-pointer text-2xl px-3 hover:font-bold"

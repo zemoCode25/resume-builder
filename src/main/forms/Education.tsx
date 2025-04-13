@@ -84,7 +84,7 @@ export function Education({ education }: { education: EducationType }) {
   return (
     <form
       action=""
-      className="w-3/4 grid grid-cols-2 gap-3 bg-white p-5 rounded-md"
+      className="w-3/4 grid grid-cols-2 gap-3 bg-white p-5 rounded-md shadow-sm"
     >
       <div className="w-full flex flex-col gap-1">
         <label htmlFor="" className="font-semibold text-gray-700">

@@ -41,7 +41,10 @@ export function Skill({ skill = {} }: { skill: SkillType }) {
   }
   // Check whether skill has any element, if not, create a dummy array to render atleast 1 input
   return (
-    <form action="" className="w-full flex gap-3 bg-white p-5 rounded-md">
+    <form
+      action=""
+      className="w-full flex gap-3 bg-white p-5 rounded-md shadow-sm"
+    >
       <div className="w-full flex flex-col gap-1">
         <label htmlFor="" className="font-semibold text-gray-700">
           Skill
