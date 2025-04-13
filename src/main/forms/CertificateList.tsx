@@ -30,7 +30,7 @@ export function CertificateList() {
   }, [setResumeData]);
 
   return (
-    <div className="flex flex-col justify-center items-center gap-3 w-3/4">
+    <div className="flex flex-col justify-center items-center gap-3 w-full">
       <div className="w-full">
         <div className="grid grid-cols-2 items-center gap-3 w-full">
           {Array.from({ length: skillCount }).map((_, i) => (

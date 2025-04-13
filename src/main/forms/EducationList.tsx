@@ -65,7 +65,7 @@ export function EducationList() {
       {Array.from({ length: educationCount }).map((_, i) => (
         <Education education={currentEducation[i]} key={i} />
       ))}
-      <div className="flex w-3/4">
+      <div className="flex w-full">
         <Button
           className="cursor-pointer font-semibold hover:bg-gray-200 border"
           variant={"ghost"}

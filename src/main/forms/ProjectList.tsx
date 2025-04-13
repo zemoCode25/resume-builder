@@ -56,14 +56,14 @@ export function ProjectList() {
 
   return (
     <>
-      <div className="w-3/4">
+      <div className="w-full">
         <div className="grid grid-cols-1 items-center gap-3 w-full">
           {Array.from({ length: projectCount }).map((_, i) => (
             <Project project={currentProjects[i]} key={i} />
           ))}
         </div>
       </div>
-      <div className="flex w-3/4">
+      <div className="flex w-full">
         <Button
           className="cursor-pointer font-semibold hover:bg-gray-200 border"
           variant={"ghost"}

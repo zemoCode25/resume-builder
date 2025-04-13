@@ -67,7 +67,7 @@ export function Personal() {
   return (
     <form
       action=""
-      className="w-3/4 grid grid-cols-2 gap-10 bg-white p-5 rounded-md shadow-sm"
+      className="w-full grid grid-cols-2 gap-10 bg-white p-5 rounded-md shadow-sm"
     >
       <div className="w-full flex flex-col gap-1 col-span-2">
         <label htmlFor="" className="font-semibold text-gray-700">

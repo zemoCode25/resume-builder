@@ -1,3 +1,7 @@
 export function CVView() {
-  return <h1>CVView</h1>;
+  return (
+    <div className="w-1/2 px-5 sticky top-10 h-fit">
+      <h1>CV VIEW</h1>
+    </div>
+  );
 }
