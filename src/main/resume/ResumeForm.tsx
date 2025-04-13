@@ -3,18 +3,6 @@ import { AppTypeContext } from "@/contexts/AppContext";
 import { useState, useContext } from "react";
 import { TemplateContext } from "@/contexts/TemplateContext";
 
-// import { CourseList } from "../forms/CourseList";
-// import { SkillList } from "../forms/SkillList";
-
-/*
-*TODO LIST for 03/26/25
-
-// - create context for the selected template
-- Setup the state in the resume component
-- Implement controlled input elements for each form
-- Create a state for each form then update the main resume state.
-*/
-
 export function ResumeForm() {
   const { appType, setAppType } = useContext(AppTypeContext);
   const { template } = useContext(TemplateContext);
@@ -43,8 +31,6 @@ export function ResumeForm() {
   }
 
   const activeForm = forms[carouselCount];
-
-  if (appType !== "resume") return;
   return (
     <div className="w-1/2 flex flex-col justify-center items-center gap-3">
       <Tabs defaultValue={appType} className="w-3/4" onValueChange={setAppType}>
