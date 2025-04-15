@@ -1,7 +1,17 @@
-// import { CVDataType } from "@/types/component-types/cv/cv-form";
-// import { useState } from "react";
+import { CVDataType } from "@/types/component-types/cv/cv-form";
+import { CVDataContext } from "./CVDataContext";
+import { useState } from "react";
 
-// export function CVDataProvider() {
-//   const [CVData, setCVData] = useState<CVDataType | null>(null);
+interface CVDataProviderType {
+  children: React.ReactNode;
+}
 
-// }
+export function CVDataProvider({ children }: CVDataProviderType) {
+  const [CVData, updateCVData] = useState<CVDataType | null>(null);
+
+  return (
+    <CVDataContext.Provider value={{ CVData, updateCVData }}>
+      {children}
+    </CVDataContext.Provider>
+  );
+}
