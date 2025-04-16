@@ -4,19 +4,27 @@ import { Main } from "./pages/Main";
 import { Templates } from "./pages/Templates";
 import { TemplateProvider } from "./contexts/TemplateProvider";
 import { ResumeDataProvider } from "./contexts/ResumeDataProvider";
+import { CVDataProvider } from "@/contexts/CVDataProvider";
 
 function App() {
   return (
     <TemplateProvider>
-      <ResumeDataProvider>
-        <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />}></Route>
-            <Route path="/templates" element={<Templates />}></Route>
-            <Route path="/main" element={<Main />}></Route>
-          </Routes>
-        </BrowserRouter>
-      </ResumeDataProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="/templates" element={<Templates />}></Route>
+          <Route
+            path="/main"
+            element={
+              <CVDataProvider>
+                <ResumeDataProvider>
+                  <Main />
+                </ResumeDataProvider>
+              </CVDataProvider>
+            }
+          ></Route>
+        </Routes>
+      </BrowserRouter>
     </TemplateProvider>
   );
 }
