@@ -80,6 +80,28 @@ export function Personal() {
 }
 
 export function Employer() {
+  const { CVData, updateCVData } = useContext(CVDataContext);
+  const { employer } = CVData || {};
+
+  function updateEmployerField(property: string = "", value: string = "") {
+    updateCVData((prevCVData) => ({
+      ...prevCVData,
+      employer: { ...prevCVData?.employer, [property]: value },
+    }));
+  }
+
+  function handleFirstName(e: React.ChangeEvent<HTMLInputElement>) {
+    updateEmployerField("firstName", e.target.value);
+  }
+
+  function handleLastName(e: React.ChangeEvent<HTMLInputElement>) {
+    updateEmployerField("lastName", e.target.value);
+  }
+
+  function handleTitleChange(e: React.ChangeEvent<HTMLInputElement>) {
+    updateEmployerField("title", e.target.value);
+  }
+
   return (
     <div className="w-full flex flex-col bg-white rounded-sm p-5 shadow-sm">
       <h2 className="mb-2 text-lg font-bold text-gray-800">Employer Details</h2>
@@ -89,19 +111,28 @@ export function Employer() {
             <label className="text-gray-700" htmlFor="">
               First Name
             </label>
-            <Input></Input>
+            <Input
+              onChange={handleFirstName}
+              value={employer?.firstName || ""}
+            ></Input>
           </div>
           <div className="w-full flex flex-col gap-1">
             <label className="text-gray-700" htmlFor="">
               Last Name
             </label>
-            <Input></Input>
+            <Input
+              onChange={handleLastName}
+              value={employer?.lastName || ""}
+            ></Input>
           </div>
           <div className="w-full flex flex-col gap-1">
             <label className="text-gray-700" htmlFor="">
               Title
             </label>
-            <Input></Input>
+            <Input
+              onChange={handleTitleChange}
+              value={employer?.title || ""}
+            ></Input>
           </div>
         </div>
       </form>
