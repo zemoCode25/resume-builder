@@ -216,6 +216,28 @@ export function Company() {
 }
 
 export function LetterBody() {
+  const { CVData, updateCVData } = useContext(CVDataContext);
+  const { letterBody } = CVData || {};
+
+  function updateLetterBodyField(property: string = "", value: string = "") {
+    updateCVData((prevCVData) => ({
+      ...prevCVData,
+      letterBody: { ...prevCVData?.letterBody, [property]: value },
+    }));
+  }
+
+  function handleOpeningBodyChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    updateLetterBodyField("openingBody", e.target.value.trim());
+  }
+
+  function handleMiddleBodyChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    updateLetterBodyField("middleBody", e.target.value.trim());
+  }
+
+  function handleClosingBodyChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
+    updateLetterBodyField("closingBody", e.target.value.trim());
+  }
+
   return (
     <div className="w-full flex flex-col bg-white rounded-sm p-5 shadow-sm">
       <h2 className="mb-2 text-lg font-bold text-gray-800">Company Details</h2>
@@ -225,19 +247,32 @@ export function LetterBody() {
             <label className="text-gray-700" htmlFor="">
               Opening Body
             </label>
-            <textarea className="w-full min-h-32 p-2 outline-none border text-sm rounded-sm shadow-xs"></textarea>
+            <textarea
+              onChange={handleOpeningBodyChange}
+              value={letterBody?.openingBody || ""}
+              className="w-full min-h-32 p-2 outline-none border text-sm rounded-sm shadow-xs"
+            ></textarea>
           </div>
           <div className="w-full flex flex-col gap-1">
             <label className="text-gray-700" htmlFor="">
               Middle Body
             </label>
-            <textarea className="w-full min-h-32 p-2 outline-none border text-sm rounded-sm shadow-xs"></textarea>
+            <textarea
+              onChange={handleMiddleBodyChange}
+              value={letterBody?.middleBody || ""}
+              className="w-full min-h-32 p-2 outline-none border text-sm rounded-sm shadow-xs"
+            ></textarea>
           </div>
           <div className="w-full flex flex-col gap-1">
             <label className="text-gray-700" htmlFor="">
               Closing Body
             </label>
-            <textarea className="w-full min-h-32 p-2 outline-none border text-sm rounded-sm shadow-xs"></textarea>
+
+            <textarea
+              onChange={handleClosingBodyChange}
+              value={letterBody?.closingBody || ""}
+              className="w-full min-h-32 p-2 outline-none border text-sm rounded-sm shadow-xs"
+            ></textarea>
           </div>
         </div>
       </form>
