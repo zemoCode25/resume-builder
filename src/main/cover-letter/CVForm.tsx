@@ -2,15 +2,9 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { AppTypeContext } from "@/contexts/AppContext";
 import { useContext } from "react";
 import { Input } from "@/components/ui/input";
-import { CVDataType } from "@/types/component-types/cv/cv-form";
+import { CVDataContext } from "@/contexts/CVDataContext";
 
-export function CVForm({
-  cvData,
-  updateCVData,
-}: {
-  cvData: CVDataType | null;
-  updateCVData: React.Dispatch<React.SetStateAction<CVDataType | null>>;
-}) {
+export function CVForm() {
   const { appType, setAppType } = useContext(AppTypeContext);
   return (
     <div className="w-1/2 flex flex-col justify-center items-center">
@@ -39,6 +33,23 @@ export function CVForm({
 }
 
 export function Personal() {
+  const { CVData, updateCVData } = useContext(CVDataContext);
+  const { personal } = CVData || {};
+
+  function handleFirstName(e: React.ChangeEvent<HTMLInputElement>) {
+    updateCVData((prevCVData) => ({
+      ...prevCVData,
+      personal: { ...prevCVData?.personal, firstName: e.target.value },
+    }));
+  }
+
+  function handleLastName(e: React.ChangeEvent<HTMLInputElement>) {
+    updateCVData((prevCVData) => ({
+      ...prevCVData,
+      personal: { ...prevCVData?.personal, lastName: e.target.value },
+    }));
+  }
+
   return (
     <div className="w-full flex flex-col bg-white rounded-sm p-5 shadow-sm">
       <h2 className="mb-2 text-lg font-bold text-gray-800">Personal Details</h2>
@@ -48,13 +59,19 @@ export function Personal() {
             <label className="text-gray-700" htmlFor="">
               First Name
             </label>
-            <Input></Input>
+            <Input
+              onChange={handleFirstName}
+              value={personal?.firstName || ""}
+            ></Input>
           </div>
           <div className="w-full flex flex-col gap-1">
             <label className="text-gray-700" htmlFor="">
               Last Name
             </label>
-            <Input></Input>
+            <Input
+              value={personal?.lastName || ""}
+              onChange={handleLastName}
+            ></Input>
           </div>
         </div>
       </form>
@@ -136,7 +153,7 @@ export function LetterBody() {
         <div className="grid grid-cols-1 gap-x-10 gap-y-5">
           <div className="w-full flex flex-col gap-1">
             <label className="text-gray-700" htmlFor="">
-              First Paragraph
+              Opening Body
             </label>
             <textarea className="w-full min-h-32 p-2 outline-none border text-sm rounded-sm shadow-xs"></textarea>
           </div>
