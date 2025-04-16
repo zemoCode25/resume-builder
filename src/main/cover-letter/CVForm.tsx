@@ -141,6 +141,33 @@ export function Employer() {
 }
 
 export function Company() {
+  const { CVData, updateCVData } = useContext(CVDataContext);
+  const { company } = CVData || {};
+
+  function updateCompanyField(property: string = "", value: string = "") {
+    updateCVData((prevCVData) => ({
+      ...prevCVData,
+      company: { ...prevCVData?.company, [property]: value },
+    }));
+  }
+
+  function handleCompanyNameChange(e: React.ChangeEvent<HTMLInputElement>) {
+    updateCompanyField("companyName", e.target.value.trim());
+  }
+
+  function handleStreetAddressChange(e: React.ChangeEvent<HTMLInputElement>) {
+    updateCompanyField("streetAddress", e.target.value.trim());
+  }
+
+  function handleCityChange(e: React.ChangeEvent<HTMLInputElement>) {
+    updateCompanyField("city", e.target.value.trim());
+  }
+
+  function handleZipCodeChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const newValue = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
+    updateCompanyField("zipCode", newValue.trim());
+  }
+
   return (
     <div className="w-full flex flex-col bg-white rounded-sm p-5 shadow-sm">
       <h2 className="mb-2 text-lg font-bold text-gray-800">Company Details</h2>
@@ -150,25 +177,37 @@ export function Company() {
             <label className="text-gray-700" htmlFor="">
               Company Name
             </label>
-            <Input></Input>
+            <Input
+              value={company?.companyName || ""}
+              onChange={handleCompanyNameChange}
+            ></Input>
           </div>
           <div className="w-full flex flex-col gap-1">
             <label className="text-gray-700" htmlFor="">
               Street Address
             </label>
-            <Input></Input>
+            <Input
+              value={company?.streetAddress || ""}
+              onChange={handleStreetAddressChange}
+            ></Input>
           </div>
           <div className="w-full flex flex-col gap-1">
             <label className="text-gray-700" htmlFor="">
               City
             </label>
-            <Input></Input>
+            <Input
+              value={company?.city || ""}
+              onChange={handleCityChange}
+            ></Input>
           </div>
           <div className="w-full flex flex-col gap-1">
             <label className="text-gray-700" htmlFor="">
               Zip Code
             </label>
-            <Input></Input>
+            <Input
+              value={company?.zipCode || ""}
+              onChange={handleZipCodeChange}
+            ></Input>
           </div>
         </div>
       </form>
