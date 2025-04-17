@@ -4,7 +4,7 @@ export function CVView() {
   const { CVData } = useContext(CVDataContext);
   const { personal, employer, company, letterBody } = CVData || {};
   return (
-    <div className="w-1/2 px-5 sticky top-10 h-fit">
+    <div className="w-full lg:px-5 lg:sticky lg:top-10 h-fit">
       <section className="font-serif bg-white p-12 flex flex-col gap-5">
         <article>
           <p>{`${employer?.firstName || ""} ${employer?.lastName || ""}`}</p>

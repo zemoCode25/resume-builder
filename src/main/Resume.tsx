@@ -10,7 +10,7 @@ export function Resume() {
     return;
   }
   return (
-    <div className="flex flex-col lg:flex-row justify-between w-full max-w-[1420px] py-5 px-5">
+    <div className="flex flex-col lg:flex-row justify-between w-[90%] lg:w-full max-w-[1420px] py-5 px-5">
       <ResumeForm />
       <ResumeView />
     </div>
