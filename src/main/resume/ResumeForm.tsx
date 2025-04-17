@@ -32,8 +32,8 @@ export function ResumeForm() {
 
   const activeForm = forms[carouselCount];
   return (
-    <div className="w-1/2 flex justify-center items-center">
-      <div className="w-3/4 flex flex-col justify-center items-center gap-3">
+    <div className="lg:w-[60%] w-full flex justify-center items-center">
+      <div className="w-full flex flex-col justify-center items-center gap-3 mb-5">
         <Tabs
           defaultValue={appType}
           className="w-full"
