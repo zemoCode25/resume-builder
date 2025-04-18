@@ -13,7 +13,7 @@ export function CVPDFViewer({
   const { CVData } = useContext(CVDataContext);
   return (
     <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
-      <div className="w-[50vw] h-[80vh] p-5 bg-white flex flex-col rounded-md">
+      <div className="w-[90vw] max-w-[700px] h-[90vh] p-5 bg-white flex flex-col rounded-md">
         <div className="w-full flex gap-1 items-center justify-end mb-2">
           <PDFDownloadLink document={<CVDocument CVData={CVData} />}>
             <Button className="self-end font-semibold cursor-pointer">
