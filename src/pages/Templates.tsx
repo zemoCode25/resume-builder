@@ -60,9 +60,9 @@ interface PreviewProps {
 export function Preview({ template }: PreviewProps) {
   return (
     <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-gray-200 p-5 rounded-sm z-50">
-      <div className="w-[30vw] flex flex-col items-center gap-3">
+      <div className="flex flex-col items-center gap-3 w-[80vw] max-w-[500px] h-full">
         <img
-          className="w-[30vw] h-full object-cover"
+          className="object-cover h-full"
           src={template?.src}
           alt={template?.alt}
         />
