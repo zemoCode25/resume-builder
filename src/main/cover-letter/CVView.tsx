@@ -1,8 +1,11 @@
 import { CVDataContext } from "@/contexts/CVDataContext";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { View } from "lucide-react";
 export function CVView() {
   const { CVData } = useContext(CVDataContext);
   const { personal, employer, company, letterBody } = CVData || {};
+  const [isPDFViwerOpen, setPDFViewer] = useState<boolean>(false);
   return (
     <div className="w-full lg:px-5 lg:sticky lg:top-10 h-fit">
       <section className="font-serif bg-white p-12 flex flex-col gap-5">
@@ -24,6 +27,15 @@ export function CVView() {
           <p>{`${personal?.firstName || ""} ${personal?.lastName || ""}`}</p>
         </article>
       </section>
+      <div className="w-full mt-2 flex justify-end">
+        <Button
+          onClick={() => setPDFViewer((prevPDFState: boolean) => !prevPDFState)}
+          className="font-semibold cursor-pointer ml-auto"
+        >
+          <View />
+          View PDF
+        </Button>
+      </div>
     </div>
   );
 }

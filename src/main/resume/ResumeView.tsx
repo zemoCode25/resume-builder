@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Resume3 } from "../resume-preview/Resume-3";
 import { View } from "lucide-react";
 import { useContext, useState } from "react";
-import { ResumePDFViewer } from "../pdf/ResumePDFViewer";
+import { ResumePDFViewer } from "../pdf/resume/ResumePDFViewer";
 import { Overlay } from "@/components/overlay/Overlay";
 import { AppTypeContext } from "@/contexts/AppContext";
 
@@ -11,6 +11,7 @@ export function ResumeView() {
   // const { resumeData } = useContext(ResumeDataContext);
   const [isPDFViwerOpen, setPDFViewer] = useState<boolean>(false);
   const { appType } = useContext(AppTypeContext);
+
   if (appType !== "resume") return;
   return (
     <div className="w-full lg:px-5 lg:sticky lg:top-10 h-fit">

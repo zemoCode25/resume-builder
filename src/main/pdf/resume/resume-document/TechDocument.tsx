@@ -1,8 +1,8 @@
 import { Document, Page, Text, View } from "@react-pdf/renderer";
 import { DefaultForm } from "@/types/templates/default-form";
-import { styles } from "./style";
+import { styles } from "../style";
 
-export function PDFDocument({
+export function TechDocument({
   resumeData,
 }: {
   resumeData: DefaultForm | null;
