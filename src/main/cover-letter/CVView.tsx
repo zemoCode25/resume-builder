@@ -1,7 +1,10 @@
 import { CVDataContext } from "@/contexts/CVDataContext";
+import { CVPDFViewer } from "../pdf/cover-letter/CVPDFViewer";
 import { useContext, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { View } from "lucide-react";
+import { Overlay } from "@/components/overlay/Overlay";
+
 export function CVView() {
   const { CVData } = useContext(CVDataContext);
   const { personal, employer, company, letterBody } = CVData || {};
@@ -36,6 +39,12 @@ export function CVView() {
           View PDF
         </Button>
       </div>
+      {isPDFViwerOpen && (
+        <div>
+          <CVPDFViewer closePDFViewer={() => setPDFViewer(false)} />
+          <Overlay closeOverlay={() => setPDFViewer(false)} />
+        </div>
+      )}
     </div>
   );
 }

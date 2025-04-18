@@ -152,20 +152,20 @@ export function Company() {
   }
 
   function handleCompanyNameChange(e: React.ChangeEvent<HTMLInputElement>) {
-    updateCompanyField("companyName", e.target.value.trim());
+    updateCompanyField("companyName", e.target.value);
   }
 
   function handleStreetAddressChange(e: React.ChangeEvent<HTMLInputElement>) {
-    updateCompanyField("streetAddress", e.target.value.trim());
+    updateCompanyField("streetAddress", e.target.value);
   }
 
   function handleCityChange(e: React.ChangeEvent<HTMLInputElement>) {
-    updateCompanyField("city", e.target.value.trim());
+    updateCompanyField("city", e.target.value);
   }
 
   function handleZipCodeChange(e: React.ChangeEvent<HTMLInputElement>) {
     const newValue = e.target.value.replace(/\D/g, ""); // Remove non-numeric characters
-    updateCompanyField("zipCode", newValue.trim());
+    updateCompanyField("zipCode", newValue);
   }
 
   return (
@@ -227,15 +227,15 @@ export function LetterBody() {
   }
 
   function handleOpeningBodyChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    updateLetterBodyField("openingBody", e.target.value.trim());
+    updateLetterBodyField("openingBody", e.target.value);
   }
 
   function handleMiddleBodyChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    updateLetterBodyField("middleBody", e.target.value.trim());
+    updateLetterBodyField("middleBody", e.target.value);
   }
 
   function handleClosingBodyChange(e: React.ChangeEvent<HTMLTextAreaElement>) {
-    updateLetterBodyField("closingBody", e.target.value.trim());
+    updateLetterBodyField("closingBody", e.target.value);
   }
 
   return (
