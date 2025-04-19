@@ -113,7 +113,7 @@ export function Experience({ experience }: { experience: ExperienceType }) {
   return (
     <form
       action=""
-      className="w-full grid grid-cols-2 gap-3 bg-white p-5 rounded-md shadow-sm"
+      className="w-full grid grid-cols-1 gap-3 bg-white p-5 rounded-md shadow-sm"
     >
       <div className="w-full flex flex-col gap-1">
         <label htmlFor="" className="font-semibold text-gray-700">
@@ -147,7 +147,7 @@ export function Experience({ experience }: { experience: ExperienceType }) {
         </label>
         <DatePicker formType="experience" updateResumeDate={updateEndDate} />
       </div>
-      <div className="w-full flex flex-col gap-1 col-span-2">
+      <div className="w-full flex flex-col gap-1 col-span-1 xl:col-span-2">
         <div className="flex justify-between align-middle items-center py-1">
           <label htmlFor="" className="font-semibold text-gray-700">
             Job Description

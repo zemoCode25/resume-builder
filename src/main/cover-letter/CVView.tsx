@@ -10,7 +10,7 @@ export function CVView() {
   const { personal, employer, company, letterBody } = CVData || {};
   const [isPDFViwerOpen, setPDFViewer] = useState<boolean>(false);
   return (
-    <div className="w-full lg:px-5 lg:sticky lg:top-10 h-fit">
+    <div className="w-full lg:px-5 lg:sticky lg:top-10 h-fit flex flex-col-reverse lg:flex-col gap-3">
       <section className="font-serif bg-white p-12 flex flex-col gap-5">
         <article>
           <p>{`${employer?.firstName || ""} ${employer?.lastName || ""}`}</p>
@@ -33,7 +33,7 @@ export function CVView() {
       <div className="w-full mt-2 flex justify-end">
         <Button
           onClick={() => setPDFViewer((prevPDFState: boolean) => !prevPDFState)}
-          className="font-semibold cursor-pointer ml-auto"
+          className="font-semibold cursor-pointer ml-auto w-full lg:w-fit"
         >
           <View />
           View PDF

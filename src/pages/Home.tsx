@@ -3,8 +3,8 @@ import { NavButton } from "../components/navigation/NavButton";
 export function Home() {
   return (
     <main className="min-h-screen flex flex-col justify-center items-center bg-stone-100 py-10">
-      <section className="bg-white min-h-screen p-10 w-[50dvw] font-serif py-3 shadow-all-md">
-        <div className="flex justify-between items-center border-b py-2">
+      <section className="bg-white min-h-screen p-10 w-[90dvw] max-w-[850px] font-serif py-3 shadow-all-md">
+        <div className="flex flex-col sm:flex-row items-start justify-between sm:items-center border-b py-2">
           <h1 className="font-bold text-3xl">Resume Builder</h1>
           <NavButton to={"/templates"} activeClassName="font-sans">
             Be job ready for free
