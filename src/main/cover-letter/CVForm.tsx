@@ -54,7 +54,7 @@ export function Personal() {
     <div className="w-full flex flex-col bg-white rounded-sm p-5 shadow-sm">
       <h2 className="mb-2 text-lg font-bold text-gray-800">Personal Details</h2>
       <form action="">
-        <div className="grid grid-cols-2 gap-x-10 gap-y-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-5">
           <div className="w-full flex flex-col gap-1">
             <label className="text-gray-700" htmlFor="">
               First Name
@@ -106,7 +106,7 @@ export function Employer() {
     <div className="w-full flex flex-col bg-white rounded-sm p-5 shadow-sm">
       <h2 className="mb-2 text-lg font-bold text-gray-800">Employer Details</h2>
       <form action="">
-        <div className="grid grid-cols-2 gap-x-10 gap-y-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-x-3 gap-y-5">
           <div className="w-full flex flex-col gap-1">
             <label className="text-gray-700" htmlFor="">
               First Name
@@ -172,7 +172,7 @@ export function Company() {
     <div className="w-full flex flex-col bg-white rounded-sm p-5 shadow-sm">
       <h2 className="mb-2 text-lg font-bold text-gray-800">Company Details</h2>
       <form action="">
-        <div className="grid grid-cols-2 gap-x-10 gap-y-5">
+        <div className="grid grid-cols-1 xl:grid-cols-2 gap-x-3 gap-y-5">
           <div className="w-full flex flex-col gap-1">
             <label className="text-gray-700" htmlFor="">
               Company Name
@@ -242,7 +242,7 @@ export function LetterBody() {
     <div className="w-full flex flex-col bg-white rounded-sm p-5 shadow-sm">
       <h2 className="mb-2 text-lg font-bold text-gray-800">Company Details</h2>
       <form action="">
-        <div className="grid grid-cols-1 gap-x-10 gap-y-5">
+        <div className="grid grid-cols-1 gap-x-3 gap-y-5">
           <div className="w-full flex flex-col gap-1">
             <label className="text-gray-700" htmlFor="">
               Opening Body
