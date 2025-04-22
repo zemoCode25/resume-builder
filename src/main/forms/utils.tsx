@@ -12,11 +12,11 @@ export function deleteForm(
   updateResume: React.Dispatch<React.SetStateAction<DefaultForm | null>>
 ) {
   updateResume((prevResumeData) => {
-    if (!prevResumeData || !prevResumeData[property]) {
+    if (!prevResumeData || prevResumeData[property]?.length === 1) {
       return prevResumeData;
     }
 
-    const updatedItems = prevResumeData[property].filter(
+    const updatedItems = prevResumeData[property]?.filter(
       (item) => item.id !== idToDelete
     );
 
