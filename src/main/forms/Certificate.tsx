@@ -3,6 +3,8 @@ import { DatePicker } from "@/components/DatePicker";
 import { CertificateType } from "@/types/templates/default-form";
 import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 import { useCallback, useContext } from "react";
+import { X } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function Certificate({ certificate }: { certificate: CertificateType }) {
   const { resumeData, setResumeData } = useContext(ResumeDataContext);
@@ -56,42 +58,67 @@ export function Certificate({ certificate }: { certificate: CertificateType }) {
     [setResumeData, certificate?.id]
   );
 
+  function deleteCertificateForm() {
+    setResumeData((prevResumeData) => {
+      if (prevResumeData?.certificate?.length === 1) {
+        return prevResumeData;
+      }
+
+      const updatedCertificate = prevResumeData?.certificate?.filter(
+        (certificateItem) => certificateItem?.id !== certificate?.id
+      );
+
+      return {
+        ...prevResumeData,
+        certificate: updatedCertificate,
+      };
+    });
+  }
+
   return (
-    <form
-      action=""
-      className="w-full grid grid-cols-1 gap-3 bg-white p-5 rounded-md shadow-sm"
-    >
-      <div className="w-full flex flex-col gap-1">
-        <label htmlFor="" className="font-semibold text-gray-700">
-          Cerficate Name
-        </label>
-        <Input
-          onChange={handleCertificateNameChange}
-          value={certificateName || ""}
-          placeholder="e.g. Time Management"
-        />
+    <div className="w-full bg-white shadow-sm p-5 rounded-md">
+      <div className="w-full flex justify-end">
+        <Button
+          className="cursor-pointer ml-auto"
+          variant={"ghost"}
+          onClick={deleteCertificateForm}
+        >
+          <X strokeWidth={"2"} />
+        </Button>
       </div>
-      <div className="w-full flex flex-col gap-1">
-        <label htmlFor="" className="font-semibold text-gray-700">
-          Project description
-        </label>
-        <textarea
-          value={certificateDescription || ""}
-          onChange={handleCertificateDescriptionChange}
-          name=""
-          id=""
-          className="w-full p-3 text-sm border outline-none min-h-24 rounded-sm"
-        ></textarea>
-      </div>
-      <div className="w-full flex flex-col gap-1">
-        <label htmlFor="" className="font-semibold text-gray-700">
-          Date of accreditation
-        </label>
-        <DatePicker
-          currentDate={accreditationDate || null}
-          updateResumeDate={updateAccreditationDate}
-        />
-      </div>
-    </form>
+      <form action="" className="w-full grid grid-cols-1 gap-3">
+        <div className="w-full flex flex-col gap-1">
+          <label htmlFor="" className="font-semibold text-gray-700">
+            Cerficate Name
+          </label>
+          <Input
+            onChange={handleCertificateNameChange}
+            value={certificateName || ""}
+            placeholder="e.g. Time Management"
+          />
+        </div>
+        <div className="w-full flex flex-col gap-1">
+          <label htmlFor="" className="font-semibold text-gray-700">
+            Project description
+          </label>
+          <textarea
+            value={certificateDescription || ""}
+            onChange={handleCertificateDescriptionChange}
+            name=""
+            id=""
+            className="w-full p-3 text-sm border outline-none min-h-24 rounded-sm"
+          ></textarea>
+        </div>
+        <div className="w-full flex flex-col gap-1">
+          <label htmlFor="" className="font-semibold text-gray-700">
+            Date of accreditation
+          </label>
+          <DatePicker
+            currentDate={accreditationDate || null}
+            updateResumeDate={updateAccreditationDate}
+          />
+        </div>
+      </form>
+    </div>
   );
 }
