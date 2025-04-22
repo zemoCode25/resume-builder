@@ -3,7 +3,9 @@ import { useContext } from "react";
 import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 import { DescriptionType, ProjectType } from "@/types/templates/default-form";
 import { Button } from "@/components/ui/button";
+import { X } from "lucide-react";
 import { v4 as uuidv4 } from "uuid";
+import { deleteForm } from "./utils";
 
 export function Project({ project }: { project: ProjectType }) {
   const { resumeData, setResumeData } = useContext(ResumeDataContext);
@@ -56,46 +58,58 @@ export function Project({ project }: { project: ProjectType }) {
     setResumeData({ ...resumeData, project: [...updatedProject] });
   }
 
+  function deleteProjectForm() {
+    deleteForm("project", project?.id, setResumeData);
+  }
+
   return (
-    <form
-      action=""
-      className="w-full flex flex-col gap-3 bg-white p-5 rounded-md shadow-all-sm"
-    >
-      <div className="w-full flex flex-col gap-1">
-        <label htmlFor="" className="font-semibold text-gray-700">
-          Project Name
-        </label>
-        <Input
-          onChange={handleProjectNameChange}
-          placeholder="e.g. Time Management"
-        />
+    <div className="w-full bg-white shadow-sm px-5 pb-5 pt-2 rounded-md">
+      <div className="w-full flex justify-end border-b border-b-gray-200 my-1">
+        <Button
+          className="cursor-pointer ml-auto"
+          variant={"ghost"}
+          onClick={deleteProjectForm}
+        >
+          <X strokeWidth={"2"} />
+        </Button>
       </div>
-      <div className="w-full flex flex-col gap-1">
-        <div className="flex justify-between align-middle items-center py-1">
+      <form action="" className="w-full flex flex-col gap-3 bg-white">
+        <div className="w-full flex flex-col gap-1">
           <label htmlFor="" className="font-semibold text-gray-700">
-            Project Description
+            Project Name
           </label>
-          <Button
-            type="button"
-            onClick={handleAddDescriptionClick}
-            className="cursor-pointer hover:shadow-sm font-semibold"
-            variant={"secondary"}
-          >
-            + Add description
-          </Button>
+          <Input
+            onChange={handleProjectNameChange}
+            placeholder="e.g. Time Management"
+          />
         </div>
-        {Array.from({ length: project?.projectDescription?.length || 1 }).map(
-          (_, i) => (
-            <textarea
-              value={currentDescriptions[i]?.description}
-              onChange={(e) =>
-                handleProjectDescriptionChange(e, currentDescriptions[i])
-              }
-              className="w-full p-3 text-sm border outline-none rounded-sm min-h-20"
-            />
-          )
-        )}
-      </div>
-    </form>
+        <div className="w-full flex flex-col gap-1">
+          <div className="flex justify-between align-middle items-center py-1">
+            <label htmlFor="" className="font-semibold text-gray-700">
+              Project Description
+            </label>
+            <Button
+              type="button"
+              onClick={handleAddDescriptionClick}
+              className="cursor-pointer hover:shadow-sm font-semibold"
+              variant={"secondary"}
+            >
+              + Add description
+            </Button>
+          </div>
+          {Array.from({ length: project?.projectDescription?.length || 1 }).map(
+            (_, i) => (
+              <textarea
+                value={currentDescriptions[i]?.description}
+                onChange={(e) =>
+                  handleProjectDescriptionChange(e, currentDescriptions[i])
+                }
+                className="w-full p-3 text-sm border outline-none rounded-sm min-h-20"
+              />
+            )
+          )}
+        </div>
+      </form>
+    </div>
   );
 }

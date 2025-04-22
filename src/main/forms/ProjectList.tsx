@@ -1,4 +1,4 @@
-import { useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { useCallback, useContext, useEffect, useMemo } from "react";
 import { CirclePlus } from "lucide-react";
 import { Project } from "./Project";
 import { Button } from "@/components/ui/button";
@@ -6,7 +6,6 @@ import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 import { v4 as uuidv4 } from "uuid";
 
 export function ProjectList() {
-  const [projectCount, setProjectCount] = useState(1);
   const { resumeData, setResumeData } = useContext(ResumeDataContext);
   const currentProjects = useMemo(
     () => resumeData?.project || [],
@@ -51,16 +50,17 @@ export function ProjectList() {
         ],
       };
     });
-    setProjectCount((prevProjectCount) => (prevProjectCount += 1));
   }
 
   return (
     <>
       <div className="w-full">
         <div className="grid grid-cols-1 items-center gap-3 w-full">
-          {Array.from({ length: projectCount }).map((_, i) => (
-            <Project project={currentProjects[i]} key={i} />
-          ))}
+          {Array.from({ length: resumeData?.project?.length || 1 }).map(
+            (_, i) => (
+              <Project project={currentProjects[i]} key={i} />
+            )
+          )}
         </div>
       </div>
       <div className="flex w-full">
