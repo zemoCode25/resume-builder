@@ -1,4 +1,5 @@
 import { Input } from "@/components/ui/input";
+import { X } from "lucide-react";
 import { DatePicker } from "@/components/DatePicker";
 import { ExperienceType } from "@/types/templates/default-form";
 import { useCallback, useContext } from "react";
@@ -6,6 +7,7 @@ import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 import { Button } from "@/components/ui/button";
 import { v4 as uuidv4 } from "uuid";
 import { DescriptionType } from "@/types/templates/default-form";
+import { deleteForm } from "./utils";
 
 export function Experience({ experience }: { experience: ExperienceType }) {
   const { resumeData, setResumeData } = useContext(ResumeDataContext);
@@ -110,70 +112,88 @@ export function Experience({ experience }: { experience: ExperienceType }) {
     [setResumeData, experience?.id]
   );
 
+  function deleteExperienceForm() {
+    deleteForm("experience", experience?.id, setResumeData);
+  }
+
   return (
-    <form
-      action=""
-      className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-3 bg-white p-5 rounded-md shadow-sm"
-    >
-      <div className="w-full flex flex-col gap-1">
-        <label htmlFor="" className="font-semibold text-gray-700">
-          Company
-        </label>
-        <Input
-          value={experience?.company || ""}
-          onChange={handleCompanyChange}
-          placeholder="e.g. Resume Builder Inc."
-        />
+    <div className="w-full bg-white shadow-sm px-5 pb-5 pt-2 rounded-md">
+      <div className="w-full flex justify-end border-b border-b-gray-200 my-1">
+        <Button
+          className="cursor-pointer ml-auto"
+          variant={"ghost"}
+          onClick={deleteExperienceForm}
+        >
+          <X strokeWidth={"2"} />
+        </Button>
       </div>
-      <div className="w-full flex flex-col gap-1">
-        <label htmlFor="" className="font-semibold text-gray-700">
-          Position
-        </label>
-        <Input
-          value={experience?.position || ""}
-          onChange={handlePositionChange}
-          placeholder="e.g. Software Developer"
-        />
-      </div>
-      <div className="w-full flex flex-col gap-1">
-        <label htmlFor="" className="font-semibold text-gray-700">
-          Start Date
-        </label>
-        <DatePicker formType="experience" updateResumeDate={updateStartDate} />
-      </div>
-      <div className="w-full flex flex-col gap-1">
-        <label htmlFor="" className="font-semibold text-gray-700">
-          End Date
-        </label>
-        <DatePicker formType="experience" updateResumeDate={updateEndDate} />
-      </div>
-      <div className="w-full flex flex-col gap-1 col-span-1 md:col-span-2 lg:col-span-1 xl:col-span-2">
-        <div className="flex justify-between align-middle items-center py-1">
+      <form
+        action=""
+        className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-3 bg-white"
+      >
+        <div className="w-full flex flex-col gap-1">
           <label htmlFor="" className="font-semibold text-gray-700">
-            Job Description
+            Company
           </label>
-          <Button
-            type="button"
-            onClick={handleAddDescriptionClick}
-            className="cursor-pointer hover:shadow-sm font-semibold"
-            variant={"secondary"}
-          >
-            + Add Experience
-          </Button>
+          <Input
+            value={experience?.company || ""}
+            onChange={handleCompanyChange}
+            placeholder="e.g. Resume Builder Inc."
+          />
         </div>
-        {Array.from({ length: experience?.jobDescription?.length || 1 }).map(
-          (_, i) => (
-            <Input
-              type="text"
-              value={currentDescriptions[i]?.description}
-              onChange={(e) =>
-                handleJobDescriptionChange(e, currentDescriptions[i])
-              }
-              className="w-full p-3 text-sm border outline-none rounded-sm"
-            />
-          )
-        )}
-      </div>
-    </form>
+        <div className="w-full flex flex-col gap-1">
+          <label htmlFor="" className="font-semibold text-gray-700">
+            Position
+          </label>
+          <Input
+            value={experience?.position || ""}
+            onChange={handlePositionChange}
+            placeholder="e.g. Software Developer"
+          />
+        </div>
+        <div className="w-full flex flex-col gap-1">
+          <label htmlFor="" className="font-semibold text-gray-700">
+            Start Date
+          </label>
+          <DatePicker
+            formType="experience"
+            updateResumeDate={updateStartDate}
+          />
+        </div>
+        <div className="w-full flex flex-col gap-1">
+          <label htmlFor="" className="font-semibold text-gray-700">
+            End Date
+          </label>
+          <DatePicker formType="experience" updateResumeDate={updateEndDate} />
+        </div>
+        <div className="w-full flex flex-col gap-1 col-span-1 md:col-span-2 lg:col-span-1 xl:col-span-2">
+          <div className="flex justify-between align-middle items-center py-1">
+            <label htmlFor="" className="font-semibold text-gray-700">
+              Job Description
+            </label>
+            <Button
+              type="button"
+              onClick={handleAddDescriptionClick}
+              className="cursor-pointer hover:shadow-sm font-semibold"
+              variant={"secondary"}
+            >
+              + Add Experience
+            </Button>
+          </div>
+          {Array.from({ length: experience?.jobDescription?.length || 1 }).map(
+            (_, i) => (
+              <Input
+                type="text"
+                value={currentDescriptions[i]?.description}
+                onChange={(e) =>
+                  handleJobDescriptionChange(e, currentDescriptions[i])
+                }
+                className="w-full p-3 text-sm border outline-none rounded-sm"
+              />
+            )
+          )}
+        </div>
+      </form>
+    </div>
   );
 }

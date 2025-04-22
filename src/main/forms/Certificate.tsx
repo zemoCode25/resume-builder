@@ -5,6 +5,7 @@ import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 import { useCallback, useContext } from "react";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { deleteForm } from "./utils";
 
 export function Certificate({ certificate }: { certificate: CertificateType }) {
   const { resumeData, setResumeData } = useContext(ResumeDataContext);
@@ -59,20 +60,7 @@ export function Certificate({ certificate }: { certificate: CertificateType }) {
   );
 
   function deleteCertificateForm() {
-    setResumeData((prevResumeData) => {
-      if (prevResumeData?.certificate?.length === 1) {
-        return prevResumeData;
-      }
-
-      const updatedCertificate = prevResumeData?.certificate?.filter(
-        (certificateItem) => certificateItem?.id !== certificate?.id
-      );
-
-      return {
-        ...prevResumeData,
-        certificate: updatedCertificate,
-      };
-    });
+    deleteForm("certificate", certificate?.id, setResumeData);
   }
 
   return (

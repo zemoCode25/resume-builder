@@ -5,6 +5,7 @@ import { useCallback, useContext } from "react";
 import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
+import { deleteForm } from "./utils";
 
 export function Education({ education }: { education: EducationType }) {
   const { resumeData, setResumeData } = useContext(ResumeDataContext);
@@ -84,20 +85,7 @@ export function Education({ education }: { education: EducationType }) {
   );
 
   function deleteEducationForm() {
-    setResumeData((prevResumeData) => {
-      if (prevResumeData?.education?.length === 1) {
-        return prevResumeData;
-      }
-
-      const updatedEducation = prevResumeData?.education?.filter(
-        (educationItem) => educationItem?.id !== education?.id
-      );
-
-      return {
-        ...prevResumeData,
-        education: updatedEducation,
-      };
-    });
+    deleteForm("education", education?.id, setResumeData);
   }
 
   return (
