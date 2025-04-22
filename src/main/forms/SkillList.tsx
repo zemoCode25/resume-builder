@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { CirclePlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skill } from "./Skill";
@@ -8,7 +7,6 @@ import { v4 as uuidv4 } from "uuid";
 
 export function SkillList() {
   const { resumeData, setResumeData } = useContext(ResumeDataContext);
-  const [skillCount, setSkillCount] = useState(resumeData?.skill?.length || 1);
 
   function handleAddSkillClick() {
     const currentSkills = resumeData?.skill?.map((skill) => skill) || [];
@@ -16,14 +14,13 @@ export function SkillList() {
       ...resumeData,
       skill: [...currentSkills, { id: uuidv4(), skillName: "" }],
     });
-    setSkillCount((prevSkillCount) => (prevSkillCount += 1));
   }
 
   const skills = resumeData?.skill || [];
   return (
     <div className="w-full mb-2 flex flex-col gap-3">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 items-center gap-3 w-full">
-        {Array.from({ length: skillCount }).map((_, i) => (
+        {Array.from({ length: resumeData?.skill?.length || 1 }).map((_, i) => (
           <Skill skill={skills[i]} key={i} />
         ))}
       </div>
