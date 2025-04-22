@@ -1,14 +1,15 @@
-import { NavButton } from "../components/navigation/NavButton";
+import { Button } from "@/components/ui/button";
+import { NavLink } from "react-router-dom";
 
 export function Home() {
   return (
-    <main className="min-h-screen flex flex-col justify-center items-center bg-stone-100 py-10">
-      <section className="bg-white min-h-screen p-10 w-[90dvw] max-w-[850px] font-serif py-3 shadow-all-md">
+    <main className="min-h-screen flex flex-col justify-center items-center bg-stone-100 py-5">
+      <section className="bg-white min-h-screen p-5 md:px-10 md:w-[90dvw] w-[90dvw] max-w-[850px] font-serif border">
         <div className="flex flex-col sm:flex-row items-start justify-between sm:items-center border-b py-2">
           <h1 className="font-bold text-3xl">Resume Builder</h1>
-          <NavButton to={"/templates"} activeClassName="font-sans">
-            Be job ready for free
-          </NavButton>
+          <Button className="font-manrope font-bold text-lg" size={"lg"}>
+            <NavLink to={"/templates"}>Build my Resume</NavLink>
+          </Button>
         </div>
         <div>
           <p>555 - 555 - 555</p>
@@ -107,7 +108,10 @@ export function Home() {
         <footer className="">
           <p>All rights reserved.</p>
           <p>
-            Developed by <a href="">Zemo</a>
+            Developed by{" "}
+            <a href="https://github.com/zemoCode25" className="underline">
+              Zemo
+            </a>
           </p>
         </footer>
       </section>
