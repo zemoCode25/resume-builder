@@ -1,15 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { Education } from "./Education";
 import { CirclePlus } from "lucide-react";
-import { useCallback, useContext, useEffect, useState } from "react";
+import { useCallback, useContext, useEffect } from "react";
 import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 import { v4 as uuidv4 } from "uuid";
 
 export function EducationList() {
   const { resumeData, setResumeData } = useContext(ResumeDataContext);
-  const [educationCount, setEducationCount] = useState(
-    resumeData?.education?.length || 1
-  );
   const currentEducation = resumeData?.education || [];
 
   console.log(currentEducation.length);
@@ -58,13 +55,14 @@ export function EducationList() {
         ],
       };
     });
-    setEducationCount((prevEducationCount) => (prevEducationCount += 1));
   }
   return (
     <div className="flex flex-col justify-center items-center gap-3 w-full">
-      {Array.from({ length: educationCount }).map((_, i) => (
-        <Education education={currentEducation[i]} key={i} />
-      ))}
+      {Array.from({ length: resumeData?.education?.length || 1 }).map(
+        (_, i) => (
+          <Education education={currentEducation[i]} key={i} />
+        )
+      )}
       <div className="flex w-full">
         <Button
           className="cursor-pointer font-semibold hover:bg-gray-200 border"

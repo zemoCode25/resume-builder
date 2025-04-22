@@ -3,6 +3,8 @@ import { DatePicker } from "@/components/DatePicker";
 import { EducationType } from "@/types/templates/default-form";
 import { useCallback, useContext } from "react";
 import { ResumeDataContext } from "@/contexts/ResumeDataContext";
+import { Button } from "@/components/ui/button";
+import { X } from "lucide-react";
 
 export function Education({ education }: { education: EducationType }) {
   const { resumeData, setResumeData } = useContext(ResumeDataContext);
@@ -81,59 +83,87 @@ export function Education({ education }: { education: EducationType }) {
     [setResumeData, education?.id]
   );
 
+  function deleteEducationForm() {
+    setResumeData((prevResumeData) => {
+      if (prevResumeData?.education?.length === 1) {
+        return prevResumeData;
+      }
+
+      const updatedEducation = prevResumeData?.education?.filter(
+        (educationItem) => educationItem?.id !== education?.id
+      );
+
+      return {
+        ...prevResumeData,
+        education: updatedEducation,
+      };
+    });
+  }
+
   return (
-    <form
-      action=""
-      className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-3 bg-white p-5 rounded-md shadow-sm"
-    >
-      <div className="w-full flex flex-col gap-1">
-        <label htmlFor="" className="font-semibold text-gray-700">
-          School/University
-        </label>
-        <Input
-          value={education?.school || ""}
-          onChange={handleSchoolChange}
-          placeholder="e.g. University of the Philippines - Diliman"
-        />
+    <div className="w-full bg-white shadow-sm px-5 pb-5 pt-2 rounded-md">
+      <div className="w-full flex justify-end border-b border-b-gray-200 my-1">
+        <Button
+          className="cursor-pointer ml-auto"
+          variant={"ghost"}
+          onClick={deleteEducationForm}
+        >
+          <X strokeWidth={"2"} />
+        </Button>
       </div>
-      <div className="w-full flex flex-col gap-1">
-        <label htmlFor="" className="font-semibold text-gray-700">
-          Degree Program
-        </label>
-        <Input
-          value={education?.degreeProgram || ""}
-          onChange={handleDegreeProgramChange}
-          placeholder="e.g. Computer Science"
-        />
-      </div>
-      <div className="w-full flex flex-col gap-1">
-        <label htmlFor="" className="font-semibold text-gray-700">
-          Start Date
-        </label>
-        <DatePicker
-          currentDate={education?.startDate || null}
-          updateResumeDate={updateStartDate}
-        />
-      </div>
-      <div className="w-full flex flex-col gap-1">
-        <label htmlFor="" className="font-semibold text-gray-700">
-          End Date
-        </label>
-        <DatePicker
-          currentDate={education?.endDate || null}
-          updateResumeDate={updateEndDate}
-        />
-      </div>
-      <div className="w-full flex flex-col gap-1">
-        <label htmlFor="" className="font-semibold text-gray-700">
-          GPA
-        </label>
-        <Input
-          value={education?.GPA || ""}
-          onChange={handleGPAChange}
-          placeholder="e.g. 1.25"
-        />
-      </div>
-    </form>
+      <form
+        action=""
+        className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-3"
+      >
+        <div className="w-full flex flex-col gap-1">
+          <label htmlFor="" className="font-semibold text-gray-700">
+            School/University
+          </label>
+          <Input
+            value={education?.school || ""}
+            onChange={handleSchoolChange}
+            placeholder="e.g. University of the Philippines - Diliman"
+          />
+        </div>
+        <div className="w-full flex flex-col gap-1">
+          <label htmlFor="" className="font-semibold text-gray-700">
+            Degree Program
+          </label>
+          <Input
+            value={education?.degreeProgram || ""}
+            onChange={handleDegreeProgramChange}
+            placeholder="e.g. Computer Science"
+          />
+        </div>
+        <div className="w-full flex flex-col gap-1">
+          <label htmlFor="" className="font-semibold text-gray-700">
+            Start Date
+          </label>
+          <DatePicker
+            currentDate={education?.startDate || null}
+            updateResumeDate={updateStartDate}
+          />
+        </div>
+        <div className="w-full flex flex-col gap-1">
+          <label htmlFor="" className="font-semibold text-gray-700">
+            End Date
+          </label>
+          <DatePicker
+            currentDate={education?.endDate || null}
+            updateResumeDate={updateEndDate}
+          />
+        </div>
+        <div className="w-full flex flex-col gap-1">
+          <label htmlFor="" className="font-semibold text-gray-700">
+            GPA
+          </label>
+          <Input
+            value={education?.GPA || ""}
+            onChange={handleGPAChange}
+            placeholder="e.g. 1.25"
+          />
+        </div>
+      </form>
+    </div>
   );
 }

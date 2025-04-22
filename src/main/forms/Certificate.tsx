@@ -76,8 +76,8 @@ export function Certificate({ certificate }: { certificate: CertificateType }) {
   }
 
   return (
-    <div className="w-full bg-white shadow-sm p-5 rounded-md">
-      <div className="w-full flex justify-end">
+    <div className="w-full bg-white shadow-sm px-5 pb-5 pt-2 rounded-md">
+      <div className="w-full flex justify-end border-b border-b-gray-200 my-1">
         <Button
           className="cursor-pointer ml-auto"
           variant={"ghost"}
