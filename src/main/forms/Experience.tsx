@@ -116,6 +116,24 @@ export function Experience({ experience }: { experience: ExperienceType }) {
     deleteForm("experience", experience?.id, setResumeData);
   }
 
+  function handleDeleteJobDescription(selectedDescriptionID: string) {
+    if (!experience || experience?.jobDescription?.length === 1) {
+      return;
+    }
+    const updatedExperience = currentExperiences.map((currentExperience) =>
+      currentExperience?.id === experience?.id
+        ? {
+            ...currentExperience,
+            jobDescription: currentExperience?.jobDescription?.filter(
+              (descriptionItem) => descriptionItem?.id !== selectedDescriptionID
+            ),
+          }
+        : currentExperience
+    );
+
+    setResumeData({ ...resumeData, experience: [...updatedExperience] });
+  }
+
   return (
     <div className="w-full bg-white shadow-sm px-5 pb-5 pt-2 rounded-md">
       <div className="w-full flex justify-end border-b border-b-gray-200 my-1">
@@ -130,6 +148,9 @@ export function Experience({ experience }: { experience: ExperienceType }) {
       <form
         action=""
         className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-3 bg-white"
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
       >
         <div className="w-full flex flex-col gap-1">
           <label htmlFor="" className="font-semibold text-gray-700">
@@ -191,7 +212,13 @@ export function Experience({ experience }: { experience: ExperienceType }) {
                   }
                   className="w-full p-3 text-sm border outline-none rounded-sm"
                 />
-                <Button className="cursor-pointer" variant={"ghost"}>
+                <Button
+                  onClick={() =>
+                    handleDeleteJobDescription(currentDescriptions[i]?.id || "")
+                  }
+                  className="cursor-pointer"
+                  variant={"ghost"}
+                >
                   <X />
                 </Button>
               </div>
