@@ -1,7 +1,7 @@
 import { Input } from "@/components/ui/input";
 import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 import { useContext } from "react";
-import { SkillType } from "@/types/templates/default-form";
+import { SkillType } from "@/types/templates/form-types";
 import { v4 as uuidv4 } from "uuid";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
@@ -11,14 +11,6 @@ export function Skill({ skill = {} }: { skill: SkillType }) {
   const { resumeData, setResumeData } = useContext(ResumeDataContext);
 
   console.log(resumeData?.skill);
-
-  /*
-   
-  * Check if the current input has an existing ID
-  * If there is an existing ID, locate the ID and edit the element with the ID inside the array
-  * If the input is unique/newly created, assign an ID and the initial characters 
-
-   */
 
   function handleSkillChange(e: React.ChangeEvent<HTMLInputElement>) {
     const currentSkills = resumeData?.skill || [];

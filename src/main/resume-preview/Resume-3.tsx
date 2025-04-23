@@ -7,7 +7,7 @@ import {
   Personal,
   ProjectType,
   SkillType,
-} from "@/types/templates/default-form";
+} from "@/types/templates/form-types";
 
 export function Resume3() {
   const { resumeData } = useContext(ResumeDataContext);

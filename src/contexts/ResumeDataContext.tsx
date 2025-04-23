@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { DefaultForm } from "@/types/templates/default-form";
+import { DefaultForm } from "@/types/templates/form-types";
 
 interface ResumeDataContextInterface {
   resumeData: DefaultForm | null;

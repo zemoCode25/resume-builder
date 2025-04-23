@@ -1,6 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { DatePicker } from "@/components/DatePicker";
-import { EducationType } from "@/types/templates/default-form";
+import { EducationType } from "@/types/templates/form-types";
 import { useCallback, useContext } from "react";
 import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 import { Button } from "@/components/ui/button";

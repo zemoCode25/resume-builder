@@ -1,7 +1,7 @@
 import { ResumeDataContext } from "./ResumeDataContext";
 import { TemplateContext } from "./TemplateContext";
 import { useState, useContext } from "react";
-import { DefaultForm } from "@/types/templates/default-form";
+import { DefaultForm } from "@/types/templates/form-types";
 
 interface ResumeDataProviderProps {
   children: React.ReactNode;

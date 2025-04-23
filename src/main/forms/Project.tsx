@@ -1,7 +1,7 @@
 import { Input } from "@/components/ui/input";
 import { useContext } from "react";
 import { ResumeDataContext } from "@/contexts/ResumeDataContext";
-import { DescriptionType, ProjectType } from "@/types/templates/default-form";
+import { DescriptionType, ProjectType } from "@/types/templates/form-types";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 import { v4 as uuidv4 } from "uuid";

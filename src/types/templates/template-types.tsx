@@ -1,5 +1,5 @@
 import { Form } from "./form-item";
-import { DefaultForm } from "./default-form";
+import { DefaultForm } from "./form-types";
 
 export type Template = {
   readonly id: number;

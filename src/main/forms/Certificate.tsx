@@ -1,6 +1,6 @@
 import { Input } from "@/components/ui/input";
 import { DatePicker } from "@/components/DatePicker";
-import { CertificateType } from "@/types/templates/default-form";
+import { CertificateType } from "@/types/templates/form-types";
 import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 import { useCallback, useContext } from "react";
 import { X } from "lucide-react";

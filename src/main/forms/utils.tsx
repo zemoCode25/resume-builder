@@ -1,4 +1,4 @@
-import { DefaultForm } from "@/types/templates/default-form";
+import { DefaultForm } from "@/types/templates/form-types";
 type DeletableSections =
   | "experience"
   | "education"

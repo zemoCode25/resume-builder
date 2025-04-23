@@ -1,12 +1,12 @@
 import { Input } from "@/components/ui/input";
 import { X } from "lucide-react";
 import { DatePicker } from "@/components/DatePicker";
-import { ExperienceType } from "@/types/templates/default-form";
+import { ExperienceType } from "@/types/templates/form-types";
 import { useCallback, useContext } from "react";
 import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 import { Button } from "@/components/ui/button";
 import { v4 as uuidv4 } from "uuid";
-import { DescriptionType } from "@/types/templates/default-form";
+import { DescriptionType } from "@/types/templates/form-types";
 import { deleteForm } from "./utils";
 
 export function Experience({ experience }: { experience: ExperienceType }) {
@@ -182,14 +182,19 @@ export function Experience({ experience }: { experience: ExperienceType }) {
           </div>
           {Array.from({ length: experience?.jobDescription?.length || 1 }).map(
             (_, i) => (
-              <Input
-                type="text"
-                value={currentDescriptions[i]?.description}
-                onChange={(e) =>
-                  handleJobDescriptionChange(e, currentDescriptions[i])
-                }
-                className="w-full p-3 text-sm border outline-none rounded-sm"
-              />
+              <div className="w-full flex justify-between items-center gap-1">
+                <Input
+                  type="text"
+                  value={currentDescriptions[i]?.description}
+                  onChange={(e) =>
+                    handleJobDescriptionChange(e, currentDescriptions[i])
+                  }
+                  className="w-full p-3 text-sm border outline-none rounded-sm"
+                />
+                <Button className="cursor-pointer" variant={"ghost"}>
+                  <X />
+                </Button>
+              </div>
             )
           )}
         </div>
