@@ -62,6 +62,20 @@ export function Project({ project }: { project: ProjectType }) {
     deleteForm("project", project?.id, setResumeData);
   }
 
+  function handleDeleteProjectDescription(selectedDescriptionID: string) {
+    const projectUpdatedDescription = project?.projectDescription?.filter(
+      (description) => description?.id !== selectedDescriptionID
+    );
+
+    const updatedProject = currentProjects.map((currentProject) =>
+      currentProject?.id === project?.id
+        ? { ...currentProject, projectDescription: projectUpdatedDescription }
+        : currentProject
+    );
+
+    setResumeData({ ...resumeData, project: [...updatedProject] });
+  }
+
   return (
     <div className="w-full bg-white shadow-sm px-5 pb-5 pt-2 rounded-md">
       <div className="w-full flex justify-end border-b border-b-gray-200 my-1">
@@ -94,18 +108,31 @@ export function Project({ project }: { project: ProjectType }) {
               className="cursor-pointer hover:shadow-sm font-semibold"
               variant={"secondary"}
             >
-              + Add description
+              + Description
             </Button>
           </div>
           {Array.from({ length: project?.projectDescription?.length || 1 }).map(
             (_, i) => (
-              <textarea
-                value={currentDescriptions[i]?.description}
-                onChange={(e) =>
-                  handleProjectDescriptionChange(e, currentDescriptions[i])
-                }
-                className="w-full p-3 text-sm border outline-none rounded-sm min-h-20"
-              />
+              <div className="w-full flex justify-between gap-1">
+                <textarea
+                  className="w-full p-3 text-sm border outline-none rounded-sm min-h-20"
+                  value={currentDescriptions[i]?.description}
+                  onChange={(e) =>
+                    handleProjectDescriptionChange(e, currentDescriptions[i])
+                  }
+                />
+                <Button
+                  onClick={() =>
+                    handleDeleteProjectDescription(
+                      currentDescriptions[i]?.id || ""
+                    )
+                  }
+                  className="cursor-pointer"
+                  variant={"ghost"}
+                >
+                  <X />
+                </Button>
+              </div>
             )
           )}
         </div>
