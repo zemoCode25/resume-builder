@@ -28,6 +28,22 @@ export function CertificatePreview({
 }: {
   certificateList: CertificateType[];
 }) {
+  if (certificateList?.length || 0 === 0) {
+    return;
+  }
+
+  for (const certificateItem of certificateList) {
+    const { id: _unused, ...certificateData } = certificateItem;
+
+    const isValueFound = Object.values(certificateData).some(
+      (certificateItemData) => certificateItemData
+    );
+
+    if (!isValueFound) {
+      return;
+    }
+  }
+
   return (
     <div>
       <h2 className="text-lg font-semibold border-b border-b-gray-900 pb-0.5">
@@ -70,6 +86,38 @@ export function ProjectPreview({
 }: {
   projectList: ProjectType[];
 }) {
+  console.log("PROJECTS: ");
+  if (projectList[0]?.projectDescription)
+    console.log(projectList[0]?.projectDescription);
+
+  // Check whether there is a value present in the state
+
+  for (const projectItem of projectList) {
+    // Excluded id because it is a default data
+    // Excluded projectDescription from projectData as it has a value by default
+    const { id: _id, projectDescription, ...projectData } = projectItem;
+    let isDescriptionForund: boolean = false;
+
+    const isValueFound = Object.values(projectData).some(
+      (projectItemData) => projectItemData
+    );
+
+    for (const projectDescriptionItem of projectDescription || []) {
+      const { description } = projectDescriptionItem;
+      if (description) {
+        isDescriptionForund = true;
+      }
+    }
+
+    if (!isValueFound && !isDescriptionForund) {
+      return;
+    }
+  }
+
+  if (projectList.length === 0) {
+    return;
+  }
+
   return (
     <div>
       <h2 className="text-lg font-semibold border-b border-b-gray-900 pb-0.5">
