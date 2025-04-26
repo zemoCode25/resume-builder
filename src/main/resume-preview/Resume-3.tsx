@@ -14,7 +14,7 @@ export function Resume3() {
   return (
     <div className="md:p-10 p-5 bg-white rounded-md shadow-sm font-serif flex flex-col gap-1 max-h-180 overflow-y-auto">
       <PersonalPreview personalData={resumeData?.personal || {}} />
-      <EducationPreview educationData={resumeData?.education || []} />
+      <EducationPreview educationList={resumeData?.education || []} />
       <SkillPreview skillData={resumeData?.skill || []} />
       <ExperiencePreview experienceList={resumeData?.experience || []} />
       <ProjectPreview projectList={resumeData?.project || []} />
@@ -224,16 +224,32 @@ export function PersonalPreview({ personalData }: { personalData: Personal }) {
 }
 
 export function EducationPreview({
-  educationData,
+  educationList,
 }: {
-  educationData: EducationType[];
+  educationList: EducationType[];
 }) {
+  if (educationList.length === 0) {
+    return;
+  }
+
+  for (const educationItem of educationList) {
+    const { id: _unused, ...educationData } = educationItem;
+
+    const isValueFound = Object.values(educationData).some(
+      (educationItemData) => educationItemData
+    );
+
+    if (!isValueFound) {
+      return;
+    }
+  }
+
   return (
     <div>
       <h2 className="text-lg font-semibold border-b border-b-gray-900 pb-0.5">
         Education
       </h2>
-      {educationData.map((item, key) => (
+      {educationList.map((item, key) => (
         <EducationItem educationItemData={item} key={key} />
       ))}
     </div>
@@ -249,14 +265,6 @@ export function EducationItem({
     year: "numeric",
     month: "long",
   };
-
-  const { id: _, ...educationWithoutID } = educationItemData;
-
-  const isValueFound = Object.values(educationWithoutID).some(
-    (educationValue) => educationValue
-  );
-
-  if (!isValueFound) return;
   return (
     <div>
       <div className="flex justify-between">
