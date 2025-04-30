@@ -26,3 +26,8 @@ export function deleteForm(
     };
   });
 }
+
+export const options: Intl.DateTimeFormatOptions = {
+  year: "numeric",
+  month: "long",
+};

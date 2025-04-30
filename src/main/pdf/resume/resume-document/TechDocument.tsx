@@ -2,6 +2,7 @@ import { Document, Page, Text, View } from "@react-pdf/renderer";
 import { DefaultForm } from "@/types/templates/form-types";
 import { PersonalType } from "@/types/templates/form-types";
 import { styles } from "../style";
+import { options } from "@/utils/main-utils";
 
 export function TechDocument({
   resumeData,
@@ -14,11 +15,6 @@ export function TechDocument({
   const project = resumeData?.project || [];
   const experience = resumeData?.experience || [];
   const certificate = resumeData?.certificate || [];
-
-  const options: Intl.DateTimeFormatOptions = {
-    year: "numeric",
-    month: "long",
-  };
 
   return (
     <Document>
@@ -154,20 +150,20 @@ export function TechDocument({
   );
 }
 
-// export function Personal({ personalData }: { personalData: PersonalType }) {
-//   const { firstName, lastName, jobTitle, phoneNumber, email, city, country } =
-//     personalData;
-//   return (
-//     <View style={styles.section}>
-//       <View style={styles?.headerContainer}>
-//         <Text style={styles.fullName}>{`${firstName || ""} ${
-//           lastName || ""
-//         }`}</Text>
-//         <Text style={styles.text}>{jobTitle}</Text>
-//       </View>
-//       <Text style={styles.text}>{phoneNumber}</Text>
-//       <Text style={styles.text}>{email}</Text>
-//       <Text style={styles.text}>{`${city || ""}, ${country || ""}`}</Text>
-//     </View>
-//   );
-// }
+export function Personal({ personalData }: { personalData: PersonalType }) {
+  const { firstName, lastName, jobTitle, phoneNumber, email, city, country } =
+    personalData;
+  return (
+    <View style={styles.section}>
+      <View style={styles?.headerContainer}>
+        <Text style={styles.fullName}>{`${firstName || ""} ${
+          lastName || ""
+        }`}</Text>
+        <Text style={styles.text}>{jobTitle}</Text>
+      </View>
+      <Text style={styles.text}>{phoneNumber}</Text>
+      <Text style={styles.text}>{email}</Text>
+      <Text style={styles.text}>{`${city || ""}, ${country || ""}`}</Text>
+    </View>
+  );
+}
