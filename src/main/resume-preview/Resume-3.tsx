@@ -9,6 +9,7 @@ import {
   SkillType,
 } from "@/types/templates/form-types";
 import { findCertificateWithData } from "@/utils/main-utils";
+import { findProjectWithData } from "@/utils/main-utils";
 
 export function Resume3() {
   const { resumeData } = useContext(ResumeDataContext);
@@ -75,32 +76,9 @@ export function ProjectPreview({
 }: {
   projectList: ProjectType[];
 }) {
-  // Check whether there is a value present in the state
-  for (const projectItem of projectList) {
-    // Excluded id because it is a default data
-    // Excluded projectDescription from projectData as it has a value by default
-    const { id: _id, projectDescription, ...projectData } = projectItem;
-    let isDescriptionFound: boolean = false;
+  const isProjectValueFound = findProjectWithData(projectList);
 
-    const isValueFound = Object.values(projectData).some(
-      (projectItemData) => projectItemData
-    );
-
-    for (const projectDescriptionItem of projectDescription || []) {
-      const { description } = projectDescriptionItem;
-      if (description) {
-        isDescriptionFound = true;
-      }
-    }
-
-    if (!isValueFound && !isDescriptionFound) {
-      return;
-    }
-  }
-
-  if (projectList.length === 0) {
-    return;
-  }
+  if (!isProjectValueFound || projectList?.length === 0) return;
 
   return (
     <div>

@@ -10,6 +10,7 @@ import {
 import { PersonalType } from "@/types/templates/form-types";
 import { styles } from "../style";
 import { findCertificateWithData, options } from "@/utils/main-utils";
+import { findProjectWithData } from "@/utils/main-utils";
 
 export function TechDocument({
   resumeData,
@@ -31,7 +32,7 @@ export function TechDocument({
           <Experience experienceData={experience} />
           <Education educationData={education} />
           <Skill skillData={skill} />
-          <Project projectData={project} />
+          <Project projectList={project} />
           <Certificate certificateList={certificate} />
         </View>
       </Page>
@@ -183,14 +184,17 @@ export function Certificate({
   );
 }
 
-export function Project({ projectData }: { projectData: ProjectType[] }) {
+export function Project({ projectList }: { projectList: ProjectType[] }) {
+  const isProjectValueFound = findProjectWithData(projectList);
+
+  if (!isProjectValueFound || projectList?.length === 0) return null;
   return (
     <View>
       <View style={styles?.headerContainer}>
         <Text style={styles.header}>Projects</Text>
       </View>
       <View style={styles.section}>
-        {projectData?.map((projectItem) => (
+        {projectList?.map((projectItem) => (
           <View style={styles.section}>
             <Text style={styles.italicText}>{projectItem?.projectName}</Text>
             <View style={styles.unorderedList}>
