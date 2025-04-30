@@ -1,5 +1,6 @@
 import { Document, Page, Text, View } from "@react-pdf/renderer";
 import {
+  CertificateType,
   DefaultForm,
   EducationType,
   ExperienceType,
@@ -51,26 +52,7 @@ export function TechDocument({
               ))}
             </View>
           </View>
-          {/* Certificate */}
-          <View>
-            <View style={styles?.headerContainer}>
-              <Text style={styles.header}>Certificate</Text>
-            </View>
-            <View style={styles.section}>
-              <View style={styles.unorderedList}>
-                {certificate?.map((certificateItem) => (
-                  <Text style={styles.text}>{`• ${
-                    certificateItem.certificateName || ""
-                  }: ${certificateItem.certificateDescription || ""} - ${
-                    certificateItem.accreditationDate?.toLocaleDateString(
-                      undefined,
-                      options
-                    ) || ""
-                  }`}</Text>
-                ))}
-              </View>
-            </View>
-          </View>
+          <Certificate certificateData={certificate} />
         </View>
       </Page>
     </Document>
@@ -185,6 +167,34 @@ export function Skill({ skillData }: { skillData: SkillType[] }) {
             skillItem?.skillName || ""
           }`}</Text>
         ))}
+      </View>
+    </View>
+  );
+}
+
+export function Certificate({
+  certificateData,
+}: {
+  certificateData: CertificateType[];
+}) {
+  return (
+    <View>
+      <View style={styles?.headerContainer}>
+        <Text style={styles.header}>Certificate</Text>
+      </View>
+      <View style={styles.section}>
+        <View style={styles.unorderedList}>
+          {certificateData?.map((certificateItem) => (
+            <Text style={styles.text}>{`• ${
+              certificateItem.certificateName || ""
+            }: ${certificateItem.certificateDescription || ""} - ${
+              certificateItem.accreditationDate?.toLocaleDateString(
+                undefined,
+                options
+              ) || ""
+            }`}</Text>
+          ))}
+        </View>
       </View>
     </View>
   );

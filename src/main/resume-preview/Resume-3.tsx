@@ -4,7 +4,7 @@ import {
   CertificateType,
   EducationType,
   ExperienceType,
-  Personal,
+  PersonalType,
   ProjectType,
   SkillType,
 } from "@/types/templates/form-types";
@@ -28,7 +28,7 @@ export function CertificatePreview({
 }: {
   certificateList: CertificateType[];
 }) {
-  if (certificateList?.length || 0 === 0) {
+  if (certificateList?.length === 0) {
     return;
   }
 
@@ -218,7 +218,11 @@ export function ExperienceItem({
   );
 }
 
-export function PersonalPreview({ personalData }: { personalData: Personal }) {
+export function PersonalPreview({
+  personalData,
+}: {
+  personalData: PersonalType;
+}) {
   const isValueFound = Object.values(personalData).some(
     (personalItem) => personalItem
   );
