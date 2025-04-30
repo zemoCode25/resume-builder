@@ -3,6 +3,7 @@ import {
   DefaultForm,
   EducationType,
   ExperienceType,
+  SkillType,
 } from "@/types/templates/form-types";
 import { PersonalType } from "@/types/templates/form-types";
 import { styles } from "../style";
@@ -27,19 +28,7 @@ export function TechDocument({
           <Personal personalData={personal} />
           <Experience experienceData={experience} />
           <Education educationData={education} />
-          {/* Skill */}
-          <View style={styles.section}>
-            <View style={styles?.headerContainer}>
-              <Text style={styles.header}>Technical Skill</Text>
-            </View>
-            <View style={styles.grid}>
-              {skill?.map((skillItem) => (
-                <Text style={styles.flexItem} key={skillItem?.id}>{`• ${
-                  skillItem?.skillName || ""
-                }`}</Text>
-              ))}
-            </View>
-          </View>
+          <Skill skillData={skill} />
           {/* Project */}
           <View>
             <View style={styles?.headerContainer}>
@@ -180,6 +169,23 @@ export function Education({
           <Text style={styles.text}>{educationItem?.school || ""}</Text>
         </View>
       ))}
+    </View>
+  );
+}
+
+export function Skill({ skillData }: { skillData: SkillType[] }) {
+  return (
+    <View style={styles.section}>
+      <View style={styles?.headerContainer}>
+        <Text style={styles.header}>Technical Skill</Text>
+      </View>
+      <View style={styles.grid}>
+        {skillData?.map((skillItem) => (
+          <Text style={styles.flexItem} key={skillItem?.id}>{`• ${
+            skillItem?.skillName || ""
+          }`}</Text>
+        ))}
+      </View>
     </View>
   );
 }
