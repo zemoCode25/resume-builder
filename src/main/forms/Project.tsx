@@ -5,7 +5,7 @@ import { DescriptionType, ProjectType } from "@/types/templates/form-types";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 import { v4 as uuidv4 } from "uuid";
-import { deleteForm } from "./utils";
+import { deleteForm } from "@/utils/main-utils";
 
 export function Project({ project }: { project: ProjectType }) {
   const { resumeData, setResumeData } = useContext(ResumeDataContext);

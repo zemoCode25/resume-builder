@@ -16,7 +16,7 @@ export function ProjectList() {
     setResumeData((prevResumeData) => {
       const currentProjects = prevResumeData?.project || [];
 
-      if (prevResumeData?.project?.length || 0 !== 0) return prevResumeData;
+      if (prevResumeData?.project?.length !== 0) return prevResumeData;
       return {
         ...prevResumeData,
         project: [

@@ -5,7 +5,7 @@ import { SkillType } from "@/types/templates/form-types";
 import { v4 as uuidv4 } from "uuid";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
-import { deleteForm } from "./utils";
+import { deleteForm } from "@/utils/main-utils";
 
 export function Skill({ skill = {} }: { skill: SkillType }) {
   const { resumeData, setResumeData } = useContext(ResumeDataContext);

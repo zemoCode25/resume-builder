@@ -5,7 +5,7 @@ import { useCallback, useContext } from "react";
 import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
-import { deleteForm } from "./utils";
+import { deleteForm } from "@/utils/main-utils";
 
 export function Education({ education }: { education: EducationType }) {
   const { resumeData, setResumeData } = useContext(ResumeDataContext);

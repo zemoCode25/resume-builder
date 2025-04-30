@@ -7,7 +7,7 @@ import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 import { Button } from "@/components/ui/button";
 import { v4 as uuidv4 } from "uuid";
 import { DescriptionType } from "@/types/templates/form-types";
-import { deleteForm } from "./utils";
+import { deleteForm } from "@/utils/main-utils";
 
 export function Experience({ experience }: { experience: ExperienceType }) {
   const { resumeData, setResumeData } = useContext(ResumeDataContext);

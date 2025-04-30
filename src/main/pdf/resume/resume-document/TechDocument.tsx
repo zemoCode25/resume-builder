@@ -1,5 +1,6 @@
 import { Document, Page, Text, View } from "@react-pdf/renderer";
 import { DefaultForm } from "@/types/templates/form-types";
+import { PersonalType } from "@/types/templates/form-types";
 import { styles } from "../style";
 
 export function TechDocument({
@@ -14,9 +15,6 @@ export function TechDocument({
   const experience = resumeData?.experience || [];
   const certificate = resumeData?.certificate || [];
 
-  const { firstName, lastName, jobTitle, email, phoneNumber, country } =
-    personal;
-
   const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
     month: "long",
@@ -26,19 +24,7 @@ export function TechDocument({
     <Document>
       <Page size="A4" style={styles.page}>
         <View>
-          <View style={styles.section}>
-            <View style={styles?.headerContainer}>
-              <Text style={styles.fullName}>{`${firstName || ""} ${
-                lastName || ""
-              }`}</Text>
-              <Text style={styles.text}>{jobTitle}</Text>
-            </View>
-            <Text style={styles.text}>{phoneNumber}</Text>
-            <Text style={styles.text}>{email}</Text>
-            <Text style={styles.text}>
-              {`${personal?.city || ""}, ${country || ""}`}
-            </Text>
-          </View>
+          <Personal personalData={personal} />
           {/* Experience */}
           <View style={styles.section}>
             <View style={styles?.headerContainer}>
@@ -167,3 +153,21 @@ export function TechDocument({
     </Document>
   );
 }
+
+// export function Personal({ personalData }: { personalData: PersonalType }) {
+//   const { firstName, lastName, jobTitle, phoneNumber, email, city, country } =
+//     personalData;
+//   return (
+//     <View style={styles.section}>
+//       <View style={styles?.headerContainer}>
+//         <Text style={styles.fullName}>{`${firstName || ""} ${
+//           lastName || ""
+//         }`}</Text>
+//         <Text style={styles.text}>{jobTitle}</Text>
+//       </View>
+//       <Text style={styles.text}>{phoneNumber}</Text>
+//       <Text style={styles.text}>{email}</Text>
+//       <Text style={styles.text}>{`${city || ""}, ${country || ""}`}</Text>
+//     </View>
+//   );
+// }

@@ -1,7 +1,7 @@
 import { CirclePlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Skill } from "./Skill";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 import { v4 as uuidv4 } from "uuid";
 
@@ -15,6 +15,18 @@ export function SkillList() {
       skill: [...currentSkills, { id: uuidv4(), skillName: "" }],
     });
   }
+
+  useEffect(() => {
+    setResumeData((preResumeData) => {
+      const currentSkills = preResumeData?.skill || [];
+      if (preResumeData?.skill?.length !== 0) return preResumeData;
+
+      return {
+        ...preResumeData,
+        skill: [...currentSkills, { id: uuidv4(), skillName: "" }],
+      };
+    });
+  });
 
   const skills = resumeData?.skill || [];
   return (

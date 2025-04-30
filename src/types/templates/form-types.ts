@@ -1,5 +1,5 @@
 export interface DefaultForm {
-  personal?: Personal;
+  personal?: PersonalType;
   experience?: ExperienceType[];
   education?: EducationType[];
   project?: ProjectType[];
@@ -8,7 +8,7 @@ export interface DefaultForm {
   certificate?: CertificateType[];
 }
 
-export interface Personal {
+export interface PersonalType {
   jobTitle?: string;
   firstName?: string;
   lastName?: string;

@@ -5,7 +5,7 @@ import { ResumeDataContext } from "@/contexts/ResumeDataContext";
 import { useCallback, useContext } from "react";
 import { X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { deleteForm } from "./utils";
+import { deleteForm } from "@/utils/main-utils";
 
 export function Certificate({ certificate }: { certificate: CertificateType }) {
   const { resumeData, setResumeData } = useContext(ResumeDataContext);
