@@ -4,6 +4,7 @@ import {
   DefaultForm,
   EducationType,
   ExperienceType,
+  ProjectType,
   SkillType,
 } from "@/types/templates/form-types";
 import { PersonalType } from "@/types/templates/form-types";
@@ -30,28 +31,7 @@ export function TechDocument({
           <Experience experienceData={experience} />
           <Education educationData={education} />
           <Skill skillData={skill} />
-          {/* Project */}
-          <View>
-            <View style={styles?.headerContainer}>
-              <Text style={styles.header}>Projects</Text>
-            </View>
-            <View style={styles.section}>
-              {project?.map((projectItem) => (
-                <View style={styles.section}>
-                  <Text style={styles.italicText}>
-                    {projectItem?.projectName}
-                  </Text>
-                  <View style={styles.unorderedList}>
-                    {projectItem?.projectDescription?.map((descriptionItem) => (
-                      <Text style={styles.text} key={descriptionItem?.id}>
-                        {`• ${descriptionItem?.description || ""}`}
-                      </Text>
-                    ))}
-                  </View>
-                </View>
-              ))}
-            </View>
-          </View>
+          <Project projectData={project} />
           <Certificate certificateData={certificate} />
         </View>
       </Page>
@@ -195,6 +175,30 @@ export function Certificate({
             }`}</Text>
           ))}
         </View>
+      </View>
+    </View>
+  );
+}
+
+export function Project({ projectData }: { projectData: ProjectType[] }) {
+  return (
+    <View>
+      <View style={styles?.headerContainer}>
+        <Text style={styles.header}>Projects</Text>
+      </View>
+      <View style={styles.section}>
+        {projectData?.map((projectItem) => (
+          <View style={styles.section}>
+            <Text style={styles.italicText}>{projectItem?.projectName}</Text>
+            <View style={styles.unorderedList}>
+              {projectItem?.projectDescription?.map((descriptionItem) => (
+                <Text style={styles.text} key={descriptionItem?.id}>
+                  {`• ${descriptionItem?.description || ""}`}
+                </Text>
+              ))}
+            </View>
+          </View>
+        ))}
       </View>
     </View>
   );
