@@ -1,4 +1,4 @@
-import { DefaultForm } from "@/types/templates/form-types";
+import { CertificateType, DefaultForm } from "@/types/templates/form-types";
 type DeletableSections =
   | "experience"
   | "education"
@@ -31,3 +31,15 @@ export const options: Intl.DateTimeFormatOptions = {
   year: "numeric",
   month: "long",
 };
+
+export function findCertificateWithData(certificateList: CertificateType[]) {
+  for (const certificateItem of certificateList) {
+    const { id: _unused, ...certificateData } = certificateItem;
+
+    const isValueFound = Object.values(certificateData).some(
+      (certificateItemData) => certificateItemData
+    );
+    if (isValueFound) return true;
+  }
+  return false;
+}

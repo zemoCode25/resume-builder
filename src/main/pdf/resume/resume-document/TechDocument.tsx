@@ -9,7 +9,7 @@ import {
 } from "@/types/templates/form-types";
 import { PersonalType } from "@/types/templates/form-types";
 import { styles } from "../style";
-import { options } from "@/utils/main-utils";
+import { findCertificateWithData, options } from "@/utils/main-utils";
 
 export function TechDocument({
   resumeData,
@@ -32,7 +32,7 @@ export function TechDocument({
           <Education educationData={education} />
           <Skill skillData={skill} />
           <Project projectData={project} />
-          <Certificate certificateData={certificate} />
+          <Certificate certificateList={certificate} />
         </View>
       </Page>
     </Document>
@@ -153,18 +153,21 @@ export function Skill({ skillData }: { skillData: SkillType[] }) {
 }
 
 export function Certificate({
-  certificateData,
+  certificateList,
 }: {
-  certificateData: CertificateType[];
+  certificateList: CertificateType[];
 }) {
+  const isCertificateValueFound = findCertificateWithData(certificateList);
+
+  if (!isCertificateValueFound || certificateList?.length === 0) return null;
   return (
-    <View>
+    <View style={styles.section}>
       <View style={styles?.headerContainer}>
         <Text style={styles.header}>Certificate</Text>
       </View>
       <View style={styles.section}>
         <View style={styles.unorderedList}>
-          {certificateData?.map((certificateItem) => (
+          {certificateList?.map((certificateItem) => (
             <Text style={styles.text}>{`• ${
               certificateItem.certificateName || ""
             }: ${certificateItem.certificateDescription || ""} - ${

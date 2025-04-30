@@ -8,6 +8,7 @@ import {
   ProjectType,
   SkillType,
 } from "@/types/templates/form-types";
+import { findCertificateWithData } from "@/utils/main-utils";
 
 export function Resume3() {
   const { resumeData } = useContext(ResumeDataContext);
@@ -28,21 +29,9 @@ export function CertificatePreview({
 }: {
   certificateList: CertificateType[];
 }) {
-  if (certificateList?.length === 0) {
-    return;
-  }
+  const isCertificateValueFound = findCertificateWithData(certificateList);
 
-  for (const certificateItem of certificateList) {
-    const { id: _unused, ...certificateData } = certificateItem;
-
-    const isValueFound = Object.values(certificateData).some(
-      (certificateItemData) => certificateItemData
-    );
-
-    if (!isValueFound) {
-      return;
-    }
-  }
+  if (!isCertificateValueFound || certificateList?.length === 0) return;
 
   return (
     <div>
