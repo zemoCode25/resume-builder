@@ -1,5 +1,9 @@
 import { Document, Page, Text, View } from "@react-pdf/renderer";
-import { DefaultForm, ExperienceType } from "@/types/templates/form-types";
+import {
+  DefaultForm,
+  EducationType,
+  ExperienceType,
+} from "@/types/templates/form-types";
 import { PersonalType } from "@/types/templates/form-types";
 import { styles } from "../style";
 import { options } from "@/utils/main-utils";
@@ -22,34 +26,8 @@ export function TechDocument({
         <View>
           <Personal personalData={personal} />
           <Experience experienceData={experience} />
-          {/* Education */}
-          <View style={styles.section}>
-            <View style={styles?.headerContainer}>
-              <Text style={styles.header}>Education</Text>
-            </View>
-            {education?.map((educationItem) => (
-              <View style={styles.section} key={educationItem.id}>
-                <View style={styles.flexContainer}>
-                  <Text style={styles.text}>{`${
-                    educationItem?.degreeProgram || ""
-                  }: GPA ${educationItem?.GPA || ""}`}</Text>
-                  <Text style={styles.text}>{`${
-                    educationItem?.startDate?.toLocaleDateString(
-                      undefined,
-                      options
-                    ) || ""
-                  } - ${
-                    educationItem?.endDate?.toLocaleDateString(
-                      undefined,
-                      options
-                    ) || ""
-                  }`}</Text>
-                </View>
-                <Text style={styles.text}>{educationItem?.school || ""}</Text>
-              </View>
-            ))}
-          </View>
-          \{/* Skill */}
+          <Education educationData={education} />
+          {/* Skill */}
           <View style={styles.section}>
             <View style={styles?.headerContainer}>
               <Text style={styles.header}>Technical Skill</Text>
@@ -169,6 +147,39 @@ export function Experience({
           </View>
         ))}
       </View>
+    </View>
+  );
+}
+
+export function Education({
+  educationData,
+}: {
+  educationData: EducationType[];
+}) {
+  return (
+    <View style={styles.section}>
+      <View style={styles?.headerContainer}>
+        <Text style={styles.header}>Education</Text>
+      </View>
+      {educationData?.map((educationItem) => (
+        <View style={styles.section} key={educationItem.id}>
+          <View style={styles.flexContainer}>
+            <Text style={styles.text}>{`${
+              educationItem?.degreeProgram || ""
+            }: GPA ${educationItem?.GPA || ""}`}</Text>
+            <Text style={styles.text}>{`${
+              educationItem?.startDate?.toLocaleDateString(
+                undefined,
+                options
+              ) || ""
+            } - ${
+              educationItem?.endDate?.toLocaleDateString(undefined, options) ||
+              ""
+            }`}</Text>
+          </View>
+          <Text style={styles.text}>{educationItem?.school || ""}</Text>
+        </View>
+      ))}
     </View>
   );
 }
