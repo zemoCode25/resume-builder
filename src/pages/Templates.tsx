@@ -7,8 +7,6 @@ import { TemplateContext } from "@/contexts/TemplateContext";
 
 export function Templates() {
   const { template, setSelectedTemplate } = useContext(TemplateContext);
-  console.log("THIS IS THE TEMPLATE: ");
-  console.log(template);
 
   const [isPreviewOpen, setPreview] = useState(false);
 
@@ -28,16 +26,17 @@ export function Templates() {
         <p className=" text-center">Select a Harvard style resume template</p>
       </div>
       <div className="gap-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:lg:grid-cols-4 px-10">
-        {templates.map((template, key) => (
+        {templates.map((template) => (
           <div
-            key={key}
+            key={template?.id}
             onClick={() => handleTemplateClick(template.id)}
             className="p-4 rounded-sm border border-gray-300 shadow-all-md cursor-pointer hover:border-gray-500 shadow-all-lg transition-shadow duration-200"
           >
             <img
-              className="w-full h-full object-cover"
+              className="w-full h-auto object-cover aspect-[3/4]"
               src={template.src}
               alt={template.alt}
+              loading="eager"
             />
           </div>
         ))}

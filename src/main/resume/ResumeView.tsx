@@ -16,7 +16,7 @@ export function ResumeView() {
   return (
     <div className="w-full flex lg:px-5 lg:sticky flex-col-reverse lg:flex-col lg:top-10 h-fit gap-3">
       <Resume3 />
-      <div className="w-full mt-2 flex">
+      <div className="w-full mt-2 flex ">
         <Button
           onClick={() => setPDFViewer((prevPDFState: boolean) => !prevPDFState)}
           className="font-semibold cursor-pointer ml-auto w-full lg:w-fit"
