@@ -17,6 +17,7 @@ import {
 import { findProjectWithData } from "@/utils/main-utils";
 import { findExperienceWithData } from "@/utils/main-utils";
 import { findPersonalWithData } from "@/utils/main-utils";
+import { findSkillWithData } from "@/utils/main-utils";
 
 export function TechDocument({
   resumeData,
@@ -37,7 +38,7 @@ export function TechDocument({
           <Personal personalData={personal} />
           <Experience experienceList={experience} />
           <Education educationList={education} />
-          <Skill skillData={skill} />
+          <Skill skillList={skill} />
           <Project projectList={project} />
           <Certificate certificateList={certificate} />
         </View>
@@ -152,14 +153,17 @@ export function Education({
   );
 }
 
-export function Skill({ skillData }: { skillData: SkillType[] }) {
+export function Skill({ skillList }: { skillList: SkillType[] }) {
+  const isSkillValueFound = findSkillWithData(skillList);
+
+  if (!isSkillValueFound || skillList.length === 0) return null;
   return (
     <View style={styles.section}>
       <View style={styles?.headerContainer}>
         <Text style={styles.header}>Technical Skill</Text>
       </View>
       <View style={styles.grid}>
-        {skillData?.map((skillItem) => (
+        {skillList?.map((skillItem) => (
           <Text style={styles.flexItem} key={skillItem?.id}>{`• ${
             skillItem?.skillName || ""
           }`}</Text>

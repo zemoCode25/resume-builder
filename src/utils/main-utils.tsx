@@ -5,6 +5,7 @@ import {
   ExperienceType,
   PersonalType,
   ProjectType,
+  SkillType,
 } from "@/types/templates/form-types";
 type DeletableSections =
   | "experience"
@@ -116,4 +117,10 @@ export function findEducationWithData(educationList: EducationType[]) {
     }
   }
   return false;
+}
+
+export function findSkillWithData(skillList: SkillType[]) {
+  const isValueFound = skillList.some((skillItem) => skillItem?.skillName);
+
+  return isValueFound || skillList.length === 0 ? true : false;
 }

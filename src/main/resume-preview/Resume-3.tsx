@@ -13,6 +13,7 @@ import { findProjectWithData } from "@/utils/main-utils";
 import { findExperienceWithData } from "@/utils/main-utils";
 import { findPersonalWithData } from "@/utils/main-utils";
 import { findEducationWithData } from "@/utils/main-utils";
+import { findSkillWithData } from "@/utils/main-utils";
 
 export function Resume3() {
   const { resumeData } = useContext(ResumeDataContext);
@@ -20,7 +21,7 @@ export function Resume3() {
     <div className="md:p-10 p-5 bg-white rounded-md shadow-sm font-serif flex flex-col gap-1 max-h-180  overflow-y-auto">
       <PersonalPreview personalData={resumeData?.personal || {}} />
       <EducationPreview educationList={resumeData?.education || []} />
-      <SkillPreview skillData={resumeData?.skill || []} />
+      <SkillPreview skillList={resumeData?.skill || []} />
       <ExperiencePreview experienceList={resumeData?.experience || []} />
       <ProjectPreview projectList={resumeData?.project || []} />
       <CertificatePreview certificateList={resumeData?.certificate || []} />
@@ -195,10 +196,6 @@ export function EducationPreview({
 }: {
   educationList: EducationType[];
 }) {
-  if (educationList.length === 0) {
-    return;
-  }
-
   const isEducationValueFound = findEducationWithData(educationList);
 
   if (!isEducationValueFound || educationList?.length === 0) return;
@@ -250,18 +247,17 @@ export function EducationItem({
   );
 }
 
-export function SkillPreview({ skillData }: { skillData: SkillType[] }) {
-  console.log(skillData);
+export function SkillPreview({ skillList }: { skillList: SkillType[] }) {
+  const isSkillValueFound = findSkillWithData(skillList);
 
-  if (skillData.length === 0) return;
-
+  if (!isSkillValueFound || skillList.length === 0) return null;
   return (
     <div>
       <h2 className="text-lg font-semibold border-b border-b-gray-900 pb-0.5">
         Technical Skills
       </h2>
       <ol className="grid grid-cols-2 list-disc ml-4">
-        {skillData.map((skill) => (
+        {skillList.map((skill) => (
           <li key={skill.id}>
             <p>{skill.skillName}</p>
           </li>
