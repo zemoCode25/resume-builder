@@ -12,6 +12,7 @@ import { findCertificateWithData } from "@/utils/main-utils";
 import { findProjectWithData } from "@/utils/main-utils";
 import { findExperienceWithData } from "@/utils/main-utils";
 import { findPersonalWithData } from "@/utils/main-utils";
+import { findEducationWithData } from "@/utils/main-utils";
 
 export function Resume3() {
   const { resumeData } = useContext(ResumeDataContext);
@@ -198,17 +199,9 @@ export function EducationPreview({
     return;
   }
 
-  for (const educationItem of educationList) {
-    const { id: _unused, ...educationData } = educationItem;
+  const isEducationValueFound = findEducationWithData(educationList);
 
-    const isValueFound = Object.values(educationData).some(
-      (educationItemData) => educationItemData
-    );
-
-    if (!isValueFound) {
-      return;
-    }
-  }
+  if (!isEducationValueFound || educationList?.length === 0) return;
 
   return (
     <div>

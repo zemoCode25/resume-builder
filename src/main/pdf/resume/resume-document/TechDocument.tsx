@@ -9,7 +9,11 @@ import {
 } from "@/types/templates/form-types";
 import { PersonalType } from "@/types/templates/form-types";
 import { styles } from "../style";
-import { findCertificateWithData, options } from "@/utils/main-utils";
+import {
+  findCertificateWithData,
+  findEducationWithData,
+  options,
+} from "@/utils/main-utils";
 import { findProjectWithData } from "@/utils/main-utils";
 import { findExperienceWithData } from "@/utils/main-utils";
 import { findPersonalWithData } from "@/utils/main-utils";
@@ -32,7 +36,7 @@ export function TechDocument({
         <View>
           <Personal personalData={personal} />
           <Experience experienceList={experience} />
-          <Education educationData={education} />
+          <Education educationList={education} />
           <Skill skillData={skill} />
           <Project projectList={project} />
           <Certificate certificateList={certificate} />
@@ -113,16 +117,19 @@ export function Experience({
 }
 
 export function Education({
-  educationData,
+  educationList,
 }: {
-  educationData: EducationType[];
+  educationList: EducationType[];
 }) {
+  const isEducationValueFound = findEducationWithData(educationList);
+
+  if (!isEducationValueFound || educationList?.length === 0) return null;
   return (
     <View style={styles.section}>
       <View style={styles?.headerContainer}>
         <Text style={styles.header}>Education</Text>
       </View>
-      {educationData?.map((educationItem) => (
+      {educationList?.map((educationItem) => (
         <View style={styles.section} key={educationItem.id}>
           <View style={styles.flexContainer}>
             <Text style={styles.text}>{`${

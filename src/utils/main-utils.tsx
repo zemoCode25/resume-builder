@@ -1,6 +1,7 @@
 import {
   CertificateType,
   DefaultForm,
+  EducationType,
   ExperienceType,
   PersonalType,
   ProjectType,
@@ -100,4 +101,19 @@ export function findPersonalWithData(personalData: PersonalType) {
   );
 
   return isValueFound ? true : false;
+}
+
+export function findEducationWithData(educationList: EducationType[]) {
+  for (const educationItem of educationList) {
+    const { id: _unused, ...educationData } = educationItem;
+
+    const isValueFound = Object.values(educationData).some(
+      (educationItemData) => educationItemData
+    );
+
+    if (isValueFound) {
+      return true;
+    }
+  }
+  return false;
 }
