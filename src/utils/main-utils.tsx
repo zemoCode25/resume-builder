@@ -1,6 +1,7 @@
 import {
   CertificateType,
   DefaultForm,
+  ExperienceType,
   ProjectType,
 } from "@/types/templates/form-types";
 type DeletableSections =
@@ -61,6 +62,28 @@ export function findProjectWithData(projectList: ProjectType[]) {
 
     const isDescriptionFound = projectDescription?.some(
       (projectDescriptionItem) => projectDescriptionItem?.description
+    );
+
+    if (isValueFound || isDescriptionFound) {
+      return true;
+    }
+  }
+  return false;
+}
+
+export function findExperienceWithData(experienceList: ExperienceType[]) {
+  // Check whether there is a value present in the state
+  for (const experiencetItem of experienceList) {
+    // Excluded id because it is a default data
+    // Excluded projectDescription from projectData as it has a value by default
+    const { id: _id, jobDescription, ...experienceData } = experiencetItem;
+
+    const isValueFound = Object.values(experienceData).some(
+      (experienceItemData) => experienceItemData
+    );
+
+    const isDescriptionFound = jobDescription?.some(
+      (jobDescriptionItem) => jobDescriptionItem?.description
     );
 
     if (isValueFound || isDescriptionFound) {

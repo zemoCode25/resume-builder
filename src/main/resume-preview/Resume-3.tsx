@@ -10,6 +10,7 @@ import {
 } from "@/types/templates/form-types";
 import { findCertificateWithData } from "@/utils/main-utils";
 import { findProjectWithData } from "@/utils/main-utils";
+import { findExperienceWithData } from "@/utils/main-utils";
 
 export function Resume3() {
   const { resumeData } = useContext(ResumeDataContext);
@@ -110,32 +111,10 @@ export function ExperiencePreview({
 }: {
   experienceList: ExperienceType[];
 }) {
-  // Check whether there is a value present in the state
-  for (const experiencetItem of experienceList) {
-    // Excluded id because it is a default data
-    // Excluded projectDescription from projectData as it has a value by default
-    const { id: _id, jobDescription, ...experienceData } = experiencetItem;
-    let isDescriptionFound: boolean = false;
+  const isExperienceValueFound = findExperienceWithData(experienceList);
 
-    const isValueFound = Object.values(experienceData).some(
-      (experienceItemData) => experienceItemData
-    );
+  if (!isExperienceValueFound || experienceList?.length === 0) return;
 
-    for (const experienceDescriptionItem of jobDescription || []) {
-      const { description } = experienceDescriptionItem;
-      if (description) {
-        isDescriptionFound = true;
-      }
-    }
-
-    if (!isValueFound && !isDescriptionFound) {
-      return;
-    }
-  }
-
-  if (experienceList.length === 0) {
-    return;
-  }
   return (
     <div>
       <h2 className="text-lg font-semibold border-b border-b-gray-900 pb-0.5">

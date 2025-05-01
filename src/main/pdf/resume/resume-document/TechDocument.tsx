@@ -11,6 +11,7 @@ import { PersonalType } from "@/types/templates/form-types";
 import { styles } from "../style";
 import { findCertificateWithData, options } from "@/utils/main-utils";
 import { findProjectWithData } from "@/utils/main-utils";
+import { findExperienceWithData } from "@/utils/main-utils";
 
 export function TechDocument({
   resumeData,
@@ -29,7 +30,7 @@ export function TechDocument({
       <Page size="A4" style={styles.page}>
         <View>
           <Personal personalData={personal} />
-          <Experience experienceData={experience} />
+          <Experience experienceList={experience} />
           <Education educationData={education} />
           <Skill skillData={skill} />
           <Project projectList={project} />
@@ -59,17 +60,20 @@ export function Personal({ personalData }: { personalData: PersonalType }) {
 }
 
 export function Experience({
-  experienceData,
+  experienceList,
 }: {
-  experienceData: ExperienceType[];
+  experienceList: ExperienceType[];
 }) {
+  const isExperienceValueFound = findExperienceWithData(experienceList);
+
+  if (!isExperienceValueFound || experienceList?.length === 0) return;
   return (
     <View style={styles.section}>
       <View style={styles?.headerContainer}>
         <Text style={styles.header}>Experience</Text>
       </View>
       <View>
-        {experienceData?.map((experienceItem) => (
+        {experienceList?.map((experienceItem) => (
           <View style={styles.section}>
             <View style={styles.flexContainer}>
               <Text style={styles.text}>{experienceItem?.position || ""}</Text>
