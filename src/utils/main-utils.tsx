@@ -2,6 +2,7 @@ import {
   CertificateType,
   DefaultForm,
   ExperienceType,
+  PersonalType,
   ProjectType,
 } from "@/types/templates/form-types";
 type DeletableSections =
@@ -91,4 +92,12 @@ export function findExperienceWithData(experienceList: ExperienceType[]) {
     }
   }
   return false;
+}
+
+export function findPersonalWithData(personalData: PersonalType) {
+  const isValueFound = Object.values(personalData).some(
+    (personalItem) => personalItem
+  );
+
+  return isValueFound ? true : false;
 }

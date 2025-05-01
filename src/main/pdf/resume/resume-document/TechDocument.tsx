@@ -12,6 +12,7 @@ import { styles } from "../style";
 import { findCertificateWithData, options } from "@/utils/main-utils";
 import { findProjectWithData } from "@/utils/main-utils";
 import { findExperienceWithData } from "@/utils/main-utils";
+import { findPersonalWithData } from "@/utils/main-utils";
 
 export function TechDocument({
   resumeData,
@@ -44,6 +45,10 @@ export function TechDocument({
 export function Personal({ personalData }: { personalData: PersonalType }) {
   const { firstName, lastName, jobTitle, phoneNumber, email, city, country } =
     personalData;
+
+  const isPersonalValueFound = findPersonalWithData(personalData);
+
+  if (!isPersonalValueFound) return null;
   return (
     <View style={styles.section}>
       <View style={styles?.headerContainer}>
@@ -66,7 +71,7 @@ export function Experience({
 }) {
   const isExperienceValueFound = findExperienceWithData(experienceList);
 
-  if (!isExperienceValueFound || experienceList?.length === 0) return;
+  if (!isExperienceValueFound || experienceList?.length === 0) return null;
   return (
     <View style={styles.section}>
       <View style={styles?.headerContainer}>

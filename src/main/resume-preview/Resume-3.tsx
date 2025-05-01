@@ -11,6 +11,7 @@ import {
 import { findCertificateWithData } from "@/utils/main-utils";
 import { findProjectWithData } from "@/utils/main-utils";
 import { findExperienceWithData } from "@/utils/main-utils";
+import { findPersonalWithData } from "@/utils/main-utils";
 
 export function Resume3() {
   const { resumeData } = useContext(ResumeDataContext);
@@ -169,13 +170,9 @@ export function PersonalPreview({
 }: {
   personalData: PersonalType;
 }) {
-  const isValueFound = Object.values(personalData).some(
-    (personalItem) => personalItem
-  );
+  const isPersonalValueFound = findPersonalWithData(personalData);
 
-  if (!isValueFound) {
-    return;
-  }
+  if (!isPersonalValueFound) return;
 
   return (
     <div className="font-serif">
