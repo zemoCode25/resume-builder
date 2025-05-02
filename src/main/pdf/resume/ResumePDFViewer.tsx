@@ -5,7 +5,7 @@ import { useContext } from "react";
 import { Button } from "@/components/ui/button";
 import { Download, X } from "lucide-react";
 import { TemplateContext } from "@/contexts/TemplateContext";
-import { JSX } from "react";
+import { getTemplate } from "@/utils/main-utils";
 
 export function ResumePDFViewer({
   closePDFViewer,
@@ -16,11 +16,7 @@ export function ResumePDFViewer({
   const { template } = useContext(TemplateContext);
   const templateID = template?.id;
 
-  const templatePDFDocs: Record<number, JSX.Element> = {
-    3: <TechDocument resumeData={resumeData} />,
-  };
-
-  const selectedTemplate: JSX.Element = templatePDFDocs[templateID || 0];
+  const selectedTemplate = getTemplate(templateID, resumeData);
 
   return (
     <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">

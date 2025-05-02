@@ -1,3 +1,4 @@
+import { JSX } from "react";
 import {
   CertificateType,
   DefaultForm,
@@ -7,12 +8,24 @@ import {
   ProjectType,
   SkillType,
 } from "@/types/templates/form-types";
+import { TechDocument } from "@/main/pdf/resume/resume-document/TechDocument";
 type DeletableSections =
   | "experience"
   | "education"
   | "project"
   | "skill"
   | "certificate";
+
+export function getTemplate(
+  templateID: number | undefined,
+  resumeData: DefaultForm | null
+) {
+  const templateMap: Record<number, JSX.Element> = {
+    3: <TechDocument resumeData={resumeData} />,
+  };
+
+  return templateMap[templateID || 0];
+}
 
 export function deleteForm(
   property: DeletableSections,
