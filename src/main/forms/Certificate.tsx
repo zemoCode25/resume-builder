@@ -93,7 +93,7 @@ export function Certificate({ certificate }: { certificate: CertificateType }) {
         </div>
         <div className="w-full flex flex-col gap-1">
           <label htmlFor="" className="font-semibold text-gray-700">
-            Project description
+            Certificate description
           </label>
           <textarea
             value={certificateDescription || ""}

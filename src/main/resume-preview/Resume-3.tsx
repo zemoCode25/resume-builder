@@ -39,7 +39,7 @@ export function CertificatePreview({
   if (!isCertificateValueFound || certificateList?.length === 0) return;
 
   return (
-    <div>
+    <div className="break-words">
       <h2 className="text-lg font-semibold border-b border-b-gray-900 pb-0.5">
         Certificate
       </h2>
@@ -98,7 +98,7 @@ export function ProjectPreview({
 
 export function ProjectItem({ projectItem }: { projectItem: ProjectType }) {
   return (
-    <div>
+    <div className="break-words">
       <p className="italic">{projectItem?.projectName || ""}</p>
       <ol className="list-disc pl-8">
         {projectItem?.projectDescription?.map((description) => (
@@ -144,7 +144,7 @@ export function ExperienceItem({
   } - ${experienceData?.endDate?.toLocaleDateString(undefined, options) || ""}`;
 
   return (
-    <div className="flex flex-col gap-2">
+    <div className="flex flex-col gap-2 break-words">
       <div>
         <div className="w-full flex justify-between">
           <p className="italic">{experienceData?.position}</p>
@@ -177,9 +177,9 @@ export function PersonalPreview({
   if (!isPersonalValueFound) return;
 
   return (
-    <div className="font-serif">
+    <div className="font-serif break-words">
       <div className="border-b border-b-gray-900">
-        <h1 className="text-3xl font-semibold">
+        <h1 className="text-3xl font-semibold ">
           {`${personalData?.firstName || ""} ${personalData?.lastName || ""}`}
         </h1>
         <p>{personalData?.jobTitle || ""}</p>
@@ -222,7 +222,7 @@ export function EducationItem({
     month: "long",
   };
   return (
-    <div>
+    <div className="break-words">
       <div className="flex justify-between">
         <p className="italic">
           {educationItemData?.degreeProgram || ""}
@@ -252,11 +252,11 @@ export function SkillPreview({ skillList }: { skillList: SkillType[] }) {
 
   if (!isSkillValueFound || skillList.length === 0) return null;
   return (
-    <div>
+    <div className="break-words">
       <h2 className="text-lg font-semibold border-b border-b-gray-900 pb-0.5">
         Technical Skills
       </h2>
-      <ol className="grid grid-cols-2 list-disc ml-4">
+      <ol className="grid grid-cols-2 list-disc ml-4 gap-4">
         {skillList.map((skill) => (
           <li key={skill.id}>
             <p>{skill.skillName}</p>
