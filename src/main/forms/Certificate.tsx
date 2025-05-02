@@ -74,7 +74,13 @@ export function Certificate({ certificate }: { certificate: CertificateType }) {
           <X strokeWidth={"2"} />
         </Button>
       </div>
-      <form action="" className="w-full grid grid-cols-1 gap-3">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+        action=""
+        className="w-full grid grid-cols-1 gap-3"
+      >
         <div className="w-full flex flex-col gap-1">
           <label htmlFor="" className="font-semibold text-gray-700">
             Cerficate Name

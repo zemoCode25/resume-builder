@@ -100,7 +100,9 @@ export function Education({ education }: { education: EducationType }) {
         </Button>
       </div>
       <form
-        action=""
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
         className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2 gap-3"
       >
         <div className="w-full flex flex-col gap-1">

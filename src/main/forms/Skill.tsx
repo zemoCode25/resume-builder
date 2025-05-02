@@ -51,7 +51,12 @@ export function Skill({ skill = {} }: { skill: SkillType }) {
           <X strokeWidth={"2"} />
         </Button>
       </div>
-      <form action="" className="w-full flex gap-3 bg-white">
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+        className="w-full flex gap-3 bg-white"
+      >
         <div className="w-full flex flex-col gap-1">
           <label htmlFor="" className="font-semibold text-gray-700">
             Skill

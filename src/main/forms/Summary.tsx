@@ -14,7 +14,12 @@ export function Summary() {
   }
 
   return (
-    <form action="" className="w-3/4 gap-10 bg-white p-5 rounded-md">
+    <form
+      onSubmit={(e) => {
+        e.preventDefault();
+      }}
+      className="w-3/4 gap-10 bg-white p-5 rounded-md"
+    >
       <div className="w-full flex flex-col gap-1">
         <p className="font-semibold text-gray-500 text-sm pb-2">
           Write 2-4 short, energetic sentences about how great you are. Mention
